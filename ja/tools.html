@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>複利計算機 — Long Horizon</title>
+  <meta name="description" content="円・ドル・ウォンで10〜40年の毎月積立をシミュレーション:将来の評価額、目標額から逆算した必要積立額、年ごとのグラフとマイルストーン表。">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ja/tools.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/tools.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/tools.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/tools.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/tools.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="複利計算機 — Long Horizon">
+  <meta property="og:description" content="円・ドル・ウォンで10〜40年の毎月積立をシミュレーション:将来の評価額、目標額から逆算した必要積立額、年ごとのグラフとマイルストーン表。">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ja/tools.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="メイン">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">はじめ方</a></li>
+        <li><a href="principles.html">原則</a></li>
+        <li><a href="markets.html">市場</a></li>
+        <li><a href="strategy.html">戦略</a></li>
+        <li><a href="accounts.html">口座と税金</a></li>
+        <li><a href="survival.html">暴落対策</a></li>
+        <li><a href="drawdown.html">出口戦略</a></li>
+        <li><a href="tools.html">計算機</a></li>
+        <li><a href="resources.html">資料</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="言語">
+        <a href="../tools.html" hreflang="en">EN</a>
+        <a href="tools.html" aria-current="true" lang="ja">日本語</a>
+        <a href="../ko/tools.html" lang="ko" hreflang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="テーマ切替">☾</button>
+      <button class="nav-burger" aria-label="メニュー" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom: 24px;">
+    <div class="container">
+      <span class="kicker">計算機</span>
+      <h1>あなたの「数十年」の価値を見る</h1>
+      <p class="lead">
+        これは予測であって約束ではありません:想定した平均リターンでの、淡々とした毎月積立の
+        シミュレーションです。実際の市場がこの平均を届けてくれるのは長い期間だけ、しかも決して
+        一直線ではありません — だからこそ計画は数十年でつくるのです。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 32px;">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="card calc-form">
+          <div class="mode-switch" role="group" aria-label="計算モード">
+            <button type="button" data-mode="future" aria-pressed="true">毎月の積立 → 将来額</button>
+            <button type="button" data-mode="goal" aria-pressed="false">目標額 → 必要積立</button>
+          </div>
+
+          <label for="calc-currency">通貨</label>
+          <select id="calc-currency">
+            <option value="JPY" selected>日本円(¥)</option>
+            <option value="USD">米ドル($)</option>
+            <option value="KRW">韓国ウォン(₩)</option>
+          </select>
+
+          <label for="calc-initial">初期投資額</label>
+          <input type="number" id="calc-initial" value="1000000" min="0" step="100000">
+
+          <div id="monthly-wrap">
+            <label for="calc-monthly">毎月の積立額</label>
+            <input type="number" id="calc-monthly" value="50000" min="0" step="5000">
+          </div>
+
+          <div id="target-wrap" style="display: none;">
+            <label for="calc-target">目標金額</label>
+            <input type="number" id="calc-target" value="50000000" min="0" step="1000000">
+          </div>
+
+          <label for="calc-stepup">積立額の年間増加率(%)</label>
+          <input type="number" id="calc-stepup" value="0" min="0" max="20" step="0.5">
+
+          <label for="calc-return">想定年利(%)</label>
+          <input type="number" id="calc-return" value="7" min="-5" max="20" step="0.5">
+          <div class="preset-row" role="group" aria-label="利回りプリセット">
+            <button type="button" data-rate="5" aria-pressed="false">慎重に 5%</button>
+            <button type="button" data-rate="7" aria-pressed="true">実質相当 7%</button>
+            <button type="button" data-rate="10" aria-pressed="false">名目 10%</button>
+          </div>
+
+          <label for="calc-years">期間:<span class="range-value" id="calc-years-out">25年</span></label>
+          <input type="range" id="calc-years" min="5" max="40" step="1" value="25">
+
+          <p class="small" style="margin-top: 16px;">
+            プリセットはS&amp;P 500のおおよその歴史的平均 — 名目で年約10%、インフレ調整後で約7% —
+            と、より慎重な5%です。結果は税金・手数料を含みません。口座の重要性は
+            <a href="accounts.html">口座と税金</a>へ。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="hero-figure">
+            <div class="hf-label" id="calc-hero-label">将来の評価額(予測)</div>
+            <div class="hf-value" id="calc-hero-value">—</div>
+            <div class="hf-note" id="calc-hero-note"></div>
+          </div>
+
+          <div class="viz-legend" aria-hidden="false">
+            <span class="lg-item"><span class="lg-swatch s1"></span> ポートフォリオ評価額</span>
+            <span class="lg-item"><span class="lg-swatch s2"></span> 累計積立額</span>
+          </div>
+
+          <div class="viz-root">
+            <div id="calc-chart"></div>
+            <div class="viz-tooltip" id="calc-tooltip"></div>
+          </div>
+
+          <div class="stat-row mt-3">
+            <div class="stat">
+              <div class="stat-label">積立総額</div>
+              <div class="stat-value" id="stat-contrib">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">運用益</div>
+              <div class="stat-value" id="stat-growth">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label" id="stat-3-label">評価額 ÷ 積立額</div>
+              <div class="stat-value" id="stat-multiple">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <h2>マイルストーン(5年ごと)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>時点</th>
+                <th class="num">積立総額</th>
+                <th class="num">運用益</th>
+                <th class="num">評価額</th>
+              </tr>
+            </thead>
+            <tbody id="calc-table-body"></tbody>
+          </table>
+        </div>
+        <p class="small mt-2">
+          「運用益」の列が「積立総額」を追い越すのは、たいてい2つ目の10年のどこかです —
+          ポートフォリオがあなたより稼ぎ始める交差点。その交差点こそ
+          <a href="principles.html#compounding">原則の考え方1</a>の主張のすべてです。
+        </p>
+      </div>
+
+      <figure class="quote mt-3">
+        <blockquote>
+          <p class="q-text">「株式市場とは、せっかちな人から辛抱強い人へお金を移す装置である。」</p>
+          <p class="q-orig">"The stock market is a device for transferring money from the impatient to the patient."</p>
+        </blockquote>
+        <figcaption>— ウォーレン・バフェット<span class="q-src">(伝)</span></figcaption>
+      </figure>
+
+      <div class="grid-2 mt-3">
+        <div class="card">
+          <h3>頭の中の「72の法則」</h3>
+          <p>72を利回りで割ると、資産が2倍になるおおよその年数が出ます:7%なら約10年、10%なら
+             約7年。7%で30年はおよそ3回の倍増 — 8倍 — です。最後の10年が最初の10年の隣では
+             信じがたく見えるのは、このためです。</p>
+        </div>
+        <div class="card">
+          <h3>予測の正直な読み方</h3>
+          <p>実際の30年の結果は、どの平均値の周りにも大きくばらつきます:同じ積立でも、リターンの
+             順番次第で大きく上にも下にも振れ得ます。この出力は口座残高の予言ではなく、あなたが
+             実際にコントロールできる唯一の入力 — 貯蓄率 — を決めるための計画の錨として
+             使ってください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 数十年単位で投資する人のためのガイド。</div>
+      <div>
+        <a href="start.html">はじめ方</a> ·
+        <a href="principles.html">原則</a> ·
+        <a href="markets.html">市場</a> ·
+        <a href="strategy.html">戦略</a> ·
+        <a href="accounts.html">口座と税金</a> ·
+        <a href="survival.html">暴落対策</a> ·
+        <a href="drawdown.html">出口戦略</a> ·
+        <a href="tools.html">計算機</a> ·
+        <a href="resources.html">資料</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      本サイトは教育目的の情報提供のみを行うものであり、投資・税務・法務の助言や、特定の証券の
+      売買の勧誘ではありません。投資には元本割れを含むリスクがあります。過去の実績は将来の成果を
+      保証しません。米国・日本・韓国の税制は頻繁に変わります — 実行前に必ず公式情報や専門家に
+      ご確認ください。
+    </p>
+  </div>
+</footer>
+
+<script>
+window.CALC_I18N = {
+  cjkUnits: { man: "万", oku: "億", cho: "兆" },
+  now: "現在",
+  yr: function (n) { return n + "年"; },
+  start: "開始時",
+  yearN: function (n) { return n + "年目"; },
+  years: function (n) { return n + "年"; },
+  seriesValue: "ポートフォリオ評価額",
+  seriesContrib: "累計積立額",
+  growth: "運用益",
+  heroLabelFwd: "将来の評価額(予測)",
+  heroLabelGoal: "必要な毎月の積立額",
+  stat3Fwd: "評価額 ÷ 積立額",
+  stat3Goal: "最終評価額(予測)",
+  perMonth: "/月",
+  heroNoteFwd: function (y, r) { return "年率" + r + "%で" + y + "年間運用した場合(税引前・インフレ調整前)"; },
+  heroNoteGoal: function (y, r, target) { return "年率" + r + "%で" + y + "年後に" + target + "へ到達するのに必要な毎月の積立額"; },
+  chartAria: "年ごとのポートフォリオ評価額と累計積立額の予測グラフ",
+};
+</script>
+<script src="../assets/js/calculator.js"></script>
+</body>
+</html>

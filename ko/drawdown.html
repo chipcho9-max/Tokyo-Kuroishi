@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인출 전략 — Long Horizon</title>
+  <meta name="description" content="수십 년 걸려 쌓은 포트폴리오를 쓰는 법: 4% 룰과 그 주의점, 시퀀스 리스크, 버킷 전략, 나라별 인출 순서.">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ko/drawdown.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/drawdown.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/drawdown.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/drawdown.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/drawdown.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="인출 전략 — Long Horizon">
+  <meta property="og:description" content="수십 년 걸려 쌓은 포트폴리오를 쓰는 법: 4% 룰과 그 주의점, 시퀀스 리스크, 버킷 전략, 나라별 인출 순서.">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ko/drawdown.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="메인">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">시작하기</a></li>
+        <li><a href="principles.html">원칙</a></li>
+        <li><a href="markets.html">시장</a></li>
+        <li><a href="strategy.html">전략</a></li>
+        <li><a href="accounts.html">계좌와 세금</a></li>
+        <li><a href="survival.html">폭락 대비</a></li>
+        <li><a href="drawdown.html">인출 전략</a></li>
+        <li><a href="tools.html">계산기</a></li>
+        <li><a href="resources.html">자료</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="언어">
+        <a href="../drawdown.html" hreflang="en">EN</a>
+        <a href="../ja/drawdown.html" lang="ja" hreflang="ja">日本語</a>
+        <a href="drawdown.html" aria-current="true" lang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="테마 전환">☾</button>
+      <button class="nav-burger" aria-label="메뉴" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">인출 전략</span>
+      <h1>수십 년 걸려 쌓은 자산을, 쓴다는 것</h1>
+      <p class="lead">
+        적립의 시대에는 규칙이 하나였습니다 — 계속 사는 것. 쓰는 시대는 정말로 더 어렵습니다:
+        수익률의 '순서'가 갑자기 중요해지고, 세금이 청구되기 시작하고, 자산을 만들어 준 습관
+        (절대 팔지 않기)을 조심스럽게, 부분적으로, 내려놓아야 합니다. 출구는 필요해지기 몇 년
+        전에 설계하세요.
+      </p>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">"오늘 누군가 그늘에 앉아 쉴 수 있는 것은, 오래전에 누군가 나무를 심었기 때문이다."</p>
+          <p class="q-orig">"Someone's sitting in the shade today because someone planted a tree a long time ago."</p>
+        </blockquote>
+        <figcaption>— 워런 버핏</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="four-percent">
+    <div class="container">
+      <span class="kicker">출발점</span>
+      <h2>4% 룰 — 유용하지만, 신성하지는 않다</h2>
+      <p>
+        고전적 발견(벵겐 1994, 그 뒤의 '트리니티 스터디'): 미국 과거 데이터에서, 주식 50~75%
+        포트폴리오로 은퇴해 <strong>첫해에 시작 잔고의 4%</strong>를 인출하고 이후 그 금액을
+        매년 물가상승률만큼 올린 경우, 대공황이나 1970년대에 은퇴한 사례를 포함해도 30년 안에
+        돈이 바닥나는 일은 거의 없었습니다. 뒤집으면 개인 재무에서 가장 유용한 계획 숫자가
+        나옵니다: <strong>목표 자산 ≒ 연간 지출의 약 25배</strong>.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>연간 지출</th><th class="num">25배 목표(4%)</th><th class="num">28.5배 목표(3.5%)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>5,000만 원</td><td class="num">12억 5,000만 원</td><td class="num">14억 2,500만 원</td></tr>
+            <tr><td>$40,000</td><td class="num">$1,000,000</td><td class="num">$1,140,000</td></tr>
+            <tr><td>400만 엔</td><td class="num">1억 엔</td><td class="num">1억 1,400만 엔</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-2">인생을 여기에 얹기 전의 정직한 주의점:</p>
+      <ul>
+        <li><strong>이것은 미국의 역사이지 물리 법칙이 아닙니다.</strong> 4%는 20세기 최강 시장에서
+          나온 숫자입니다. 더 긴 은퇴 기간, 미국 외 가정, 현재의 밸류에이션에는 3.25~3.75%를 쓰는
+          플래너가 많습니다.</li>
+        <li><strong>세금과 수수료가 빠져 있습니다</strong> — 인출액에서 둘 다 내야 합니다. 0.1%
+          인덱스 펀드와 비과세 계좌는 실질적 안전인출률을 올리고, 1.5% 자문 수수료는 내립니다.</li>
+        <li><strong>경직된 규칙은 좋은 시절에 아끼기만 하고 나쁜 시절에 무리합니다.</strong>
+          실무에서는 유연한 변형 — 하락한 다음 해에는 물가 인상분을 건너뛰기, 인출률이 너무
+          올라가면 지출을 10% 줄이는 '가드레일' — 이 생존율을 크게 개선합니다.</li>
+        <li><strong>30년을 넘는 은퇴 기간</strong>(조기 은퇴, 50세의 계획)에는 더 낮은 비율을.
+          20년 이하라면 더 높은 비율도 버팁니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="sequence">
+    <div class="container">
+      <span class="kicker">진짜 적</span>
+      <h2>시퀀스 리스크(수익률 순서의 위험)</h2>
+      <p>
+        두 은퇴자가 30년 동안 <em>같은 평균 수익률</em>을 얻고도 완전히 다른 결말을 맞을 수
+        있습니다. 은퇴 1~2년차에 −40% 폭락을 — 인출하면서 — 맞은 사람은 최악의 가격에 가장 많은
+        수량을 팔게 되고, 시장이 회복해도 포트폴리오는 돌아오지 못할 수 있습니다. 같은 폭락이
+        25년차에 온 사람은 거의 눈치도 못 챕니다. 돈이 버티느냐를 정하는 것은 평균이 아니라
+        순서입니다. 그래서 인출의 시대에는 적립과는 다른 기계가 필요합니다:
+      </p>
+      <div class="grid-3 mt-2">
+        <div class="card">
+          <h3>1. 버킷 구조</h3>
+          <p><strong>생활비 1~2년치를 현금</strong>으로, <strong>추가 3~7년치를 채권</strong>으로
+             두고 나머지는 주식으로. 나쁜 해에는 현금을 쓰고 나중에 채웁니다. 폭락 한가운데서
+             주식을 팔지 않는 것 — 그게 게임의 전부입니다.</p>
+        </div>
+        <div class="card">
+          <h3>2. 은퇴 전 글라이드</h3>
+          <p>인출 시작 <em>전</em> 5~10년에 걸쳐 주식 80~100%에서 50~70%로 서서히 이동.
+             가장 위험한 창은 은퇴일 앞뒤 5년씩입니다 — 바로 그 창을 지키고, 그 후의 모든 해를
+             지키려 하지 마세요.</p>
+        </div>
+        <div class="card">
+          <h3>3. 유연한 지출</h3>
+          <p>미리 자신과 합의해 두세요: 하락한 다음 해에는 물가 인상분 없음. 계획보다 20%
+             밑돌면 지출 10% 삭감. 작고 이른 삭감이 크고 늦은 삭감의 일을 대신해 줍니다.</p>
+        </div>
+      </div>
+      <div class="callout mt-3">
+        <strong>배당은 여기에 들어맞습니다.</strong> 배당 성장 틸트(<a href="strategy.html#dividends">전략</a> 참고)는
+        지출의 일부를 주식을 전혀 팔지 않고 현금으로 도착하게 해 줍니다 — 나쁜 해에 심리적으로도
+        구조적으로도 유용합니다. 대신 도중의 세금 부담이 있으므로, 많은 인출 계획은 하나를
+        고르기보다 둘을 섞습니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="order">
+    <div class="container">
+      <span class="kicker">배관</span>
+      <h2>어느 계좌부터 헐 것인가</h2>
+      <p>
+        인출 순서는 세후 자산을 의미 있게 바꿉니다. 일반적인 프레임워크는 다음과 같습니다 —
+        실행 전 반드시 현행 규정을 전문가에게 확인하세요:
+      </p>
+      <div class="grid-3 mt-2">
+        <div class="card">
+          <span class="chip chip-kr"><span class="chip-dot"></span>한국</span>
+          <ol class="mt-2">
+            <li>먼저 과세 계좌 — 수십 년치 이익을 한 번에 실현하지 말고, 연 250만 원 해외주식 공제를 해마다 사용.</li>
+            <li>연금저축/IRP는 55세부터 연금으로: 연간 한도 내라면 세율이 단 3.3~5.5%(연금소득세) — 수십 년 과세이연의 보상입니다. 큰 일시금은 이 혜택을 잃으므로(기타소득세 16.5%) 연금화하세요.</li>
+            <li>ISA는 만기 자금을 연금저축으로 옮기면 늦은 나이에도 추가 세액공제를 받을 수 있습니다.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <span class="chip chip-us"><span class="chip-dot"></span>미국</span>
+          <ol class="mt-2">
+            <li>먼저 과세 계좌(장기 양도소득세율로 끝나고, 혜택 계좌의 복리를 지킬 수 있음).</li>
+            <li>다음 Traditional 401(k)/IRA — <strong>73세부터의 의무 인출(RMD)</strong>에 주의. 시작 전 저소득 해에 Roth 전환 검토.</li>
+            <li>Roth는 마지막: 비과세에 생전 RMD 없음 — 가장 오래 들고 가거나 상속에 남기기 가장 좋은 자산.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <span class="chip chip-jp"><span class="chip-dot"></span>일본</span>
+          <ol class="mt-2">
+            <li>먼저 특정계좌 — 양도차익에 20.315%가 붙으므로 미실현 이익이 작은 것부터 실현.</li>
+            <li>iDeCo는 60세 이후 일시금 또는 연금으로 수령. 퇴직소득공제 덕에 일시금이 매우 유리한 경우가 많습니다 — 반드시 비교를.</li>
+            <li>NISA는 마지막: 영구 비과세에 강제 인출 없음 — 두는 1년마다 공짜 복리입니다. 팔면 평생 한도도 부활합니다.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="container">
+      <span class="kicker">5년 전부터</span>
+      <h2>인출 전 체크리스트</h2>
+      <ol>
+        <li><strong>내 숫자 알기:</strong> 연간 지출 × 25(신중하다면 × 28). 진행 상황은 <a href="tools.html">계산기의 목표 모드</a>로.</li>
+        <li><strong>글라이드 시작:</strong> 은퇴 시 배분으로 서서히 — 헤드라인에 반응해서가 아니라 일정대로.</li>
+        <li><strong>현금 버킷 만들기</strong> — 첫날 주식을 팔아서가 아니라, 마지막 2~3년의 월급에서.</li>
+        <li><strong>모든 계좌의 규칙을 지도로:</strong> RMD 나이, 연금 개시 창, NISA 한도, 연금 수령 개시일 — 달력에 날짜를 넣으세요.</li>
+        <li><strong>인출 원칙서 쓰기</strong> — 어느 계좌를, 어떤 순서로, 지출 삭감의 트리거는 무엇인지 — 아직 이론일 때. 여기까지 데려다준 '한 장의 규율'(<a href="survival.html">폭락 대비</a> 참고)이 끝까지 데려다줍니다.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 수십 년 단위로 투자하는 사람들을 위한 가이드.</div>
+      <div>
+        <a href="start.html">시작하기</a> ·
+        <a href="principles.html">원칙</a> ·
+        <a href="markets.html">시장</a> ·
+        <a href="strategy.html">전략</a> ·
+        <a href="accounts.html">계좌와 세금</a> ·
+        <a href="survival.html">폭락 대비</a> ·
+        <a href="drawdown.html">인출 전략</a> ·
+        <a href="tools.html">계산기</a> ·
+        <a href="resources.html">자료</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      본 사이트는 교육 목적의 정보 제공만을 위한 것으로, 투자·세무·법률 자문이나 특정 증권의
+      매매 권유가 아닙니다. 투자에는 원금 손실을 포함한 위험이 따릅니다. 과거의 성과는 미래의
+      수익을 보장하지 않습니다. 미국·일본·한국의 세제는 자주 바뀝니다 — 실행 전 반드시 공식
+      자료나 전문가에게 확인하세요.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

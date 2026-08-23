@@ -1,63 +1,104 @@
 /* Long Horizon — compound growth / DCA calculator
+   Two modes:
+     future — monthly amount → projected value
+     goal   — target amount → required monthly (binary search over the same simulation)
    Two series: portfolio value (series-1) and cumulative contributions (series-2).
-   Chart is SVG, styled entirely via CSS custom properties so theme switches
-   need no re-render. Values are also available without hover via the
-   milestone table below the chart. */
+   Chart is SVG, styled via CSS custom properties so theme switches need no re-render.
+   Localized pages set window.CALC_I18N before this script loads. */
 
 (function () {
   "use strict";
+
+  var L = Object.assign({
+    cjkUnits: null, /* e.g. { man: "万", oku: "億", cho: "兆" } — enables 万/億 axis units for JPY/KRW */
+    west: { K: "K", M: "M", B: "B", T: "T" },
+    now: "Now",
+    yr: function (n) { return "Yr " + n; },
+    start: "Start",
+    yearN: function (n) { return "Year " + n; },
+    years: function (n) { return n + (n === 1 ? " year" : " years"); },
+    seriesValue: "Portfolio value",
+    seriesContrib: "Contributed",
+    growth: "Growth",
+    heroLabelFwd: "Projected portfolio value",
+    heroLabelGoal: "Required monthly contribution",
+    stat3Fwd: "Value ÷ contributions",
+    stat3Goal: "Projected final value",
+    perMonth: "/mo",
+    heroNoteFwd: function (y, r) { return "Projected value after " + y + " years at " + r + "% a year, before tax and inflation"; },
+    heroNoteGoal: function (y, r, target) { return "Monthly investment needed to reach " + target + " in " + y + " years at " + r + "% a year"; },
+    chartAria: "Projected portfolio value and cumulative contributions by year",
+  }, window.CALC_I18N || {});
 
   var els = {
     currency: document.getElementById("calc-currency"),
     initial: document.getElementById("calc-initial"),
     monthly: document.getElementById("calc-monthly"),
+    target: document.getElementById("calc-target"),
     ret: document.getElementById("calc-return"),
     stepup: document.getElementById("calc-stepup"),
     years: document.getElementById("calc-years"),
     yearsOut: document.getElementById("calc-years-out"),
     presets: document.querySelectorAll(".preset-row button"),
+    modeBtns: document.querySelectorAll(".mode-switch button"),
+    monthlyWrap: document.getElementById("monthly-wrap"),
+    targetWrap: document.getElementById("target-wrap"),
+    heroLabel: document.getElementById("calc-hero-label"),
     heroValue: document.getElementById("calc-hero-value"),
     heroNote: document.getElementById("calc-hero-note"),
     statContrib: document.getElementById("stat-contrib"),
     statGrowth: document.getElementById("stat-growth"),
-    statMultiple: document.getElementById("stat-multiple"),
+    stat3Label: document.getElementById("stat-3-label"),
+    stat3: document.getElementById("stat-multiple"),
     chartHost: document.getElementById("calc-chart"),
     tooltip: document.getElementById("calc-tooltip"),
     tableBody: document.getElementById("calc-table-body"),
   };
   if (!els.chartHost) return;
 
+  var mode = "future";
+
   var CURRENCIES = {
-    USD: { symbol: "$", perMonthDefaultInitial: 10000, perMonthDefault: 500 },
-    JPY: { symbol: "¥", perMonthDefaultInitial: 1000000, perMonthDefault: 50000 },
-    KRW: { symbol: "₩", perMonthDefaultInitial: 10000000, perMonthDefault: 500000 },
+    USD: { symbol: "$", initial: 10000, monthly: 500, target: 1000000 },
+    JPY: { symbol: "¥", initial: 1000000, monthly: 50000, target: 50000000 },
+    KRW: { symbol: "₩", initial: 10000000, monthly: 500000, target: 1000000000 },
   };
 
   function currency() { return els.currency ? els.currency.value : "USD"; }
   function symbol() { return CURRENCIES[currency()].symbol; }
+  function useCjk() { return L.cjkUnits && currency() !== "USD"; }
 
   function fmtFull(v) {
     return symbol() + Math.round(v).toLocaleString("en-US");
   }
 
+  function trim(x) {
+    var r = x >= 100 ? Math.round(x) : Math.round(x * 10) / 10;
+    return String(r);
+  }
+
   function fmtCompact(v) {
     var s = symbol();
     var abs = Math.abs(v);
-    if (abs >= 1e12) return s + trim(v / 1e12) + "T";
-    if (abs >= 1e9) return s + trim(v / 1e9) + "B";
-    if (abs >= 1e6) return s + trim(v / 1e6) + "M";
-    if (abs >= 1e3) return s + trim(v / 1e3) + "K";
-    return s + Math.round(v);
-    function trim(x) {
-      var r = x >= 100 ? Math.round(x) : Math.round(x * 10) / 10;
-      return String(r);
+    if (useCjk()) {
+      var u = L.cjkUnits;
+      if (abs >= 1e12) return s + trim(v / 1e12) + u.cho;
+      if (abs >= 1e8) return s + trim(v / 1e8) + u.oku;
+      if (abs >= 1e4) return s + trim(v / 1e4) + u.man;
+      return s + Math.round(v);
     }
+    if (abs >= 1e12) return s + trim(v / 1e12) + L.west.T;
+    if (abs >= 1e9) return s + trim(v / 1e9) + L.west.B;
+    if (abs >= 1e6) return s + trim(v / 1e6) + L.west.M;
+    if (abs >= 1e3) return s + trim(v / 1e3) + L.west.K;
+    return s + Math.round(v);
   }
 
   function readInputs() {
     return {
       initial: Math.max(0, Number(els.initial.value) || 0),
       monthly: Math.max(0, Number(els.monthly.value) || 0),
+      target: Math.max(0, Number(els.target && els.target.value) || 0),
       annualReturn: Math.min(20, Math.max(-5, Number(els.ret.value) || 0)) / 100,
       stepup: Math.min(20, Math.max(0, Number(els.stepup.value) || 0)) / 100,
       years: Math.min(40, Math.max(5, Number(els.years.value) || 25)),
@@ -67,11 +108,11 @@
   /* Simulate month by month; keep one data point per year.
      Contributions land at the end of each month; the step-up raises the
      monthly amount once per completed year. */
-  function simulate(p) {
+  function simulate(p, monthlyOverride) {
     var monthlyRate = Math.pow(1 + p.annualReturn, 1 / 12) - 1;
     var value = p.initial;
     var contributed = p.initial;
-    var monthly = p.monthly;
+    var monthly = monthlyOverride !== undefined ? monthlyOverride : p.monthly;
     var points = [{ year: 0, value: value, contributed: contributed }];
     for (var y = 1; y <= p.years; y++) {
       for (var m = 0; m < 12; m++) {
@@ -82,6 +123,22 @@
       monthly *= 1 + p.stepup;
     }
     return points;
+  }
+
+  function finalValue(p, monthly) {
+    var pts = simulate(p, monthly);
+    return pts[pts.length - 1].value;
+  }
+
+  /* Smallest first-year monthly amount whose simulated path reaches the target. */
+  function requiredMonthly(p) {
+    if (finalValue(p, 0) >= p.target) return 0;
+    var lo = 0, hi = Math.max(1, p.target);
+    for (var i = 0; i < 60; i++) {
+      var mid = (lo + hi) / 2;
+      if (finalValue(p, mid) < p.target) lo = mid; else hi = mid;
+    }
+    return hi;
   }
 
   /* ---------- chart ---------- */
@@ -106,8 +163,6 @@
     return [0, max];
   }
 
-  var state = { points: [], xFor: null, yFor: null };
-
   function svgEl(name, attrs) {
     var el = document.createElementNS("http://www.w3.org/2000/svg", name);
     for (var k in attrs) el.setAttribute(k, attrs[k]);
@@ -129,13 +184,12 @@
     var plotH = H - PAD.top - PAD.bottom;
     var xFor = function (year) { return PAD.left + (year / years) * plotW; };
     var yFor = function (v) { return PAD.top + plotH - (v / yMax) * plotH; };
-    state.points = points; state.xFor = xFor; state.yFor = yFor;
 
     var svg = svgEl("svg", {
       class: "chart-svg",
       viewBox: "0 0 " + W + " " + H,
       role: "img",
-      "aria-label": "Projected portfolio value and cumulative contributions by year",
+      "aria-label": L.chartAria,
     });
 
     // gridlines + y tick labels (skip the zero line; the axis carries it)
@@ -154,11 +208,11 @@
     svg.appendChild(svgEl("line", { class: "axisline", x1: PAD.left, x2: W - PAD.right, y1: baseY, y2: baseY }));
     for (var yr = 0; yr <= years; yr += 5) {
       var lbl = svgEl("text", { class: "tick-label", x: xFor(yr), y: baseY + 20, "text-anchor": "middle" });
-      lbl.textContent = yr === 0 ? "Now" : "Yr " + yr;
+      lbl.textContent = yr === 0 ? L.now : L.yr(yr);
       svg.appendChild(lbl);
     }
 
-    // area washes + lines
+    // area wash under the value line + the two lines
     function linePath(key) {
       return points.map(function (d, i) {
         return (i === 0 ? "M" : "L") + xFor(d.year).toFixed(1) + " " + yFor(d[key]).toFixed(1);
@@ -231,11 +285,11 @@
     tt.textContent = "";
     var title = document.createElement("div");
     title.className = "tt-title";
-    title.textContent = d.year === 0 ? "Start" : "Year " + d.year;
+    title.textContent = d.year === 0 ? L.start : L.yearN(d.year);
     tt.appendChild(title);
     [
-      { cls: "s1", name: "Portfolio value", val: d.value },
-      { cls: "s2", name: "Contributed", val: d.contributed },
+      { cls: "s1", name: L.seriesValue, val: d.value },
+      { cls: "s2", name: L.seriesContrib, val: d.contributed },
     ].forEach(function (row) {
       var r = document.createElement("div");
       r.className = "tt-row " + row.cls;
@@ -247,7 +301,7 @@
     });
     var g = document.createElement("div");
     g.className = "tt-row";
-    var gn = document.createElement("span"); gn.className = "tt-name"; gn.textContent = "Growth";
+    var gn = document.createElement("span"); gn.className = "tt-name"; gn.textContent = L.growth;
     var gv = document.createElement("span"); gv.className = "tt-val"; gv.textContent = fmtFull(d.value - d.contributed);
     g.appendChild(gn); g.appendChild(gv);
     tt.appendChild(g);
@@ -267,21 +321,17 @@
     var body = els.tableBody;
     body.textContent = "";
     var years = points[points.length - 1].year;
-    for (var yr = 0; yr <= years; yr += 5) {
-      if (yr === 0) continue;
-      appendRow(points[yr]);
-    }
+    for (var yr = 5; yr <= years; yr += 5) appendRow(points[yr]);
     if (years % 5 !== 0) appendRow(points[years]);
 
     function appendRow(d) {
       var tr = document.createElement("tr");
-      var cells = [
-        { txt: "Year " + d.year, cls: "" },
+      [
+        { txt: L.yearN(d.year), cls: "" },
         { txt: fmtFull(d.contributed), cls: "num" },
         { txt: fmtFull(d.value - d.contributed), cls: "num" },
         { txt: fmtFull(d.value), cls: "num" },
-      ];
-      cells.forEach(function (c) {
+      ].forEach(function (c) {
         var td = document.createElement("td");
         if (c.cls) td.className = c.cls;
         td.textContent = c.txt;
@@ -293,22 +343,54 @@
 
   /* ---------- orchestration ---------- */
 
+  function fmtRate(r) {
+    return (r * 100).toFixed(1).replace(/\.0$/, "");
+  }
+
   function recalc() {
     var p = readInputs();
-    els.yearsOut.textContent = p.years + (p.years === 1 ? " year" : " years");
-    var points = simulate(p);
-    var last = points[points.length - 1];
+    els.yearsOut.textContent = L.years(p.years);
 
-    els.heroValue.textContent = fmtFull(last.value);
-    els.heroNote.textContent = "Projected value after " + p.years + " years at " +
-      (p.annualReturn * 100).toFixed(1).replace(/\.0$/, "") + "% a year, before tax and inflation";
+    var points, last;
+    if (mode === "goal") {
+      var need = requiredMonthly(p);
+      points = simulate(p, need);
+      last = points[points.length - 1];
+      els.heroLabel.textContent = L.heroLabelGoal;
+      els.heroValue.textContent = fmtFull(need) + L.perMonth;
+      els.heroNote.textContent = L.heroNoteGoal(p.years, fmtRate(p.annualReturn), fmtFull(p.target));
+      els.stat3Label.textContent = L.stat3Goal;
+      els.stat3.textContent = fmtCompact(last.value);
+    } else {
+      points = simulate(p);
+      last = points[points.length - 1];
+      els.heroLabel.textContent = L.heroLabelFwd;
+      els.heroValue.textContent = fmtFull(last.value);
+      els.heroNote.textContent = L.heroNoteFwd(p.years, fmtRate(p.annualReturn));
+      els.stat3Label.textContent = L.stat3Fwd;
+      els.stat3.textContent = last.contributed > 0 ? (last.value / last.contributed).toFixed(1) + "×" : "—";
+    }
+
     els.statContrib.textContent = fmtFull(last.contributed);
     els.statGrowth.textContent = fmtFull(last.value - last.contributed);
-    els.statMultiple.textContent = last.contributed > 0 ? (last.value / last.contributed).toFixed(1) + "×" : "—";
 
     renderChart(points);
     renderTable(points);
   }
+
+  function setMode(next) {
+    mode = next;
+    els.modeBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.mode === mode ? "true" : "false");
+    });
+    if (els.monthlyWrap) els.monthlyWrap.style.display = mode === "goal" ? "none" : "";
+    if (els.targetWrap) els.targetWrap.style.display = mode === "goal" ? "" : "none";
+    recalc();
+  }
+
+  els.modeBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () { setMode(btn.dataset.mode); });
+  });
 
   els.presets.forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -318,8 +400,8 @@
     });
   });
 
-  [els.initial, els.monthly, els.stepup].forEach(function (el) {
-    el.addEventListener("input", recalc);
+  [els.initial, els.monthly, els.target, els.stepup].forEach(function (el) {
+    if (el) el.addEventListener("input", recalc);
   });
   els.ret.addEventListener("input", function () {
     els.presets.forEach(function (b) {
@@ -330,8 +412,9 @@
   els.years.addEventListener("input", recalc);
   els.currency.addEventListener("change", function () {
     var c = CURRENCIES[currency()];
-    els.initial.value = c.perMonthDefaultInitial;
-    els.monthly.value = c.perMonthDefault;
+    els.initial.value = c.initial;
+    els.monthly.value = c.monthly;
+    if (els.target) els.target.value = c.target;
     recalc();
   });
 
@@ -340,5 +423,5 @@
     els.tooltip.style.display = "none";
   });
 
-  recalc();
+  setMode("future");
 })();

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>복리 계산기 — Long Horizon</title>
+  <meta name="description" content="원·달러·엔으로 10~40년 월 적립을 시뮬레이션: 미래 평가액, 목표 금액에서 역산한 필요 적립액, 연도별 그래프와 마일스톤 표.">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ko/tools.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/tools.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/tools.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/tools.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/tools.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="복리 계산기 — Long Horizon">
+  <meta property="og:description" content="원·달러·엔으로 10~40년 월 적립을 시뮬레이션: 미래 평가액, 목표 금액에서 역산한 필요 적립액, 연도별 그래프와 마일스톤 표.">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ko/tools.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="메인">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">시작하기</a></li>
+        <li><a href="principles.html">원칙</a></li>
+        <li><a href="markets.html">시장</a></li>
+        <li><a href="strategy.html">전략</a></li>
+        <li><a href="accounts.html">계좌와 세금</a></li>
+        <li><a href="survival.html">폭락 대비</a></li>
+        <li><a href="drawdown.html">인출 전략</a></li>
+        <li><a href="tools.html">계산기</a></li>
+        <li><a href="resources.html">자료</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="언어">
+        <a href="../tools.html" hreflang="en">EN</a>
+        <a href="../ja/tools.html" lang="ja" hreflang="ja">日本語</a>
+        <a href="tools.html" aria-current="true" lang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="테마 전환">☾</button>
+      <button class="nav-burger" aria-label="메뉴" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom: 24px;">
+    <div class="container">
+      <span class="kicker">계산기</span>
+      <h1>당신의 '수십 년'의 가치를 보다</h1>
+      <p class="lead">
+        이것은 예측이지 약속이 아닙니다: 가정한 평균 수익률로, 꾸준한 월 적립을 시뮬레이션한
+        것입니다. 실제 시장이 이 평균을 내주는 것은 긴 기간뿐이고, 결코 직선으로 주지 않습니다 —
+        그래서 계획은 수십 년으로 세우는 것입니다.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 32px;">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="card calc-form">
+          <div class="mode-switch" role="group" aria-label="계산 모드">
+            <button type="button" data-mode="future" aria-pressed="true">월 적립 → 미래 금액</button>
+            <button type="button" data-mode="goal" aria-pressed="false">목표 금액 → 필요 적립</button>
+          </div>
+
+          <label for="calc-currency">통화</label>
+          <select id="calc-currency">
+            <option value="KRW" selected>한국 원(₩)</option>
+            <option value="USD">미국 달러($)</option>
+            <option value="JPY">일본 엔(¥)</option>
+          </select>
+
+          <label for="calc-initial">초기 투자금</label>
+          <input type="number" id="calc-initial" value="10000000" min="0" step="1000000">
+
+          <div id="monthly-wrap">
+            <label for="calc-monthly">월 적립액</label>
+            <input type="number" id="calc-monthly" value="500000" min="0" step="50000">
+          </div>
+
+          <div id="target-wrap" style="display: none;">
+            <label for="calc-target">목표 금액</label>
+            <input type="number" id="calc-target" value="1000000000" min="0" step="10000000">
+          </div>
+
+          <label for="calc-stepup">적립액 연간 증가율(%)</label>
+          <input type="number" id="calc-stepup" value="0" min="0" max="20" step="0.5">
+
+          <label for="calc-return">가정 연 수익률(%)</label>
+          <input type="number" id="calc-return" value="7" min="-5" max="20" step="0.5">
+          <div class="preset-row" role="group" aria-label="수익률 프리셋">
+            <button type="button" data-rate="5" aria-pressed="false">신중하게 5%</button>
+            <button type="button" data-rate="7" aria-pressed="true">실질 수준 7%</button>
+            <button type="button" data-rate="10" aria-pressed="false">명목 10%</button>
+          </div>
+
+          <label for="calc-years">기간: <span class="range-value" id="calc-years-out">25년</span></label>
+          <input type="range" id="calc-years" min="5" max="40" step="1" value="25">
+
+          <p class="small" style="margin-top: 16px;">
+            프리셋은 S&amp;P 500의 대략적인 역사적 평균 — 명목 연 약 10%, 인플레이션 조정 후
+            약 7% — 과 더 신중한 5%입니다. 결과에는 세금·수수료가 포함되지 않습니다. 계좌의
+            중요성은 <a href="accounts.html">계좌와 세금</a>으로.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="hero-figure">
+            <div class="hf-label" id="calc-hero-label">미래 평가액(예상)</div>
+            <div class="hf-value" id="calc-hero-value">—</div>
+            <div class="hf-note" id="calc-hero-note"></div>
+          </div>
+
+          <div class="viz-legend" aria-hidden="false">
+            <span class="lg-item"><span class="lg-swatch s1"></span> 포트폴리오 평가액</span>
+            <span class="lg-item"><span class="lg-swatch s2"></span> 누적 납입액</span>
+          </div>
+
+          <div class="viz-root">
+            <div id="calc-chart"></div>
+            <div class="viz-tooltip" id="calc-tooltip"></div>
+          </div>
+
+          <div class="stat-row mt-3">
+            <div class="stat">
+              <div class="stat-label">총 납입액</div>
+              <div class="stat-value" id="stat-contrib">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">운용 수익</div>
+              <div class="stat-value" id="stat-growth">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label" id="stat-3-label">평가액 ÷ 납입액</div>
+              <div class="stat-value" id="stat-multiple">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <h2>마일스톤(5년마다)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>시점</th>
+                <th class="num">누적 납입액</th>
+                <th class="num">운용 수익</th>
+                <th class="num">평가액</th>
+              </tr>
+            </thead>
+            <tbody id="calc-table-body"></tbody>
+          </table>
+        </div>
+        <p class="small mt-2">
+          '운용 수익' 열이 '누적 납입액'을 추월하는 것은 대개 두 번째 10년의 어딘가입니다 —
+          포트폴리오가 당신보다 많이 벌기 시작하는 교차점. 그 교차점이야말로
+          <a href="principles.html#compounding">원칙의 생각 1</a>이 말하는 전부입니다.
+        </p>
+      </div>
+
+      <figure class="quote mt-3">
+        <blockquote>
+          <p class="q-text">"주식시장은 조급한 사람의 돈을 인내심 있는 사람에게 옮기는 장치다."</p>
+          <p class="q-orig">"The stock market is a device for transferring money from the impatient to the patient."</p>
+        </blockquote>
+        <figcaption>— 워런 버핏<span class="q-src">(전해지는 말)</span></figcaption>
+      </figure>
+
+      <div class="grid-2 mt-3">
+        <div class="card">
+          <h3>머릿속 '72의 법칙'</h3>
+          <p>72를 수익률로 나누면 자산이 두 배가 되는 대략의 햇수가 나옵니다: 7%면 약 10년,
+             10%면 약 7년. 7%로 30년은 약 세 번의 두 배 — 8배 — 입니다. 마지막 10년이 첫 10년
+             옆에서 믿기 어려워 보이는 이유입니다.</p>
+        </div>
+        <div class="card">
+          <h3>예측을 정직하게 읽는 법</h3>
+          <p>실제 30년의 결과는 어떤 평균값 주위로도 크게 흩어집니다: 같은 적립이라도 수익률의
+             순서에 따라 크게 위로도 아래로도 갈 수 있습니다. 이 출력은 계좌 잔고의 예언이 아니라,
+             당신이 실제로 통제할 수 있는 유일한 입력 — 저축률 — 을 정하기 위한 계획의 닻으로
+             쓰세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 수십 년 단위로 투자하는 사람들을 위한 가이드.</div>
+      <div>
+        <a href="start.html">시작하기</a> ·
+        <a href="principles.html">원칙</a> ·
+        <a href="markets.html">시장</a> ·
+        <a href="strategy.html">전략</a> ·
+        <a href="accounts.html">계좌와 세금</a> ·
+        <a href="survival.html">폭락 대비</a> ·
+        <a href="drawdown.html">인출 전략</a> ·
+        <a href="tools.html">계산기</a> ·
+        <a href="resources.html">자료</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      본 사이트는 교육 목적의 정보 제공만을 위한 것으로, 투자·세무·법률 자문이나 특정 증권의
+      매매 권유가 아닙니다. 투자에는 원금 손실을 포함한 위험이 따릅니다. 과거의 성과는 미래의
+      수익을 보장하지 않습니다. 미국·일본·한국의 세제는 자주 바뀝니다 — 실행 전 반드시 공식
+      자료나 전문가에게 확인하세요.
+    </p>
+  </div>
+</footer>
+
+<script>
+window.CALC_I18N = {
+  cjkUnits: { man: "만", oku: "억", cho: "조" },
+  now: "현재",
+  yr: function (n) { return n + "년"; },
+  start: "시작",
+  yearN: function (n) { return n + "년차"; },
+  years: function (n) { return n + "년"; },
+  seriesValue: "포트폴리오 평가액",
+  seriesContrib: "누적 납입액",
+  growth: "운용 수익",
+  heroLabelFwd: "미래 평가액(예상)",
+  heroLabelGoal: "필요한 월 적립액",
+  stat3Fwd: "평가액 ÷ 납입액",
+  stat3Goal: "최종 평가액(예상)",
+  perMonth: "/월",
+  heroNoteFwd: function (y, r) { return "연 " + r + "%로 " + y + "년 운용 시(세전·인플레이션 조정 전)"; },
+  heroNoteGoal: function (y, r, target) { return "연 " + r + "%로 " + y + "년 후 " + target + "에 도달하기 위해 필요한 월 적립액"; },
+  chartAria: "연도별 포트폴리오 평가액과 누적 납입액 예상 그래프",
+};
+</script>
+<script src="../assets/js/calculator.js"></script>
+</body>
+</html>

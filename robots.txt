@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chipcho9-max.github.io/manintokyo/sitemap.xml

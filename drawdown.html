@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawdown Strategy — Long Horizon</title>
+  <meta name="description" content="How to spend a portfolio you built over decades: the 4% rule and its caveats, sequence-of-returns risk, bucket strategies, and withdrawal order by country.">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/drawdown.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/drawdown.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/drawdown.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/drawdown.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/drawdown.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="Drawdown Strategy — Long Horizon">
+  <meta property="og:description" content="How to spend a portfolio you built over decades: the 4% rule and its caveats, sequence-of-returns risk, bucket strategies, and withdrawal order by country.">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/drawdown.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">Start</a></li>
+        <li><a href="principles.html">Principles</a></li>
+        <li><a href="markets.html">Markets</a></li>
+        <li><a href="strategy.html">Strategy</a></li>
+        <li><a href="accounts.html">Accounts</a></li>
+        <li><a href="survival.html">Bear Markets</a></li>
+        <li><a href="drawdown.html">Drawdown</a></li>
+        <li><a href="tools.html">Calculator</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="Language">
+        <a href="drawdown.html" aria-current="true">EN</a>
+        <a href="ja/drawdown.html" lang="ja" hreflang="ja">日本語</a>
+        <a href="ko/drawdown.html" lang="ko" hreflang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme">☾</button>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Drawdown</span>
+      <h1>Spending the portfolio you spent decades building</h1>
+      <p class="lead">
+        Accumulation has one rule — keep buying. Spending is genuinely harder: the order of market
+        returns suddenly matters, taxes come due, and the habit that built your wealth (never sell)
+        must be carefully, partially unlearned. Plan the exit years before you need it.
+      </p>
+      <figure class="quote">
+        <blockquote><p class="q-text">"Someone's sitting in the shade today because someone planted a tree a long time ago."</p></blockquote>
+        <figcaption>— Warren Buffett</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="four-percent">
+    <div class="container">
+      <span class="kicker">The starting point</span>
+      <h2>The 4% rule — useful, not sacred</h2>
+      <p>
+        The classic finding (Bengen 1994, and the "Trinity study" after it): in US historical data,
+        an investor who retired with a 50–75% stock portfolio, withdrew <strong>4% of the starting
+        balance in year one</strong>, and then raised that amount with inflation each year, almost
+        never ran out of money within 30 years — even retiring into the Great Depression or the
+        1970s. Inverted, it gives the most useful planning number in personal finance:
+        <strong>a target portfolio of roughly 25× your desired annual spending</strong>.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>Annual spending need</th><th class="num">25× target (4%)</th><th class="num">28.5× target (3.5%)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$40,000</td><td class="num">$1,000,000</td><td class="num">$1,140,000</td></tr>
+            <tr><td>¥4,000,000</td><td class="num">¥100,000,000</td><td class="num">¥114,000,000</td></tr>
+            <tr><td>₩50,000,000</td><td class="num">₩1,250,000,000</td><td class="num">₩1,425,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-2">Honest caveats before you build a life on it:</p>
+      <ul>
+        <li><strong>It is US history, not physics.</strong> The 4% result comes from the best-performing
+          major market of the 20th century. Many planners use 3.25–3.75% for longer retirements,
+          non-US assumptions, or today's valuations.</li>
+        <li><strong>It ignores taxes and fees</strong> — your withdrawal must cover both. A 0.1% index
+          fund and a tax-sheltered wrapper effectively raise your safe rate; a 1.5% advisor lowers it.</li>
+        <li><strong>Rigid rules waste money in good times and strain in bad.</strong> In practice,
+          flexible variants — skipping the inflation raise after a down year, or "guardrails" that cut
+          spending 10% when the withdrawal rate drifts too high — materially improve survival odds.</li>
+        <li><strong>Retirement horizons over 30 years</strong> (early retirement, or planning at 50)
+          need lower rates; horizons of 20 years or less can support higher ones.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="sequence">
+    <div class="container">
+      <span class="kicker">The real enemy</span>
+      <h2>Sequence-of-returns risk</h2>
+      <p>
+        Two retirees can earn the <em>same average return</em> over 30 years and end in completely
+        different places. The one who hits a −40% crash in years one and two — while withdrawing —
+        sells the most shares at the worst prices, and the portfolio may never recover even when the
+        market does. The one who gets the crash in year 25 barely notices. The order of returns,
+        not just the average, decides whether the money lasts. This is why the drawdown phase needs
+        different machinery than accumulation:
+      </p>
+      <div class="grid-3 mt-2">
+        <div class="card">
+          <h3>1. The bucket structure</h3>
+          <p>Hold <strong>1–2 years of spending in cash</strong> and <strong>3–7 more in bonds</strong>;
+             the rest stays in stocks. Bad year? Spend the cash and refill it later. You never sell
+             stocks into a crash, which is the whole game.</p>
+        </div>
+        <div class="card">
+          <h3>2. The pre-retirement glide</h3>
+          <p>Shift gradually from ~80–100% stocks toward 50–70% over the 5–10 years <em>before</em>
+             withdrawals begin. The riskiest window is the five years either side of retirement day —
+             protect exactly that window, not every year after it.</p>
+        </div>
+        <div class="card">
+          <h3>3. Flexible spending</h3>
+          <p>Agree with yourself in advance: after a down year, no inflation raise; if the portfolio
+             falls 20% below plan, trim spending 10%. Small, early cuts do the work of huge, late ones.</p>
+        </div>
+      </div>
+      <div class="callout mt-3">
+        <strong>Dividends fit here.</strong> A dividend-growth tilt (see
+        <a href="strategy.html#dividends">Strategy</a>) lets part of your spending arrive as cash
+        without selling shares at all — psychologically and mechanically useful in bad years. The
+        trade-off is annual tax drag along the way; many drawdown plans blend the two rather than
+        choosing one.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="order">
+    <div class="container">
+      <span class="kicker">The plumbing</span>
+      <h2>Which account to tap first</h2>
+      <p>
+        Withdrawal order changes after-tax wealth by meaningful amounts. The common frameworks —
+        verify against current rules with a professional before acting:
+      </p>
+      <div class="grid-3 mt-2">
+        <div class="card">
+          <span class="chip chip-us"><span class="chip-dot"></span>United States</span>
+          <ol class="mt-2">
+            <li>Taxable brokerage first (long-term gains rates; lets sheltered accounts keep compounding).</li>
+            <li>Traditional 401(k)/IRA next — mind <strong>required minimum distributions from age 73</strong>, and consider Roth conversions in low-income years before they start.</li>
+            <li>Roth last: tax-free, no RMDs during your lifetime — the best asset to hold longest or leave to heirs.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <span class="chip chip-jp"><span class="chip-dot"></span>Japan</span>
+          <ol class="mt-2">
+            <li>Taxable (特定) account first — realizing gains costs 20.315%, so realize the smallest-gain lots first.</li>
+            <li>iDeCo arrives at 60+ as lump sum or annuity; the retirement-income deduction (退職所得控除) often makes the lump sum highly tax-efficient — do the comparison.</li>
+            <li>NISA last: permanently tax-free with no forced withdrawals — every year it stays invested is free compounding. Selling also restores lifetime quota if you later want to rebuy.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <span class="chip chip-kr"><span class="chip-dot"></span>Korea</span>
+          <ol class="mt-2">
+            <li>Taxable accounts first, using the annual ₩2.5M overseas-gains deduction each year rather than realizing decades of gains at once.</li>
+            <li>연금저축/IRP from age 55 as a pension: within annual limits, withdrawals are taxed at just 3.3–5.5% (연금소득세) — the payoff for decades of deferral. Large lump sums lose that treatment (기타소득세 16.5%), so annuitize.</li>
+            <li>ISA proceeds can roll into 연금저축 at maturity for an extra tax credit even late in life.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="container">
+      <span class="kicker">Five years out</span>
+      <h2>The pre-drawdown checklist</h2>
+      <ol>
+        <li><strong>Know your number:</strong> annual spending × 25 (or × 28 if cautious). Check progress with the <a href="tools.html">calculator's goal mode</a>.</li>
+        <li><strong>Start the glide:</strong> begin shifting toward your retirement allocation — gradually, on a schedule, not in response to headlines.</li>
+        <li><strong>Build the cash bucket</strong> over the final 2–3 years of salary rather than by selling stocks on day one.</li>
+        <li><strong>Map every account's rules:</strong> RMD ages, 연금 annuitization windows, NISA quotas, pension start dates — put the dates in a calendar.</li>
+        <li><strong>Write the withdrawal policy</strong> — which account, in what order, what the spending cut triggers are — while it's still theoretical. The same one-page discipline that got you here (see <a href="survival.html">Bear Markets</a>) gets you through.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — a field guide for decade-scale investors.</div>
+      <div>
+        <a href="start.html">Start</a> ·
+        <a href="principles.html">Principles</a> ·
+        <a href="markets.html">Markets</a> ·
+        <a href="strategy.html">Strategy</a> ·
+        <a href="accounts.html">Accounts &amp; Tax</a> ·
+        <a href="survival.html">Bear Markets</a> ·
+        <a href="drawdown.html">Drawdown</a> ·
+        <a href="tools.html">Calculator</a> ·
+        <a href="resources.html">Resources</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      Educational content only. Nothing on this site is investment, tax, or legal advice, or an
+      offer or solicitation to buy or sell any security. Investing involves risk, including loss
+      of principal. Historical returns do not guarantee future results. Tax rules cited for the
+      US, Japan, and Korea change frequently — verify with official sources before acting.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
