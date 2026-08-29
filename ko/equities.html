@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI와 주식의 20~30년 — Long Horizon</title>
+  <meta name="description" content="AI가 세상을 바꾼다면 주식으로 돈을 번다는 뜻일까. 시스코와 인텔의 기록, AI 밸류체인의 구조, 엔비디아·테슬라·스페이스X·키오시아·삼성전자·SK하이닉스의 사실 정리, 그리고 기대수익률을 직접 계산하는 도구.">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ko/equities.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/equities.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/equities.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/equities.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/equities.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="AI와 주식의 20~30년 — Long Horizon">
+  <meta property="og:description" content="AI가 세상을 바꾼다면 주식으로 돈을 번다는 뜻일까. 시스코와 인텔의 기록, AI 밸류체인의 구조, 엔비디아·테슬라·스페이스X·키오시아·삼성전자·SK하이닉스의 사실 정리, 그리고 기대수익률을 직접 계산하는 도구.">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ko/equities.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="메인">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">시작하기</a></li>
+        <li><a href="principles.html">원칙</a></li>
+        <li><a href="markets.html">시장</a></li>
+        <li><a href="equities.html">AI와 주식</a></li>
+        <li><a href="strategy.html">전략</a></li>
+        <li><a href="accounts.html">계좌와 세금</a></li>
+        <li><a href="nisa.html">NISA</a></li>
+        <li><a href="survival.html">폭락 대비</a></li>
+        <li><a href="drawdown.html">인출 전략</a></li>
+        <li><a href="tools.html">계산기</a></li>
+        <li><a href="resources.html">자료</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="언어">
+        <a href="../equities.html" hreflang="en">EN</a>
+        <a href="../ja/equities.html" lang="ja" hreflang="ja">日本語</a>
+        <a href="equities.html" aria-current="true" lang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="테마 전환">☾</button>
+      <button class="nav-burger" aria-label="메뉴" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">AI와 주식</span>
+      <h1>기술을 맞히는 것과 주식으로 버는 것은 다른 문제</h1>
+      <p class="lead">
+        앞으로 20~30년간 AI가 산업 구조를 크게 다시 쓸 가능성은 높습니다. 이 페이지도 그 전제를
+        받아들입니다. 다만 투자자의 진짜 질문은 그다음에 있습니다 —
+        <strong>"그 변화에서 내 자산이 실제로 이익을 얻는가."</strong>
+        기술에 대한 판단이 옳았는데도 주식에서는 지는 일이, 역사에서 반복적으로 일어났습니다.
+      </p>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">"키티호크에 자본가가 있었다면, 오빌을 쏘아 떨어뜨렸어야 했다."</p>
+          <p class="q-orig">"If a capitalist had been present at Kitty Hawk, he should have shot Orville down."</p>
+        </blockquote>
+        <figcaption>— 워런 버핏<span class="q-src">(항공기는 세상을 바꿨지만, 항공산업 투자자는 오래도록 손실을 봤습니다)</span></figcaption>
+      </figure>
+      <div class="callout warn mt-2">
+        <strong>이 페이지의 성격.</strong> 아래에 등장하는 기업명은 AI 공급망을 설명하기 위한
+        <strong>구조 해설과 사례 연구</strong>이지 추천 종목 목록이 아닙니다. 이 사이트는 개별
+        종목을 추천하지 않고, 특정 기업의 미래 수익률을 예측하지도 않습니다. 기대수익률에 대해서는
+        '예측치'가 아니라 <a href="#expected-return">직접 가정을 넣어 계산하는 틀</a>을 제공합니다.
+        상장 여부와 사업 구성은 바뀝니다 — 실행 전 반드시 원자료를 확인하세요.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="container">
+      <span class="kicker">가장 중요한 교훈</span>
+      <h2>기술은 맞혔다. 그래도 주식에서는 졌다</h2>
+      <p>
+        1999년, "인터넷이 세상을 바꾼다"는 판단은 <strong>완전히 옳았습니다</strong>. 그 중심에
+        있던 시스코 시스템즈는 2000년 3월 세계 최대 시가총액 기업이 되었습니다. 인터넷 트래픽은
+        이후 20년 넘게 기하급수적으로 늘었습니다. 판단은 맞았습니다. 그런데도:
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>기업</th><th>당시의 위상</th><th class="num">고점 대비 하락</th><th>고점 회복까지</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>시스코 시스템즈</strong></td>
+              <td>2000년 3월 세계 최대 시가총액. 인터넷 인프라의 핵심</td>
+              <td class="num">약 −85%</td>
+              <td><strong>약 24년</strong>(2024년경)</td>
+            </tr>
+            <tr>
+              <td><strong>마이크로소프트</strong></td>
+              <td>1999년 말, PC 시대의 절대 강자</td>
+              <td class="num">약 −60%</td>
+              <td>약 17년(2016년). 이후 역사적인 복리 종목이 됨</td>
+            </tr>
+            <tr>
+              <td><strong>인텔</strong></td>
+              <td>2000년, 반도체의 대명사</td>
+              <td class="num">약 −80%</td>
+              <td>사반세기가 지나도 <strong>미회복</strong>. 미세공정 경쟁과 모바일·AI에서 뒤처짐</td>
+            </tr>
+            <tr>
+              <td><strong>노키아</strong></td>
+              <td>2007년, 휴대폰 세계 점유율 약 40%</td>
+              <td class="num">약 −90%</td>
+              <td>미회복. 아이폰 등장 몇 년 만에 왕좌를 잃음</td>
+            </tr>
+            <tr>
+              <td><strong>아마존</strong></td>
+              <td>1999년, 온라인 서점</td>
+              <td class="num">약 −93%</td>
+              <td>약 9년. 이후 역사상 손꼽히는 복리 종목이 됨</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">주가 기준 근사치. 읽기 쉽게 반올림했습니다.</p>
+      <p class="mt-2">
+        이 표에서 읽어야 할 것은 두 가지입니다. 첫째, 손해를 본 사람은 '틀린 기술에 건 사람'이
+        아니라 <strong>'옳은 기술에 잘못된 가격으로 건 사람'</strong>이었습니다. 시스코는 2000년
+        이후에도 계속 이익을 냈고 성장했습니다. 문제는 사업이 아니라 매수 가격이었습니다.
+        둘째, 아마존과 마이크로소프트 행은 <strong>진짜 승자조차 −60~−90%의 하락을 통과한다</strong>는
+        것을 알려줍니다. 그것을 끝까지 들고 갈 수 있느냐가 결과를 가릅니다.
+      </p>
+      <div class="callout mt-2">
+        <strong>더 오래된 선례: '니프티 피프티'.</strong> 1970년대 초 미국에서는 코카콜라, IBM,
+        제록스, 폴라로이드 같은 "한 번 사면 팔 필요 없는 50종목"이 PER 50~90배에 거래됐습니다.
+        기업의 질에 대한 판단은 대체로 옳았습니다. 그래도 그 가격에 산 투자자는 10년 넘게 보상받지
+        못했고, 폴라로이드나 코닥처럼 사라진 기업도 있었습니다.
+        <strong>'훌륭한 기업'과 '훌륭한 투자'는 같은 말이 아닙니다.</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="value-chain">
+    <div class="container">
+      <span class="kicker">구조를 이해하기</span>
+      <h2>AI 밸류체인 — 돈은 어디를 지나가는가</h2>
+      <p>
+        'AI 관련주'는 하나의 덩어리가 아닙니다. 층마다 이익률도 경쟁 구조도, 그리고
+        <strong>이미 주가에 반영된 기대의 양</strong>도 완전히 다릅니다.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>층</th><th>역할</th><th>대표 기업</th><th>투자자가 볼 지점</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>반도체 설계</strong></td>
+              <td>AI 가속기 그 자체</td>
+              <td>엔비디아, AMD, 브로드컴(커스텀 ASIC)</td>
+              <td>현재 최대의 이익 풀. 소프트웨어 자산(CUDA)이 진짜 해자. 동시에 기대가 가장 많이 반영된 층</td>
+            </tr>
+            <tr>
+              <td><strong>제조(파운드리)</strong></td>
+              <td>실제로 칩을 만드는 곳</td>
+              <td>TSMC, 삼성 파운드리, 인텔 파운드리</td>
+              <td>최선단에서는 TSMC가 사실상 산업 전체의 단일 병목. 지정학 리스크가 여기 집중</td>
+            </tr>
+            <tr>
+              <td><strong>장비·소재</strong></td>
+              <td>칩을 만드는 기계와 재료</td>
+              <td>ASML(EUV 독점), 도쿄일렉트론, 어드반테스트, 디스코, 신에츠화학</td>
+              <td>'누가 이겨도 파는' 층이자 <strong>일본 시장의 AI 주력</strong>. 다만 반도체 사이클은 그대로 받음</td>
+            </tr>
+            <tr>
+              <td><strong>메모리</strong></td>
+              <td>고대역폭 메모리와 스토리지</td>
+              <td>SK하이닉스, 삼성전자, 마이크론, 키오시아</td>
+              <td>HBM은 AI 학습의 실질적 병목. 다만 메모리가 격심한 경기순환 산업이라는 사실은 바뀌지 않았음</td>
+            </tr>
+            <tr>
+              <td><strong>전력·인프라</strong></td>
+              <td>데이터센터, 전력, 냉각</td>
+              <td>전력회사, 송배전, 냉각·전원 설비</td>
+              <td>간과되는 물리적 제약. 칩 공급보다 전력이 AI 확장을 더 크게 제한할 수 있음</td>
+            </tr>
+            <tr>
+              <td><strong>클라우드</strong></td>
+              <td>연산 자원을 빌려주는 쪽</td>
+              <td>마이크로소프트, 아마존, 구글, 메타</td>
+              <td>가속기의 최대 구매자이자, 자체 칩 개발을 통해 칩 층의 최대 장기 위협이기도 한 양면성</td>
+            </tr>
+            <tr>
+              <td><strong>사용하는 쪽</strong></td>
+              <td>AI로 자기 사업을 개선하는 모든 기업</td>
+              <td>모든 산업</td>
+              <td>20~30년 관점에서 <strong>가치가 가장 많이 남는 곳일 수 있음</strong>. 역사적으로 범용 기술의 과실은 만드는 쪽보다 쓰는 쪽에 더 많이 갔습니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout mt-2">
+        <strong>전기와 자동차라는 선례.</strong> 전기화는 경제를 근본부터 바꿨지만 가장 크게 번
+        쪽은 발전기 제조사가 아니라, 전기를 써서 생산성을 올린 제조업이었습니다. 미국에서는
+        2,000개가 넘는 회사가 자동차 산업에 진입했고 끝까지 남은 것은 세 곳입니다.
+        <strong>변화의 규모와, 그 변화를 일으킨 기업의 주주 수익률은 같은 변수가 아닙니다.</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="companies">
+    <div class="container">
+      <span class="kicker">사실부터</span>
+      <h2>자주 언급되는 기업들, 우선 사실만</h2>
+      <p>
+        판단에 앞서, 실제로 무엇을 할 수 있는지를 정하는 사실들입니다.
+        <strong>상장 여부 확인은 의외로 자주 건너뜁니다.</strong>
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>기업</th><th>상장 여부</th><th>AI에서의 역할</th><th>주요 리스크</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>엔비디아</strong></td>
+              <td>상장(미국 NASDAQ)</td>
+              <td>AI 가속기의 사실상 표준. CUDA라는 소프트웨어 자산이 진짜 해자</td>
+              <td>고객 집중(소수 대형 클라우드가 매출의 대부분), 그 고객들의 자체 칩 개발, 대중국 수출 규제, 반도체 사이클</td>
+            </tr>
+            <tr>
+              <td><strong>테슬라</strong></td>
+              <td>상장(미국 NASDAQ)</td>
+              <td>전기차에 더해 에너지 저장·자율주행·휴머노이드의 옵션 가치가 밸류에이션에 반영됨</td>
+              <td>중국 업체와의 가격 경쟁, 전기차 시장 성숙, 자율주행 일정이 반복적으로 밀려온 이력, 경영자 의존</td>
+            </tr>
+            <tr>
+              <td><strong>스페이스X</strong></td>
+              <td><strong>비상장</strong></td>
+              <td>발사체와 스타링크. AI 맥락에서는 위성 통신 인프라</td>
+              <td><strong>개인투자자는 원칙적으로 직접 살 수 없습니다.</strong> 스타링크 IPO 관측은 오래됐지만 확정된 사실이 아닙니다. 살 수 없는 회사를 계획에 넣지 마세요</td>
+            </tr>
+            <tr>
+              <td><strong>도시바</strong></td>
+              <td><strong>2023년 12월 상장폐지</strong></td>
+              <td>JIP 주도 컨소시엄에 인수되어 비공개 전환</td>
+              <td>시장에서 살 수 없습니다. 메모리 사업은 이전에 분리되어 키오시아가 되었습니다</td>
+            </tr>
+            <tr>
+              <td><strong>키오시아</strong></td>
+              <td>상장(<strong>2024년 12월 도쿄증시 IPO</strong>)</td>
+              <td>NAND 플래시 메모리. AI 데이터센터의 스토리지 수요</td>
+              <td>NAND 가격의 순환성이 매우 큼. 상장 이력이 짧아 장기 데이터가 부족함</td>
+            </tr>
+            <tr>
+              <td><strong>삼성전자</strong></td>
+              <td>상장(KOSPI)</td>
+              <td>DRAM·NAND·HBM·파운드리·스마트폰의 종합. KOSPI 최대 구성 종목</td>
+              <td>HBM 초기 주도권을 SK하이닉스에 내준 국면, TSMC와의 파운드리 격차, 그리고 <a href="markets.html#korea">코리아 디스카운트</a></td>
+            </tr>
+            <tr>
+              <td><strong>SK하이닉스</strong></td>
+              <td>상장(KOSPI)</td>
+              <td>HBM에서 엔비디아향 주력 공급사가 되며 AI 투자의 가장 뚜렷한 수혜 기업 중 하나</td>
+              <td>메모리는 언제나 호황·불황이 격심한 산업. 메모리에서 기술 우위가 영구했던 적은 없습니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">상장 여부와 사업 구성은 바뀝니다. 매매 전 각사 IR과 거래소에서 확인하세요.</p>
+
+      <div class="grid-2 mt-3">
+        <div class="card">
+          <span class="chip chip-kr"><span class="chip-dot"></span>한국</span>
+          <h3 class="mt-2">한국 투자자는 이미 이 거래를 갖고 있다</h3>
+          <p>삼성전자와 SK하이닉스는 KOSPI에서 비중이 워낙 커서, 한국 인덱스를 들고 있는 것만으로
+             <strong>이미 막대한 AI 메모리 노출을 안고 있습니다</strong>. 여기에 개별 AI 종목을
+             더하면 의도치 않은 이중 집중이 됩니다. 국내 주식을 보유 중이라면 추가 AI 포지션의
+             크기는 그 점을 감안해 정하세요.</p>
+        </div>
+        <div class="card">
+          <span class="chip chip-jp"><span class="chip-dot"></span>일본</span>
+          <h3 class="mt-2">일본의 AI 노출은 장비와 소재</h3>
+          <p>일본 시장의 실질적 AI 레버리지는 완성품이 아니라 <strong>기계와 소재</strong>입니다.
+             도쿄일렉트론, 어드반테스트(검사), 디스코(절단·연삭), 신에츠화학·SUMCO(실리콘 웨이퍼)가
+             어느 칩 회사가 이기든 공급하는 위치에 있습니다. 라피더스의 최선단 파운드리 시도도
+             진행 중이지만, 판단에는 분기가 아니라 수년이 필요합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="expected-return">
+    <div class="container">
+      <span class="kicker">기대수익률</span>
+      <h2>'예측'이 아니라 '분해'로 생각하기</h2>
+      <p>
+        개별 주식의 미래 수익률을 맞힐 수 있는 사람은 없고, 이 사이트도 그런 척하지 않습니다.
+        대신 장기 수익률이 어떻게 결정되는지의 <strong>분해식</strong>을 드립니다. 예측이 아니라,
+        당신이 고른 가정 위의 산수입니다:
+      </p>
+      <div class="callout">
+        <strong>연 수익률 ≒ (1 + 이익 성장률) × (1 + PER의 연율 변화) − 1 + 배당수익률</strong>
+        <br><span class="small">장기 주식 수익률은 이 세 가지 — 이익이 얼마나 늘었는가, 시장이 그
+        이익에 몇 배의 값을 매기게 되었는가, 그동안 받은 배당 — 로 거의 완전히 분해됩니다.</span>
+      </div>
+      <p>
+        고PER 종목에서 무는 것은 <strong>두 번째 항</strong>입니다. 사업 판단이 옳아도 PER이
+        50배에서 20배로 내려가면, 그만큼이 해마다 수익률에서 빠집니다. 아래에 직접 가정을 넣어
+        보세요.
+      </p>
+
+      <div class="calc-layout mt-3">
+        <div class="card calc-form">
+          <label for="er-pe0">현재 PER</label>
+          <input type="number" id="er-pe0" value="50" min="1" max="500" step="1">
+
+          <label for="er-growth">가정하는 연간 이익 성장률(%)</label>
+          <input type="number" id="er-growth" value="20" min="-20" max="60" step="1">
+
+          <label for="er-pe1">기간 종료 시점의 PER</label>
+          <input type="number" id="er-pe1" value="25" min="1" max="500" step="1">
+
+          <label for="er-yield">배당수익률(%)</label>
+          <input type="number" id="er-yield" value="0" min="0" max="15" step="0.1">
+
+          <label for="er-years">기간: <span class="range-value" id="er-years-out">10년</span></label>
+          <input type="range" id="er-years" min="3" max="30" step="1" value="10">
+
+          <div class="preset-row er-presets" role="group" aria-label="시나리오">
+            <button type="button" data-pe0="50" data-pe1="35" data-growth="28" data-yield="0" aria-pressed="false">낙관</button>
+            <button type="button" data-pe0="50" data-pe1="25" data-growth="20" data-yield="0" aria-pressed="false">중립</button>
+            <button type="button" data-pe0="50" data-pe1="15" data-growth="10" data-yield="0" aria-pressed="false">신중</button>
+            <button type="button" data-pe0="12" data-pe1="15" data-growth="3" data-yield="3" aria-pressed="false">성숙·저평가</button>
+          </div>
+
+          <p class="small" style="margin-top: 16px;">
+            특정 기업에 대한 예측이 아닙니다. <strong>당신이 넣은 가정의 귀결</strong>을 계산할
+            뿐입니다. 가정이 틀리면 결과도 틀립니다.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="hero-figure">
+            <div class="hf-label">이 가정에서의 연 수익률</div>
+            <div class="hf-value" id="er-hero">—</div>
+            <div class="hf-note" id="er-hero-note"></div>
+          </div>
+
+          <div class="stat-row mt-3">
+            <div class="stat">
+              <div class="stat-label">이익 성장의 기여</div>
+              <div class="stat-value" id="er-stat-growth">—</div>
+              <div class="stat-note">사업 판단이 옳았던 몫</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">PER 변화의 기여(연율)</div>
+              <div class="stat-value" id="er-stat-value">—</div>
+              <div class="stat-note">시장의 평가가 바뀐 몫</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">배당수익률</div>
+              <div class="stat-value" id="er-stat-yield">—</div>
+              <div class="stat-note">실제로 받은 현금</div>
+            </div>
+          </div>
+
+          <div class="callout mt-3" id="er-multiple"></div>
+        </div>
+      </div>
+
+      <h3 class="mt-3">같은 '연 20% 성장'인데, 출구 PER에 따라 결과가 이만큼 달라진다</h3>
+      <p>아래 모든 행은 <strong>사업 판단이 정확히 맞아 연 20% 이익 성장을 10년간 이어갔다</strong>는
+         같은 가정입니다. 움직이는 것은 출구 PER뿐입니다(시작 PER 50배, 무배당):</p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>10년 후 PER</th><th class="num">연 수익률</th><th>의미</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>60배(평가가 더 올라감)</td><td class="num">+22.2%</td><td>성장과 심리가 모두 내 편인 최상의 전개</td></tr>
+            <tr><td>50배(그대로)</td><td class="num">+20.0%</td><td>이익 성장이 그대로 수익률이 됨</td></tr>
+            <tr><td>30배</td><td class="num">+14.0%</td><td>훌륭함. 다만 성장의 3분의 1은 평가 하락에 먹힘</td></tr>
+            <tr><td>20배</td><td class="num">+9.5%</td><td>10년간 연 20% 성장하고도 지수와 비슷한 결과</td></tr>
+            <tr><td>15배(성숙 기업의 평가)</td><td class="num">+6.4%</td><td>예상이 완벽히 맞았는데 지수에 패배</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-2">
+        이것이 이 페이지가 보여주려는 산수입니다. <strong>"이 회사는 성장한다"가 참이어도, 산
+        가격이 너무 높으면 보상받는 것은 회사이지 당신이 아닙니다.</strong> 뒤집어 말하면, PER
+        50배 종목에서 연 10%를 얻으려면 10년 뒤 PER이 20배에 안착한다고 할 때
+        <strong>연 20.6%의 이익 성장을 10년간</strong> 이어가야 합니다. 그런 일이 실제로 얼마나
+        드문지 따져보는 편이, 주가를 들여다보는 것보다 훨씬 유익한 시간 사용입니다.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="base-rates">
+    <div class="container">
+      <span class="kicker">확률을 알기</span>
+      <h2>개별 주식의 베이스레이트</h2>
+      <p>
+        종목을 고를 생각이라면, 출발점이 되는 확률을 알아둘 가치가 있습니다. 헨드릭 베센바인더
+        교수의 잘 알려진 연구는 1926년 이후 미국 상장주식을 조사해 이렇게 밝혔습니다:
+      </p>
+      <ul>
+        <li><strong>개별 주식의 과반은 생애 수익률에서 단기 국채에도 졌습니다.</strong></li>
+        <li><strong>시장 전체의 순 부(富) 창출은 전부 약 4%의 종목에서 나왔습니다.</strong>
+          나머지 96%는 합쳐서 거의 0에 가까운 기여를 했습니다.</li>
+      </ul>
+      <p>
+        주식시장의 수익은 <strong>극소수의 극단적 승자에 극도로 집중</strong>되어 있습니다.
+        이는 종목 선택자에게 잔인한 비대칭을 만듭니다: 분산된 인덱스 보유자는 그 4%를
+        <strong>자동으로 전부</strong> 갖는 반면, 10종목을 고른 사람은 그 4%를 잡을 확률보다
+        <strong>놓칠 확률이 더 높습니다</strong>.
+      </p>
+      <div class="callout mt-2">
+        <strong>그리고 중요한 사실: 당신은 이미 엔비디아를 갖고 있습니다.</strong>
+        S&amp;P 500이나 전 세계 인덱스 펀드를 매달 적립하고 있다면, 엔비디아·마이크로소프트·
+        아마존·TSMC를 <strong>이미 시가총액 비중대로 보유</strong>하고 있습니다. 더구나 그들이
+        쇠퇴하고 다른 기업이 부상하면, 인덱스는 <strong>당신이 아무것도 하지 않아도 알아서
+        교체해 줍니다</strong>. 2050년의 승자가 오늘 존재하지 않는 회사일 수 있다는 점을 생각하면,
+        이 성질은 가볍게 볼 것이 아닙니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-to-act">
+    <div class="container">
+      <span class="kicker">실무</span>
+      <h2>AI에 강세라면, 장기 투자자로서 어떻게 행동할까</h2>
+      <p>
+        AI에 노출을 갖고 싶다는 마음이 잘못은 아닙니다. 문제는 <strong>크기를 어떻게 정하느냐</strong>
+        입니다. 이 사이트의 입장은 일관됩니다 —
+        <a href="strategy.html#core">코어 주위의 위성</a>으로 다루세요.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. 이미 가진 노출부터 재기</h3>
+          <p>뭔가를 더 사기 전에 <strong>지금 포트폴리오에 들어 있는 AI 노출</strong>을 세어보세요.
+             S&amp;P 500 상위는 이미 AI 비중이 크고, KOSPI 보유자는 기본적으로 삼성전자+SK하이닉스
+             포지션을 크게 안고 있습니다. '추가로 사기' 전에 '이미 가진 것'을 파악하세요.</p>
+        </div>
+        <div class="card">
+          <h3>2. 상한을 먼저 정하기</h3>
+          <p>위성 전체가 포트폴리오의 <strong>10~20% 이하</strong>, 한 회사는 <strong>5% 이하</strong>.
+             기준은 단순합니다 — <strong>이것이 0이 되어도 은퇴 시점이 그대로인가?</strong>
+             0이 될 확률은 체감보다 높습니다.</p>
+        </div>
+        <div class="card">
+          <h3>3. 테마 ETF를 경계하기</h3>
+          <p>테마 펀드는 <strong>그 테마가 가장 주목받을 때 출시되는</strong> 경향이 있고, 보수도
+             광범위 인덱스보다 한 자릿수 배 비싼 것이 보통입니다. 과거 다수의 테마 펀드가 설정
+             이후 벤치마크에 못 미쳤습니다. 사기 전에 설정일·구성 종목·비용을 확인하세요.</p>
+        </div>
+        <div class="card">
+          <h3>4. 집중에 레버리지를 얹지 않기</h3>
+          <p>집중 포지션에 신용이나 레버리지 ETF를 더하면
+             <a href="survival.html">−80% 하락</a>이 '일시적'에서 '영구적'으로 바뀝니다. 시스코와
+             인텔 주주는 들고 있기라도 하면 최소한 판단할 기회가 남았습니다. 레버리지를 쓴 사람에게는
+             그마저 남지 않았습니다.</p>
+        </div>
+        <div class="card">
+          <h3>5. 어느 계좌에 담을지 주의</h3>
+          <p>비과세·세제혜택 계좌는 손실 상계가 안 되는 경우가 많습니다(<a href="nisa.html">NISA</a>가
+             대표적). 손실 확률이 높은 집중 투자를 거기 담으면 세무상 구제까지 잃습니다.
+             <strong>혜택 계좌에는 수십 년 이길 확률이 높은 것을</strong>, 투기적인 것은 과세 계좌에.</p>
+        </div>
+        <div class="card">
+          <h3>6. 적립의 규율은 바꾸지 않기</h3>
+          <p>확신이 강할수록 한 번에 크게 넣고 싶어집니다. 그러나
+             <a href="strategy.html#dca">적립</a>의 이점 — 고점에서 전액을 넣지 않아도 되는 것 —
+             이 가장 크게 작동하는 때가 바로 기대가 최고조인 국면입니다. 1999년의 시스코를
+             떠올리세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scenarios">
+    <div class="container">
+      <span class="kicker">20~30년 뒤</span>
+      <h2>예측이 아니라 시나리오로</h2>
+      <p>
+        2050년의 세상이 어떤 모습일지 맞히려 드는 것은 포트폴리오의 근거로는 부실합니다. 대신
+        <strong>어떤 시나리오가 와도 무너지지 않는 계획</strong>을 만드는 편이 훨씬 낫습니다.
+        최소한 다음 세 가지는 모두 충분히 가능합니다:
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>A. 지금의 승자가 계속 이긴다</h3>
+          <p>소프트웨어 락인과 규모의 경제가 유지되어 오늘의 선두가 20년을 더 지배한다. 인덱스
+             투자자는 자동으로 수혜를 받습니다. 종목 선택자도 보상받지만,
+             <strong>진입 가격이 과하지 않았다면</strong>이라는 조건이 붙습니다.</p>
+        </div>
+        <div class="card">
+          <h3>B. 주역이 바뀐다</h3>
+          <p>새로운 연산 아키텍처, 혹은 클라우드 업체들의 자체 칩이 이익 풀을 다른 층으로 옮긴다 —
+             정확히 인텔과 노키아의 선례입니다. 인덱스는 자동으로 따라가지만,
+             <strong>집중 투자가 가장 크게 다치는 지점</strong>입니다.</p>
+        </div>
+        <div class="card">
+          <h3>C. 과실이 '쓰는 쪽'으로 간다</h3>
+          <p>기술이 보급되고 경쟁으로 범용화되어, 이익이 만드는 쪽이 아니라
+             <strong>AI로 생산성을 올린 넓은 기업군</strong>에 흩어진다 — 전기화의 경로입니다.
+             이 시나리오에서는 역설적으로 <strong>시장 전체를 갖는 것이 최적의 AI 투자</strong>가
+             됩니다.</p>
+        </div>
+      </div>
+      <div class="callout mt-3">
+        <strong>세 시나리오 모두에서 나쁘지 않은 결과를 내는 방법이 딱 하나 있습니다.</strong>
+        광범위한 시장을, 오랫동안, 중단 없이 보유하는 것. 거기에 AI에 대한 확신을 얹는 것은
+        괜찮지만, <strong>그것은 계획의 토대가 아니라 토대 위에 올리는 것</strong>입니다.
+        2050년의 승자가 오늘 존재하지 않을 수 있는 이상, '승자를 고르는 것'보다 '승자가 누구든
+        갖고 있는 것'이 구조적으로 더 강한 위치입니다.
+      </div>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">"건초더미에서 바늘을 찾지 마라. 건초더미를 통째로 사라."</p>
+          <p class="q-orig">"Don't look for the needle in the haystack. Just buy the haystack!"</p>
+        </blockquote>
+        <figcaption>— 존 C. 보글</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="next">
+    <div class="container">
+      <span class="kicker">다음에 읽기</span>
+      <h2>관련 페이지</h2>
+      <div class="grid-3">
+        <a class="card card-link" href="strategy.html#core">
+          <h3>코어와 위성</h3>
+          <p>개별 주식을 포트폴리오의 어디에, 얼마나 둘 것인가.</p>
+          <span class="more">전략 →</span>
+        </a>
+        <a class="card card-link" href="markets.html#japan">
+          <h3>일본의 1989년</h3>
+          <p>한 시장의 지배가 자명해 보였던 시대의 결말.</p>
+          <span class="more">시장 →</span>
+        </a>
+        <a class="card card-link" href="survival.html">
+          <h3>−80%를 견디기</h3>
+          <p>진짜 승자조차 통과시키는 폭락을 어떻게 살아남을 것인가.</p>
+          <span class="more">폭락 대비 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 수십 년 단위로 투자하는 사람들을 위한 가이드.</div>
+      <div>
+        <a href="start.html">시작하기</a> ·
+        <a href="principles.html">원칙</a> ·
+        <a href="markets.html">시장</a> ·
+        <a href="equities.html">AI와 주식</a> ·
+        <a href="strategy.html">전략</a> ·
+        <a href="accounts.html">계좌와 세금</a> ·
+        <a href="nisa.html">NISA</a> ·
+        <a href="survival.html">폭락 대비</a> ·
+        <a href="drawdown.html">인출 전략</a> ·
+        <a href="tools.html">계산기</a> ·
+        <a href="resources.html">자료</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      본 사이트는 교육 목적의 정보 제공만을 위한 것으로, 투자·세무·법률 자문이나 특정 증권의
+      매매 권유가 아닙니다. 이 페이지에 등장하는 기업명은 구조 설명과 사례 연구이며 추천이
+      아닙니다. 투자에는 원금 손실을 포함한 위험이 따릅니다. 과거의 성과는 미래의 수익을
+      보장하지 않습니다. 미국·일본·한국의 세제는 자주 바뀝니다 — 실행 전 반드시 공식 자료나
+      전문가에게 확인하세요.
+    </p>
+  </div>
+</footer>
+
+<script>
+window.ER_I18N = {
+  years: function (n) { return n + "년"; },
+  heroNote: function (y) { return "이 가정으로 " + y + "년 보유했을 때의 연 수익률(산술적 귀결)"; },
+  multipleNote: function (y, x) { return y + "년에 " + x + "배가 되는 계산입니다."; },
+  lossNote: function (y, x) { return y + "년 뒤 " + x + "배 — 즉 원금 손실입니다."; },
+};
+</script>
+<script src="../assets/js/expected-return.js"></script>
+</body>
+</html>

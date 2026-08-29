@@ -73,6 +73,24 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/markets.html"/>
   </url>
   <url>
+    <loc>https://chipcho9-max.github.io/manintokyo/equities.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/equities.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/equities.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/equities.html"/>
+  </url>
+  <url>
+    <loc>https://chipcho9-max.github.io/manintokyo/ja/equities.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/equities.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/equities.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/equities.html"/>
+  </url>
+  <url>
+    <loc>https://chipcho9-max.github.io/manintokyo/ko/equities.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/equities.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/equities.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/equities.html"/>
+  </url>
+  <url>
     <loc>https://chipcho9-max.github.io/manintokyo/strategy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/strategy.html"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/strategy.html"/>

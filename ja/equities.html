@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIと株式の20〜30年 — Long Horizon</title>
+  <meta name="description" content="AIが世界を変えるとして、それは株で儲かることを意味するのか。シスコやインテルの歴史、AIバリューチェーンの構造、Nvidia・Tesla・SpaceX・Kioxia・Samsung・SKハイニックスの事実整理、そして期待収益率を自分で試算するツール。">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ja/equities.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/equities.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/equities.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/equities.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/equities.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="AIと株式の20〜30年 — Long Horizon">
+  <meta property="og:description" content="AIが世界を変えるとして、それは株で儲かることを意味するのか。シスコやインテルの歴史、AIバリューチェーンの構造、Nvidia・Tesla・SpaceX・Kioxia・Samsung・SKハイニックスの事実整理、そして期待収益率を自分で試算するツール。">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ja/equities.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="メイン">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">はじめ方</a></li>
+        <li><a href="principles.html">原則</a></li>
+        <li><a href="markets.html">市場</a></li>
+        <li><a href="equities.html">AIと株式</a></li>
+        <li><a href="strategy.html">戦略</a></li>
+        <li><a href="accounts.html">口座と税金</a></li>
+        <li><a href="nisa.html">NISA</a></li>
+        <li><a href="survival.html">暴落対策</a></li>
+        <li><a href="drawdown.html">出口戦略</a></li>
+        <li><a href="tools.html">計算機</a></li>
+        <li><a href="resources.html">資料</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="言語">
+        <a href="../equities.html" hreflang="en">EN</a>
+        <a href="equities.html" aria-current="true" lang="ja">日本語</a>
+        <a href="../ko/equities.html" lang="ko" hreflang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="テーマ切替">☾</button>
+      <button class="nav-burger" aria-label="メニュー" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">AIと株式</span>
+      <h1>技術を当てることと、株で儲けることは別の問題</h1>
+      <p class="lead">
+        今後20〜30年で、AIが産業構造を大きく書き換える可能性は高い。それはこのページも
+        前提として受け入れます。しかし投資家にとっての本当の問いはその先にあります —
+        <strong>「その変化から、自分の資産は本当に利益を得られるのか」</strong>。
+        技術の見立てが正しくても株で負けることは、歴史上くり返し起きています。
+      </p>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">「もしキティホークに資本家が居合わせていたら、オーヴィルを撃ち落としておくべきだった。」</p>
+          <p class="q-orig">"If a capitalist had been present at Kitty Hawk, he should have shot Orville down."</p>
+        </blockquote>
+        <figcaption>— ウォーレン・バフェット<span class="q-src">(航空機は世界を変えたが、航空業界の投資家は長年損をし続けた)</span></figcaption>
+      </figure>
+      <div class="callout warn mt-2">
+        <strong>このページの位置づけ。</strong> 以下に登場する企業名は、AIのサプライチェーンを
+        説明するための<strong>構造の解説とケーススタディ</strong>であって、推奨銘柄リストでは
+        ありません。このサイトは個別銘柄を推奨せず、特定企業の将来リターンを予測もしません。
+        期待収益率については「予測値」ではなく、<a href="#expected-return">自分の前提を入れて
+        計算する枠組み</a>を提供します。企業の状況・上場区分は変わります — 実行前に必ず一次情報を
+        確認してください。
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="container">
+      <span class="kicker">最重要の教訓</span>
+      <h2>技術は当たった。それでも株では負けた</h2>
+      <p>
+        1999年、「インターネットが世界を変える」という見立ては<strong>完全に正しかった</strong>。
+        その中心にいたシスコシステムズは2000年3月、世界で最も時価総額の大きい企業になりました。
+        インターネットのトラフィックはその後20年以上、指数関数的に伸び続けました。見立ては
+        当たったのです。それでも:
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>企業</th><th>当時の位置づけ</th><th class="num">高値からの下落</th><th>高値の回復まで</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>シスコシステムズ</strong></td>
+              <td>2000年3月、世界最大の時価総額。ネット基盤の中核</td>
+              <td class="num">約 −85%</td>
+              <td><strong>約24年</strong>(2024年頃)</td>
+            </tr>
+            <tr>
+              <td><strong>マイクロソフト</strong></td>
+              <td>1999年末、PC時代の絶対王者</td>
+              <td class="num">約 −60%</td>
+              <td>約17年(2016年)。その後は歴史的な複利銘柄に</td>
+            </tr>
+            <tr>
+              <td><strong>インテル</strong></td>
+              <td>2000年、半導体の代名詞</td>
+              <td class="num">約 −80%</td>
+              <td>四半世紀を経ても<strong>未回復</strong>。微細化競争とモバイル・AIで後れを取った</td>
+            </tr>
+            <tr>
+              <td><strong>ノキア</strong></td>
+              <td>2007年、携帯電話の世界シェア約40%</td>
+              <td class="num">約 −90%</td>
+              <td>未回復。iPhone登場から数年で王座を失った</td>
+            </tr>
+            <tr>
+              <td><strong>アマゾン</strong></td>
+              <td>1999年、ネット書店</td>
+              <td class="num">約 −93%</td>
+              <td>約9年。その後、史上有数の複利銘柄に</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">株価ベースの概数。読みやすさのため丸めています。</p>
+      <p class="mt-2">
+        この表から読み取るべきことは2つあります。第一に、<strong>負けたのは「間違った技術に
+        賭けた人」ではなく、「正しい技術に、間違った価格で賭けた人」</strong>だということ。
+        シスコは2000年以降も利益を出し続け、成長し続けました。問題は事業ではなく買値でした。
+        第二に、アマゾンとマイクロソフトの行は、<strong>本物の勝者でさえ−60〜−90%の下落を
+        通過する</strong>と教えています。それを持ち切れるかどうかが、結果を分けます。
+      </p>
+      <div class="callout mt-2">
+        <strong>もう一つの前例:「ニフティ・フィフティ」。</strong> 1970年代初頭の米国では、
+        コカ・コーラ、IBM、ゼロックス、ポラロイドなど「一度買えば売らなくてよい50銘柄」が
+        PER50〜90倍で取引されました。企業の質の見立ては多くが正しかった。それでも、その価格から
+        買った投資家は10年以上報われず、ポラロイドやコダックのように消えた企業もありました。
+        <strong>「素晴らしい企業」と「素晴らしい投資」は同義ではありません。</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="value-chain">
+    <div class="container">
+      <span class="kicker">構造を理解する</span>
+      <h2>AIのバリューチェーン — お金はどこを通るのか</h2>
+      <p>
+        「AI関連株」はひとつの塊ではありません。層によって、利益率も競争構造も、そして
+        <strong>すでに株価に織り込まれている期待の量</strong>もまったく違います。
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>層</th><th>役割</th><th>代表的な企業</th><th>投資家として見るべき点</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>半導体設計</strong></td>
+              <td>AIアクセラレータそのもの</td>
+              <td>Nvidia、AMD、Broadcom(カスタムASIC)</td>
+              <td>現時点の最大の利益プール。ソフト資産(CUDA)が参入障壁。同時に最も期待が織り込まれた層でもある</td>
+            </tr>
+            <tr>
+              <td><strong>製造(ファウンドリ)</strong></td>
+              <td>実際にチップを作る</td>
+              <td>TSMC、Samsung Foundry、Intel Foundry</td>
+              <td>最先端ではTSMCがほぼ唯一のチョークポイント。地政学リスクが集中する</td>
+            </tr>
+            <tr>
+              <td><strong>製造装置・材料</strong></td>
+              <td>チップを作る機械と素材</td>
+              <td>ASML(EUV独占)、東京エレクトロン、アドバンテスト、ディスコ、信越化学</td>
+              <td>「誰が勝っても売れる」層。<strong>日本株の主戦場</strong>。ただし半導体サイクルの影響は免れない</td>
+            </tr>
+            <tr>
+              <td><strong>メモリ</strong></td>
+              <td>AIに不可欠な高帯域メモリ・ストレージ</td>
+              <td>SKハイニックス、Samsung、Micron、キオクシア</td>
+              <td>HBMがAI学習のボトルネック。歴史的に激しい市況変動産業である点は変わらない</td>
+            </tr>
+            <tr>
+              <td><strong>電力・インフラ</strong></td>
+              <td>データセンター、電力、冷却</td>
+              <td>電力会社、送配電、冷却・電源設備メーカー</td>
+              <td>見落とされがちな物理的ボトルネック。AI拡大の実際の制約になり得る</td>
+            </tr>
+            <tr>
+              <td><strong>クラウド</strong></td>
+              <td>計算資源を貸す</td>
+              <td>Microsoft、Amazon、Google、Meta</td>
+              <td>チップの最大の買い手であり、同時に自社チップ開発で最大の競合にもなる二面性</td>
+            </tr>
+            <tr>
+              <td><strong>応用・利用者</strong></td>
+              <td>AIを使って自社の事業を改善する側</td>
+              <td>あらゆる産業</td>
+              <td>20〜30年後、<strong>最大の受益者はここかもしれない</strong>。歴史的に、技術の果実は作り手より使い手に多く渡ってきた</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout mt-2">
+        <strong>電気と自動車の前例。</strong> 電化は経済を根本から変えましたが、最も儲けたのは
+        発電機メーカーではなく、電気を使って生産性を上げた製造業でした。米国では2,000社以上が
+        自動車産業に参入し、最終的に残ったのは3社です。<strong>変革の規模と、その変革を起こす
+        企業の株主リターンは、比例しません。</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="companies">
+    <div class="container">
+      <span class="kicker">事実の整理</span>
+      <h2>名前の挙がる企業について、まず事実を</h2>
+      <p>
+        よく話題に上る企業を、投資判断の前提となる事実だけ整理します。
+        <strong>上場しているかどうかの確認は、意外に見落とされがちです。</strong>
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>企業</th><th>上場状況</th><th>AIにおける役割</th><th>主なリスク</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Nvidia</strong></td>
+              <td>上場(米NASDAQ)</td>
+              <td>AIアクセラレータの事実上の標準。CUDAというソフト資産が最大の堀</td>
+              <td>顧客の集中(少数の巨大クラウドが売上の大半)、各社の自社チップ開発、対中輸出規制、半導体サイクル</td>
+            </tr>
+            <tr>
+              <td><strong>Tesla</strong></td>
+              <td>上場(米NASDAQ)</td>
+              <td>EVに加え、蓄電池・自動運転・ヒューマノイドのオプション価値が評価に織り込まれている</td>
+              <td>中国勢との価格競争、EV市場の成熟、自動運転の実現時期がくり返し後ろ倒しになってきた履歴、経営者依存</td>
+            </tr>
+            <tr>
+              <td><strong>SpaceX</strong></td>
+              <td><strong>非上場</strong></td>
+              <td>打ち上げとStarlink。AI文脈では衛星通信インフラ</td>
+              <td><strong>個人投資家は原則として直接買えません。</strong>Starlink部門のIPO観測は以前からありますが、確定した話ではありません。「買えない企業」を投資計画に織り込まないこと</td>
+            </tr>
+            <tr>
+              <td><strong>東芝</strong></td>
+              <td><strong>2023年12月に上場廃止</strong></td>
+              <td>JIP(日本産業パートナーズ)による買収で非公開化</td>
+              <td>市場では買えません。かつての半導体メモリ部門は分離され、キオクシアになりました</td>
+            </tr>
+            <tr>
+              <td><strong>キオクシア</strong></td>
+              <td>上場(<strong>2024年12月に東証IPO</strong>)</td>
+              <td>NANDフラッシュメモリ。AIデータセンターのストレージ需要</td>
+              <td>NAND市況の変動が非常に大きい。上場後の歴史が浅く、長期の実績データが乏しい</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung電子</strong></td>
+              <td>上場(韓国KOSPI)</td>
+              <td>DRAM・NAND・HBM・ファウンドリ・スマホの総合。KOSPI最大の構成銘柄</td>
+              <td>HBMでSKハイニックスに先行を許した局面があった。ファウンドリでTSMCとの差、そして<a href="markets.html#korea">コリア・ディスカウント</a></td>
+            </tr>
+            <tr>
+              <td><strong>SKハイニックス</strong></td>
+              <td>上場(韓国KOSPI)</td>
+              <td>HBM(高帯域メモリ)でNvidia向けの主力供給者となり、AI投資の最大の受益者の一社に</td>
+              <td>メモリは歴史的に激しい好不況サイクルを持つ産業。技術優位は永続を前提にできない</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">上場区分や事業構成は変わります。売買の前に必ず最新の一次情報(各社IR、取引所)をご確認ください。</p>
+
+      <div class="grid-2 mt-3">
+        <div class="card">
+          <span class="chip chip-jp"><span class="chip-dot"></span>日本</span>
+          <h3 class="mt-2">日本のAI関連は「装置と材料」</h3>
+          <p>日本株でAIの恩恵を受ける中心は、完成品ではなく<strong>製造装置と材料</strong>です。
+             東京エレクトロン、アドバンテスト(検査装置)、ディスコ(切断・研削)、信越化学・SUMCO
+             (シリコンウェハー)などが、世界のどのチップメーカーが勝っても部材を供給する立場に
+             あります。Rapidusによる先端ファウンドリの試みも進行中ですが、成否の判断にはまだ
+             年数が必要です。</p>
+        </div>
+        <div class="card">
+          <span class="chip chip-kr"><span class="chip-dot"></span>韓国</span>
+          <h3 class="mt-2">韓国の投資家は「すでに持っている」</h3>
+          <p>KOSPIはサムスン電子とSKハイニックスの比重が非常に大きく、韓国のインデックスを
+             持っている時点で<strong>すでに巨大なAIメモリ露出を抱えています</strong>。そこへ
+             個別にAI銘柄を積み増すと、意図せぬ二重の集中になります。自国株を持つ人ほど、
+             追加のAI投資は慎重にサイズを決める必要があります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="expected-return">
+    <div class="container">
+      <span class="kicker">期待収益率</span>
+      <h2>「予測」ではなく「分解」で考える</h2>
+      <p>
+        個別株の将来リターンを言い当てられる人はいません。このサイトも予測値は出しません。
+        代わりに、長期リターンがどう決まるかの<strong>分解式</strong>を使います。これは予測では
+        なく、前提を置いたときの算術です:
+      </p>
+      <div class="callout">
+        <strong>年率リターン ≒ (1 + 利益成長率) × (1 + PERの年率変化) − 1 + 配当利回り</strong>
+        <br><span class="small">長期の株式リターンは、この3つ — 利益がどれだけ伸びたか、市場が
+        その利益に何倍の値段を付けるようになったか、その間に受け取った配当 — にほぼ分解できます。</span>
+      </div>
+      <p>
+        高PER銘柄でこの式が効いてくるのは、<strong>第2項</strong>です。事業の見立てが当たっても、
+        PERが50倍から20倍に下がれば、その分は毎年リターンから差し引かれます。下のツールで
+        自分の前提を入れてみてください。
+      </p>
+
+      <div class="calc-layout mt-3">
+        <div class="card calc-form">
+          <label for="er-pe0">現在のPER(株価収益率)</label>
+          <input type="number" id="er-pe0" value="50" min="1" max="500" step="1">
+
+          <label for="er-growth">想定する年間の利益成長率(%)</label>
+          <input type="number" id="er-growth" value="20" min="-20" max="60" step="1">
+
+          <label for="er-pe1">その期間の終わりのPER</label>
+          <input type="number" id="er-pe1" value="25" min="1" max="500" step="1">
+
+          <label for="er-yield">配当利回り(%)</label>
+          <input type="number" id="er-yield" value="0" min="0" max="15" step="0.1">
+
+          <label for="er-years">期間:<span class="range-value" id="er-years-out">10年</span></label>
+          <input type="range" id="er-years" min="3" max="30" step="1" value="10">
+
+          <div class="preset-row er-presets" role="group" aria-label="シナリオ">
+            <button type="button" data-pe0="50" data-pe1="35" data-growth="28" data-yield="0" aria-pressed="false">強気</button>
+            <button type="button" data-pe0="50" data-pe1="25" data-growth="20" data-yield="0" aria-pressed="false">中立</button>
+            <button type="button" data-pe0="50" data-pe1="15" data-growth="10" data-yield="0" aria-pressed="false">慎重</button>
+            <button type="button" data-pe0="12" data-pe1="15" data-growth="3" data-yield="3" aria-pressed="false">成熟・割安株</button>
+          </div>
+
+          <p class="small" style="margin-top: 16px;">
+            これは特定企業の予測ではありません。<strong>あなたが置いた前提の帰結</strong>を
+            計算しているだけです。前提が外れれば結果も外れます。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="hero-figure">
+            <div class="hf-label">この前提での年率リターン</div>
+            <div class="hf-value" id="er-hero">—</div>
+            <div class="hf-note" id="er-hero-note"></div>
+          </div>
+
+          <div class="stat-row mt-3">
+            <div class="stat">
+              <div class="stat-label">利益成長の寄与</div>
+              <div class="stat-value" id="er-stat-growth">—</div>
+              <div class="stat-note">事業が正しかった分</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">PER変化の寄与(年率)</div>
+              <div class="stat-value" id="er-stat-value">—</div>
+              <div class="stat-note">市場の評価が変わった分</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">配当利回り</div>
+              <div class="stat-value" id="er-stat-yield">—</div>
+              <div class="stat-note">受け取った現金</div>
+            </div>
+          </div>
+
+          <div class="callout mt-3" id="er-multiple"></div>
+        </div>
+      </div>
+
+      <h3 class="mt-3">同じ「年20%成長」でも、出口PERで結果はここまで変わる</h3>
+      <p>下の表は、<strong>事業の予想はすべて的中して年20%の利益成長を10年続けた</strong>という
+         同じ前提のもとで、PERだけを動かしたものです(開始PER50倍・無配):</p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>10年後のPER</th><th class="num">年率リターン</th><th>意味</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>60倍(さらに評価が上がる)</td><td class="num">+22.2%</td><td>成長も評価も味方についた最良の展開</td></tr>
+            <tr><td>50倍(据え置き)</td><td class="num">+20.0%</td><td>利益成長がそのままリターンになる</td></tr>
+            <tr><td>30倍</td><td class="num">+14.0%</td><td>優秀。ただし成長の3割は評価下落に食われた</td></tr>
+            <tr><td>20倍</td><td class="num">+9.5%</td><td>年20%成長を10年続けても、指数並みの結果</td></tr>
+            <tr><td>15倍(成熟企業の評価に)</td><td class="num">+6.4%</td><td>予想は完璧に当たったのに、指数に負ける</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-2">
+        これが、このページで最も伝えたい算術です。<strong>「この会社は成長する」が正しくても、
+        買った時の価格が高すぎれば、報われるのは会社であって、あなたではありません。</strong>
+        逆に言えば、PER50倍の銘柄で年10%のリターンを得るには、10年後のPERが20倍に落ち着くとして、
+        <strong>年20.6%の利益成長を10年続ける</strong>必要があります。それが実際どれほど稀か —
+        それを考えるのが、株価を眺めるより有益な時間の使い方です。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="base-rates">
+    <div class="container">
+      <span class="kicker">確率を知る</span>
+      <h2>個別株のベースレート</h2>
+      <p>
+        個別銘柄選びを考えるなら、出発点となる確率を知っておく価値があります。アリゾナ州立大学の
+        ヘンドリック・ベッセンバインダー教授による有名な研究は、1926年以降の米国上場株を調べ、
+        次のことを示しました:
+      </p>
+      <ul>
+        <li><strong>個別株の過半は、生涯リターンで短期国債にすら負けている。</strong></li>
+        <li><strong>市場全体の純利益のすべては、わずか約4%の銘柄が生み出している。</strong>
+          残りの96%は、合計するとゼロ近辺の寄与しかありません。</li>
+      </ul>
+      <p>
+        つまり株式市場のリターンは、<strong>ごく少数の極端な勝者に極度に集中している</strong>と
+        いうことです。これは個別株投資家にとって残酷な非対称性を意味します:
+        分散されたインデックスを持てば、その4%を<strong>自動的に全部持てる</strong>のに対し、
+        10銘柄を選ぶ投資家は、その4%を掴む確率よりも<strong>逃す確率のほうが高い</strong>のです。
+      </p>
+      <div class="callout mt-2">
+        <strong>そして重要なこと:あなたはすでにNvidiaを持っています。</strong>
+        S&amp;P 500や全世界インデックスを積み立てているなら、Nvidia、Microsoft、Amazon、
+        TSMCといったAIの中核企業を、<strong>すでに時価総額比で保有しています</strong>。
+        しかも、将来それらが凋落して別の企業が台頭すれば、インデックスは
+        <strong>あなたが何もしなくても自動的に入れ替えてくれます</strong>。20〜30年後の勝者が
+        今日まだ存在しない会社である可能性を考えると、これは軽く見てよい性質ではありません。
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-to-act">
+    <div class="container">
+      <span class="kicker">実務</span>
+      <h2>AIに強気なら、長期投資家としてどう行動するか</h2>
+      <p>
+        「AIに賭けたい」という気持ちは、必ずしも間違いではありません。問題は<strong>どう
+        サイズを決めるか</strong>です。このサイトの立場は一貫しています —
+        <a href="strategy.html#core">コア・サテライト</a>で扱ってください。
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. まず露出を測る</h3>
+          <p>個別株を買い足す前に、<strong>いま自分がどれだけAIを持っているか</strong>を数えます。
+             S&amp;P 500の上位はすでにAI関連が大きな比重を占め、KOSPIならサムスン+SKハイニックス
+             だけで相当な露出です。「追加で買う」前に「もう持っている分」を把握してください。</p>
+        </div>
+        <div class="card">
+          <h3>2. 上限を先に決める</h3>
+          <p>サテライト全体でポートフォリオの<strong>10〜20%以下</strong>、1社あたり
+             <strong>5%以下</strong>。基準は単純です — <strong>それがゼロになっても、
+             引退時期が変わらない金額か</strong>。ゼロになる確率は、あなたが思うより高い。</p>
+        </div>
+        <div class="card">
+          <h3>3. テーマETFに注意</h3>
+          <p>テーマ型ETFは<strong>そのテーマが最も話題になった時点で組成される</strong>傾向が
+             あり、信託報酬も広範なインデックスより一桁高いのが普通です。過去の
+             テーマファンドの多くが、設定後にベンチマークを下回っています。買う前に、
+             設定時期・保有銘柄・コストを必ず確認してください。</p>
+        </div>
+        <div class="card">
+          <h3>4. 集中はレバレッジと組み合わせない</h3>
+          <p>個別株の集中に信用取引やレバレッジETFを重ねると、
+             <a href="survival.html">−80%の下落</a>が「一時的」ではなく「恒久的」になります。
+             シスコやインテルの株主は、持ち続けていれば少なくとも判断の機会が残りました。
+             レバレッジをかけていた人には、それすら残りませんでした。</p>
+        </div>
+        <div class="card">
+          <h3>5. 非課税枠の使い方に注意</h3>
+          <p><a href="nisa.html">NISA</a>は損益通算ができません。損失が出る確率の高い集中投資を
+             NISAで行うと、税務上の救済も失います。<strong>NISAには長期で勝つ確率が高いものを
+             入れ、投機性の高いものは課税口座で</strong>というのが合理的な使い分けです。</p>
+        </div>
+        <div class="card">
+          <h3>6. 積立の規律は変えない</h3>
+          <p>テーマへの確信が強いときほど、一括で大きく入れたくなります。しかし
+             <a href="strategy.html#dca">積立</a>の利点 — 天井で全額を入れずに済むこと — が
+             最も効くのは、まさに期待が最高潮の局面です。1999年のシスコを思い出してください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scenarios">
+    <div class="container">
+      <span class="kicker">20〜30年後</span>
+      <h2>予測ではなく、シナリオで考える</h2>
+      <p>
+        「20〜30年後の世界がどうなるか」を当てにいくのは、投資判断としては筋が悪い。
+        代わりに、<strong>複数のシナリオのどれが来ても壊れない計画</strong>を作るほうが有益です。
+        少なくとも次の3つは、どれも十分あり得ます:
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>A. 現在の勝者が勝ち続ける</h3>
+          <p>ソフトウェア資産と規模の経済が効き、今日の中核企業がそのまま20年支配する。
+             インデックス投資家は自動的にその恩恵を受けます。個別株投資家も報われますが、
+             <strong>買値が高すぎなければ</strong>という条件付きです。</p>
+        </div>
+        <div class="card">
+          <h3>B. 主役が入れ替わる</h3>
+          <p>計算アーキテクチャの世代交代、あるいは各社の自社チップ化で、収益プールが別の層に
+             移る。インテルとノキアの前例どおりです。インデックスは自動的に追随しますが、
+             <strong>集中投資はここで最も傷つきます</strong>。</p>
+        </div>
+        <div class="card">
+          <h3>C. 果実が「使う側」に渡る</h3>
+          <p>技術は普及するが競争でコモディティ化し、利益は作り手ではなく
+             <strong>AIを使って生産性を上げた広範な企業</strong>に分散する。電化と同じ道です。
+             このシナリオでは、皮肉にも<strong>広く分散した市場全体を持つことが最適解</strong>に
+             なります。</p>
+        </div>
+      </div>
+      <div class="callout mt-3">
+        <strong>3つのシナリオすべてで悪くない結果になる方法が、一つだけあります。</strong>
+        広範な市場を、長期にわたり、淡々と持ち続けること。AIへの確信をそこに上乗せするのは
+        構いませんが、<strong>それは計画の土台ではなく、土台の上に載せるもの</strong>です。
+        20〜30年後の勝者が今日まだ存在しない可能性がある以上、
+        「勝者を選ぶ」より「勝者が誰であっても持っている」ほうが、構造的に強い立場です。
+      </div>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">「干し草の山から針を探すな。干し草の山ごと買え。」</p>
+          <p class="q-orig">"Don't look for the needle in the haystack. Just buy the haystack!"</p>
+        </blockquote>
+        <figcaption>— ジョン・C・ボーグル</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="next">
+    <div class="container">
+      <span class="kicker">次に読む</span>
+      <h2>関連ページ</h2>
+      <div class="grid-3">
+        <a class="card card-link" href="strategy.html#core">
+          <h3>コアとサテライト</h3>
+          <p>個別株をポートフォリオのどこに、どれだけ置くか。</p>
+          <span class="more">戦略 →</span>
+        </a>
+        <a class="card card-link" href="markets.html#japan">
+          <h3>日本の1989年</h3>
+          <p>「この国が世界を支配する」が当たり前だった時代の結末。</p>
+          <span class="more">市場 →</span>
+        </a>
+        <a class="card card-link" href="survival.html">
+          <h3>−80%を持ち切る</h3>
+          <p>本物の勝者でさえ通過する暴落を、どう生き延びるか。</p>
+          <span class="more">暴落対策 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 数十年単位で投資する人のためのガイド。</div>
+      <div>
+        <a href="start.html">はじめ方</a> ·
+        <a href="principles.html">原則</a> ·
+        <a href="markets.html">市場</a> ·
+        <a href="equities.html">AIと株式</a> ·
+        <a href="strategy.html">戦略</a> ·
+        <a href="accounts.html">口座と税金</a> ·
+        <a href="nisa.html">NISA</a> ·
+        <a href="survival.html">暴落対策</a> ·
+        <a href="drawdown.html">出口戦略</a> ·
+        <a href="tools.html">計算機</a> ·
+        <a href="resources.html">資料</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      本サイトは教育目的の情報提供のみを行うものであり、投資・税務・法務の助言や、特定の証券の
+      売買の勧誘ではありません。本ページに登場する企業名は構造の説明とケーススタディであり、
+      推奨ではありません。投資には元本割れを含むリスクがあります。過去の実績は将来の成果を
+      保証しません。米国・日本・韓国の税制は頻繁に変わります — 実行前に必ず公式情報や専門家に
+      ご確認ください。
+    </p>
+  </div>
+</footer>
+
+<script>
+window.ER_I18N = {
+  years: function (n) { return n + "年"; },
+  heroNote: function (y) { return "この前提のもとで" + y + "年間保有した場合の年率リターン(算術上の帰結)"; },
+  multipleNote: function (y, x) { return y + "年で " + x + "倍 になる計算です。"; },
+  lossNote: function (y, x) { return y + "年後に " + x + "倍 — つまり元本割れです。"; },
+};
+</script>
+<script src="../assets/js/expected-return.js"></script>
+</body>
+</html>

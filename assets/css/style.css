@@ -234,7 +234,7 @@ li { margin-bottom: 0.4em; }
 .theme-toggle:hover, .nav-burger:hover { color: var(--ink); border-color: var(--muted); }
 .nav-burger { display: none; }
 
-@media (max-width: 1200px) {
+@media (max-width: 1260px) {
   .nav-burger { display: inline-flex; }
   .nav-links {
     display: none;
