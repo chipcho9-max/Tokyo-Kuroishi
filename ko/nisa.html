@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NISA 완전 정리 — Long Horizon</title>
+  <meta name="description" content="일본 NISA 심층 정리: 적립투자 한도와 성장투자 한도의 차이, 1,800만 엔 평생 한도의 취득가액 관리와 부활 구조, 흔한 오해, 실무상 함정, 그리고 솔직한 약점까지.">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ko/nisa.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/nisa.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/nisa.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/nisa.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/nisa.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="NISA 완전 정리 — Long Horizon">
+  <meta property="og:description" content="일본 NISA 심층 정리: 적립투자 한도와 성장투자 한도의 차이, 1,800만 엔 평생 한도의 취득가액 관리와 부활 구조, 흔한 오해, 실무상 함정, 그리고 솔직한 약점까지.">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ko/nisa.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="메인">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">시작하기</a></li>
+        <li><a href="principles.html">원칙</a></li>
+        <li><a href="markets.html">시장</a></li>
+        <li><a href="strategy.html">전략</a></li>
+        <li><a href="accounts.html">계좌와 세금</a></li>
+        <li><a href="nisa.html">NISA</a></li>
+        <li><a href="survival.html">폭락 대비</a></li>
+        <li><a href="drawdown.html">인출 전략</a></li>
+        <li><a href="tools.html">계산기</a></li>
+        <li><a href="resources.html">자료</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="언어">
+        <a href="../nisa.html" hreflang="en">EN</a>
+        <a href="../ja/nisa.html" lang="ja" hreflang="ja">日本語</a>
+        <a href="nisa.html" aria-current="true" lang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="테마 전환">☾</button>
+      <button class="nav-burger" aria-label="메뉴" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="chip chip-jp"><span class="chip-dot"></span>일본</span>
+      <h1 class="mt-2">NISA — 두 개의 한도, 하나의 평생 한도</h1>
+      <p class="lead">
+        2024년에 개편된 일본의 NISA는 수십 년 복리를 굴리는 사람에게 세계적으로도 손꼽히게
+        관대한 제도입니다. 한도 안에서는 양도차익도 배당도 기한 없이 비과세 — 일반 계좌의
+        20.315% 과세와 비교됩니다. 그런데 두 가지가 거의 항상 오해됩니다: <em>적립투자</em>
+        한도와 <em>성장투자</em> 한도의 차이, 그리고 1,800만 엔 평생 한도가 실제로 세어지는
+        방식. 이 페이지는 그 두 가지를 축으로 정리합니다.
+      </p>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">"복리 수익의 기적은 복리 비용의 횡포 앞에 무너진다."</p>
+          <p class="q-orig">"The miracle of compounding returns is overwhelmed by the tyranny of compounding costs."</p>
+        </blockquote>
+        <figcaption>— 존 C. 보글<span class="q-src">(세금 역시 해마다 반복되는 비용입니다)</span></figcaption>
+      </figure>
+      <div class="callout warn mt-2">
+        <strong>제도와 숫자는 바뀝니다.</strong> 아래는 2026년 초 기준 정보를 교육 목적으로
+        정리한 것입니다. 일본 세제는 매년 개정됩니다. 실행 전 반드시 금융청(金融庁)의 NISA
+        페이지, 국세청(国税庁), 또는 이용하는 금융기관의 최신 정보를 확인하세요.
+      </div>
+      <div class="callout mt-2">
+        <strong>한국 독자에게:</strong> 일본에 거주하지 않는다면 NISA에 직접 가입할 수는
+        없습니다. 그래도 읽을 가치는 있습니다 — 2024년 한국의 '기업 밸류업 프로그램'이 일본의
+        개혁을 모델로 삼았듯, NISA는 <strong>장기 투자를 제도로 유도하는 설계</strong>의
+        참고 사례이기 때문입니다. 한국의 연금저축·IRP·ISA와 비교해 읽으면
+        <a href="accounts.html#korea">우리 제도</a>의 강점과 한계가 더 선명해집니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="two-quotas">
+    <div class="container">
+      <span class="kicker">여기서부터</span>
+      <h2>적립투자 한도와 성장투자 한도의 차이</h2>
+      <p>
+        가장 큰 오해는 "둘 중 하나를 고르는 것"이라는 생각입니다. 구제도(일반 NISA /
+        적립 NISA)에서는 실제로 선택제였지만, <strong>2024년 개편 이후에는 같은 해에 둘 다
+        사용할 수 있습니다</strong>. 실제 차이는 '연간 얼마를 넣을 수 있는가'와 '무엇을 살 수
+        있는가' 두 가지로 요약됩니다.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>&nbsp;</th><th>적립투자 한도(つみたて投資枠)</th><th>성장투자 한도(成長投資枠)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>연간 한도</strong></td>
+              <td class="num">120만 엔</td>
+              <td class="num">240만 엔</td>
+            </tr>
+            <tr>
+              <td><strong>살 수 있는 것</strong></td>
+              <td>금융청 기준을 통과한 펀드·ETF만 — 장기·적립·분산에 적합하도록 심사된 상품. 실제로는 저비용의 전 세계 주식·S&amp;P 500 인덱스 펀드가 중심이며 대부분 무분배형.</td>
+              <td>상장주식, ETF, REIT, 대부분의 펀드까지 폭넓게. 단 정리·관리종목, 신탁기간 20년 미만, 매월 분배형, 고레버리지형 펀드는 제외.</td>
+            </tr>
+            <tr>
+              <td><strong>매수 방식</strong></td>
+              <td>적립만 가능(정기적·계속적 매수)</td>
+              <td>일시금도 적립도 모두 가능</td>
+            </tr>
+            <tr>
+              <td><strong>평생 한도 내 비중</strong></td>
+              <td class="num">1,800만 엔까지<br>(단독으로 전액 채울 수 있음)</td>
+              <td class="num">1,200만 엔까지<br>(단독으로는 다 채울 수 없음)</td>
+            </tr>
+            <tr>
+              <td><strong>어울리는 사람</strong></td>
+              <td>매달 꾸준히 적립하는 사람. 장기 투자자 대다수는 여기서 끝납니다.</td>
+              <td>개별 주식이나 ETF를 갖고 싶은 사람, 상여금 등으로 목돈을 넣는 사람.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout mt-2">
+        <strong>이름에 속지 마세요.</strong> '성장투자 한도'라는 이름은 공격적 운용 전용처럼
+        들립니다. 하지만 실제로는 <strong>성장투자 한도에서도 같은 인덱스 펀드를 매달 자동
+        적립할 수 있습니다</strong>. 월 10만 엔(적립투자 한도의 월 상한)을 넘겨 적립하고 싶은
+        사람이 같은 상품을 성장투자 한도로도 계속 사는 것 — 지극히 평범한 사용법입니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lifetime-cap">
+    <div class="container">
+      <span class="kicker">구조의 핵심</span>
+      <h2>1,800만 엔은 '취득가액'으로 센다</h2>
+      <p>
+        이 규칙 하나를 이해하면 제도의 설계 의도가 보입니다. 평생 비과세 보유 한도는
+        <strong>시가가 아니라 취득가액(장부가)</strong>으로 계산됩니다:
+      </p>
+      <ul>
+        <li><strong>수익이 나도 한도는 줄지 않습니다.</strong> 1,800만 엔을 다 넣은 뒤 평가액이
+          5,000만 엔이 되어도 한도 사용은 1,800만 엔 그대로이고, 기한 없이 비과세로 계속 보유할
+          수 있습니다. 밖으로 밀려나지 않습니다 — 이것이 '무기한 비과세'의 실질적 위력입니다.</li>
+        <li><strong>매도하면 다음 해에 취득가액만큼 한도가 부활합니다.</strong> 500만 엔에 산 것이
+          800만 엔이 되어 팔았다면, 다음 해에 돌아오는 것은 <strong>500만 엔</strong>이지
+          800만 엔이 아닙니다.</li>
+        <li><strong>부활해도 연간 한도가 늘지는 않습니다.</strong> 다시 사는 것도 그해의 연 360만 엔
+          (적립 120 + 성장 240) 범위 안에서만 가능합니다.</li>
+      </ul>
+      <div class="grid-2 mt-2">
+        <div class="card">
+          <h3>1,800만 엔의 배분 규칙</h3>
+          <p><strong>성장투자 한도는 최대 1,200만 엔까지.</strong> 따라서 나머지 600만 엔 이상은
+             반드시 적립투자 한도로 채우게 됩니다.</p>
+          <p>반대는 성립합니다: <strong>적립투자 한도만으로 1,800만 엔 전액을 채울 수
+             있습니다.</strong> 성장투자 한도를 한 번도 쓰지 않아도 제도상 아무 문제가 없고,
+             순수 인덱스 투자자에게는 오히려 이쪽이 기본형입니다.</p>
+        </div>
+        <div class="card">
+          <h3>비과세의 가치를 숫자로</h3>
+          <p>1,800만 엔을 연 7%로 25년 굴리면 평가액은 약 <strong>9,769만 엔</strong>,
+             그중 수익이 약 7,969만 엔입니다.</p>
+          <p>과세 계좌였다면 매도 시 20.315%로 약 <strong>1,619만 엔</strong>의 세금.
+             NISA에서는 0입니다. 종목 선택의 솜씨보다 이 한 가지가 결과를 더 크게 가릅니다.</p>
+          <p class="small">연 7%는 역사적 평균에 기반한 가정일 뿐 약속이 아닙니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pace">
+    <div class="container">
+      <span class="kicker">전략적 질문</span>
+      <h2>1,800만 엔을 '몇 년에' 채울 것인가</h2>
+      <p>
+        아래 세 줄의 납입 총액은 모두 같은 1,800만 엔입니다. 다만 채우는 속도에 따라 비과세로
+        복리가 도는 기간이 달라집니다. 셋 다 <strong>35년차</strong>에 평가한 결과입니다
+        (연 5% 가정):
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>속도</th><th class="num">채우기까지</th><th class="num">납입 총액</th><th class="num">다 채운 시점</th><th class="num">35년차 평가액</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>월 30만 엔(연간 한도 만액)</td><td class="num">5년</td><td class="num">1,800만 엔</td><td class="num">약 2,034만 엔</td><td class="num"><strong>약 8,793만 엔</strong></td></tr>
+            <tr><td>월 10만 엔</td><td class="num">15년</td><td class="num">1,800만 엔</td><td class="num">약 2,648만 엔</td><td class="num">약 7,027만 엔</td></tr>
+            <tr><td>월 5만 엔</td><td class="num">30년</td><td class="num">1,800만 엔</td><td class="num">약 4,077만 엔</td><td class="num">약 5,203만 엔</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">연 5% 가정, 세금·수수료 미반영. 예시이며 예측이 아닙니다. 나의 숫자는 <a href="tools.html">계산기</a>에서.</p>
+      <p class="mt-2">
+        넣은 돈은 셋 다 같은 1,800만 엔인데 35년 뒤에는 <strong>3,500만 엔 넘는 차이</strong>가
+        납니다. 오로지 그 돈이 비과세 안에서 보낸 햇수의 차이입니다.
+      </p>
+      <div class="callout warn mt-2">
+        <strong>다만 무리해서 서두르지는 말 것.</strong> 이 표는 '여윳돈이 있다면 빨리 채우는
+        쪽이 유리하다'는 이야기이지, 생활을 깎아 서두르라는 뜻이 아닙니다. 비상금을 헐거나
+        빚을 내어 한도를 채우는 것은 본말전도입니다. 속도는
+        <a href="start.html#before">비상금과 고금리 부채를 정리한 뒤</a>의 여력으로 정하세요.
+        월 5만 엔을 30년 이어가는 사람이, 월 30만 엔을 2년 하고 그만두는 사람보다 거의 확실히
+        낫습니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="myths">
+    <div class="container">
+      <span class="kicker">흔한 오해</span>
+      <h2>NISA에 대해 자주 틀리는 7가지</h2>
+      <details>
+        <summary>"적립투자 한도와 성장투자 한도는 둘 중 하나를 고르는 것"</summary>
+        <div class="details-body"><p>구제도에서는 연 단위 선택제였지만, <strong>2024년 이후로는 병용이 전제</strong>입니다. 같은 해에 둘 다 써서 연 360만 엔까지 투자할 수 있습니다.</p></div>
+      </details>
+      <details>
+        <summary>"성장투자 한도에서는 적립을 할 수 없다"</summary>
+        <div class="details-body"><p>할 수 있습니다. 이름이 오해를 부르지만, 성장투자 한도에서도 펀드 자동 적립 설정이 가능하고 주요 온라인 증권사가 모두 지원합니다. 월 10만 엔을 넘겨 적립하려는 사람의 표준 경로입니다.</p></div>
+      </details>
+      <details>
+        <summary>"1,800만 엔은 시가라서, 오르면 한도를 넘는다"</summary>
+        <div class="details-body"><p>취득가액 기준입니다. 1,800만 엔어치를 산 뒤 평가액이 3배가 되어도 한도 사용은 1,800만 엔 그대로이며, 기한 없이 비과세로 계속 보유합니다.</p></div>
+      </details>
+      <details>
+        <summary>"팔면 바로 한도가 부활해서 다시 살 수 있다"</summary>
+        <div class="details-body"><p>부활은 <strong>다음 해</strong>이고, 부활하는 것도 취득가액만큼이며, 다시 사는 것 역시 그해의 연 360만 엔 안에서만 가능합니다. 잦은 매매를 지원하지 않도록 의도적으로 설계된 것입니다.</p></div>
+      </details>
+      <details>
+        <summary>"NISA에서 난 손실도 다른 이익과 상계할 수 있다"</summary>
+        <div class="details-body"><p><strong>불가능합니다.</strong> NISA의 최대 약점입니다. NISA 계좌의 손실은 세무상 없었던 것으로 취급되어, 과세 계좌의 이익과 상계할 수도, 다음 해로 이월할 수도 없습니다. 이익이 비과세가 되는 대신 손실도 구제되지 않는 — 동전의 양면입니다.</p></div>
+      </details>
+      <details>
+        <summary>"NISA면 미국 주식 배당도 완전 비과세"</summary>
+        <div class="details-body"><p>일본 세금(20.315%)은 사라지지만 <strong>미국에서 원천징수되는 10%는 남습니다</strong>. 게다가 과세 계좌라면 쓸 수 있는 외국납부세액공제가, NISA에서는 일본에서 과세되지 않기 때문에 쓸 수 없습니다. 배당이 많은 미국 주식·ETF를 NISA에 담을 때의 작지만 확실한 비용입니다.</p></div>
+      </details>
+      <details>
+        <summary>"펀드 분배금을 재투자해도 한도는 줄지 않는다"</summary>
+        <div class="details-body"><p>줄어듭니다. NISA 계좌에서 받은 분배금을 재투자하면 그것은 <strong>신규 매수</strong>로 취급되어 그만큼 한도를 소모합니다. 그래서 NISA에는 분배금을 내지 않고 내부에서 재투자하는 무분배형 인덱스 펀드가 잘 맞습니다.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="practical">
+    <div class="container">
+      <span class="kicker">실무상 함정</span>
+      <h2>절차에서 손해 보지 않기 위한 6가지</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. 배당은 '주식수 비례배분 방식'으로</h3>
+          <p>일본 상장 주식·ETF·REIT를 NISA로 보유할 때, 배당금 수령 방식을
+             <strong>주식수 비례배분 방식(株式数比例配分方式)</strong> — 증권 계좌로 받는 방식 —
+             으로 해두지 않으면 <strong>NISA인데도 배당이 과세됩니다</strong>. 은행 이체나 우체국
+             수령으로 두면 20.315%가 떼입니다. 모르고 손해 보는 사람이 가장 많은 함정이니
+             설정을 한 번 확인하세요.</p>
+        </div>
+        <div class="card">
+          <h3>2. 카드 적립 상한은 월 10만 엔</h3>
+          <p>대부분의 온라인 증권사가 신용카드 펀드 적립에 포인트를 줍니다. 상한은 월 10만 엔
+             (2024년 3월 개정으로 5만 엔에서 인상). 적립투자 한도의 월 상한과 정확히 일치해
+             포인트 적립을 최대화할 수 있습니다. 적립률은 자주 바뀌니 최신 조건 확인이 필요합니다.</p>
+        </div>
+        <div class="card">
+          <h3>3. 금융기관 변경은 '연 단위'</h3>
+          <p>NISA 계좌는 <strong>1인 1계좌</strong>. 금융기관 변경은 해마다 가능하지만,
+             <strong>그해에 이미 1엔이라도 매수했다면 변경은 다음 해부터</strong> 적용됩니다.
+             절차에도 시간이 걸리니 옮길 생각이면 일찍 움직이세요. 기존 계좌에서 산 상품은 그대로
+             비과세로 남습니다(이관되지 않습니다).</p>
+        </div>
+        <div class="card">
+          <h3>4. 구 NISA는 '별도 한도'</h3>
+          <p>2023년까지의 일반 NISA·적립 NISA로 산 것은 신NISA의 1,800만 엔과
+             <strong>별개</strong>로, 각자의 비과세 기간(일반 5년·적립 20년)이 끝날 때까지 그대로
+             보유할 수 있습니다. 신NISA로의 이관(롤오버)은 불가능하며, 서둘러 팔 이유도 없이
+             기간 만료까지 두는 것이 기본입니다.</p>
+        </div>
+        <div class="card">
+          <h3>5. 상품은 '무분배·저비용' 중심으로</h3>
+          <p>분배금을 내는 펀드는 재투자할 때마다 한도를 소모합니다(오해 7번). 수십 년의 인덱스
+             투자라면 분배금을 내지 않고 내부에서 재투자하는 저비용 전 세계 주식 또는 S&amp;P 500
+             연동 펀드가 NISA의 설계와 가장 잘 맞습니다. 상품 선택의 사고방식은
+             <a href="strategy.html#core">전략</a>에서.</p>
+        </div>
+        <div class="card">
+          <h3>6. iDeCo 병용도 검토</h3>
+          <p>NISA는 납입금이 소득공제되지 않지만, iDeCo는 <strong>납입금이 전액 소득공제</strong>
+             됩니다. 안정적인 급여 소득이 있다면 둘을 병행할 때 운용익 비과세에 더해 매년의
+             소득세·주민세까지 가벼워집니다. 다만 60세까지 인출 불가.
+             <a href="accounts.html#japan">계좌와 세금</a> 참고.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="weaknesses">
+    <div class="container">
+      <span class="kicker">솔직한 평가</span>
+      <h2>NISA가 못하는 것</h2>
+      <p>
+        이 사이트는 제도를 홍보하지 않습니다. NISA는 장기 투자자에게 대단히 유리하지만, 다음
+        세 가지 약점은 미리 이해해 둘 가치가 있습니다:
+      </p>
+      <ul>
+        <li><strong>손익통산·이월공제가 안 됩니다.</strong> NISA 안의 손실은 세무상 그냥 사라집니다.
+          집중 베팅이나 단기 매매를 NISA에서 하면 제도의 혜택도 못 받고 세무상 구제도 잃습니다.
+          합리적인 결론은 <strong>NISA는 '수십 년 들고 가면 이길 확률이 높은 것'을 담는
+          상자</strong>라는 것입니다.</li>
+        <li><strong>미국 원천세 10%는 피할 수 없습니다.</strong> 미국 배당을 노리는 전략과는
+          궁합이 완전하지 않습니다. 고배당 미국 ETF를 담기 전에 확인하세요.</li>
+        <li><strong>한도 재사용은 1년에 한 번 속도입니다.</strong> 매도 후 다음 해 부활이라는
+          설계상 기민한 리밸런싱이나 전술적 매매에는 부적합합니다. 뒤집어 보면
+          <strong>제도 자체가 '계속 보유하기'를 유도하도록 설계</strong>되어 있다는 뜻이고,
+          이 사이트의 독자에게는 결함이 아니라 아군입니다.</li>
+      </ul>
+      <div class="callout mt-2">
+        <strong>출구도 함께 생각하세요.</strong> NISA에는 강제 인출(미국의 RMD 같은 것)이 없으므로
+        인출기에는 <strong>가장 마지막에 손대는 계좌</strong>로 두는 것이 기본입니다. 두는 1년마다
+        비과세 복리가 이어집니다. 나라별 인출 순서는 <a href="drawdown.html#order">인출 전략</a>에서
+        다룹니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="container">
+      <span class="kicker">정리</span>
+      <h2>NISA 체크리스트</h2>
+      <ol>
+        <li><strong>두 한도를 함께 쓴다</strong> — 선택제가 아닙니다. 합쳐서 연 360만 엔.</li>
+        <li><strong>적립투자 한도부터 채운다</strong> — 월 10만 엔까지. 대부분에게는 이것이 계획의 전부입니다.</li>
+        <li><strong>여력이 있으면 성장투자 한도로 같은 펀드를 적립</strong> — 이름에 휘둘리지 말 것.</li>
+        <li><strong>배당 수령은 주식수 비례배분 방식으로 설정</strong> — 일본 상장 주식·ETF를 담는다면 필수 점검.</li>
+        <li><strong>상품은 무분배·저비용 인덱스 중심으로</strong> — 분배금 재투자가 한도를 잡아먹습니다.</li>
+        <li><strong>안에서 매매하지 않는다</strong> — 손익통산이 안 되고, 한도 부활도 다음 해입니다.</li>
+        <li><strong>가장 마지막에 인출한다</strong> — 무기한 비과세는 인내에 보상합니다.</li>
+      </ol>
+      <div class="grid-3 mt-3">
+        <a class="card card-link" href="accounts.html#korea">
+          <h3>우리 제도와 비교</h3>
+          <p>연금저축·IRP·ISA의 한도와 세액공제, 그리고 채우는 우선순위.</p>
+          <span class="more">계좌와 세금 →</span>
+        </a>
+        <a class="card card-link" href="markets.html#japan">
+          <h3>일본 시장의 맥락</h3>
+          <p>1989년 이후의 잃어버린 수십 년과, 지배구조 개혁 이후의 지금.</p>
+          <span class="more">시장 →</span>
+        </a>
+        <a class="card card-link" href="tools.html">
+          <h3>내 숫자로 확인</h3>
+          <p>월 적립액과 기간을 넣어 비과세로 자라는 금액을 계산해 보세요.</p>
+          <span class="more">계산기 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 수십 년 단위로 투자하는 사람들을 위한 가이드.</div>
+      <div>
+        <a href="start.html">시작하기</a> ·
+        <a href="principles.html">원칙</a> ·
+        <a href="markets.html">시장</a> ·
+        <a href="strategy.html">전략</a> ·
+        <a href="accounts.html">계좌와 세금</a> ·
+        <a href="nisa.html">NISA</a> ·
+        <a href="survival.html">폭락 대비</a> ·
+        <a href="drawdown.html">인출 전략</a> ·
+        <a href="tools.html">계산기</a> ·
+        <a href="resources.html">자료</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      본 사이트는 교육 목적의 정보 제공만을 위한 것으로, 투자·세무·법률 자문이나 특정 증권의
+      매매 권유가 아닙니다. 투자에는 원금 손실을 포함한 위험이 따릅니다. 과거의 성과는 미래의
+      수익을 보장하지 않습니다. 미국·일본·한국의 세제는 자주 바뀝니다 — 실행 전 반드시 공식
+      자료나 전문가에게 확인하세요.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

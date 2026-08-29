@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NISA徹底ガイド — Long Horizon</title>
+  <meta name="description" content="新NISAのつみたて投資枠と成長投資枠の違い、生涯1,800万円の簿価管理と枠の復活、よくある誤解、株式数比例配分方式などの実務、そして損益通算できないという弱点まで。">
+  <link rel="canonical" href="https://chipcho9-max.github.io/manintokyo/ja/nisa.html">
+  <link rel="alternate" hreflang="en" href="https://chipcho9-max.github.io/manintokyo/nisa.html">
+  <link rel="alternate" hreflang="ja" href="https://chipcho9-max.github.io/manintokyo/ja/nisa.html">
+  <link rel="alternate" hreflang="ko" href="https://chipcho9-max.github.io/manintokyo/ko/nisa.html">
+  <link rel="alternate" hreflang="x-default" href="https://chipcho9-max.github.io/manintokyo/nisa.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="NISA徹底ガイド — Long Horizon">
+  <meta property="og:description" content="新NISAのつみたて投資枠と成長投資枠の違い、生涯1,800万円の簿価管理と枠の復活、よくある誤解、株式数比例配分方式などの実務、そして損益通算できないという弱点まで。">
+  <meta property="og:url" content="https://chipcho9-max.github.io/manintokyo/ja/nisa.html">
+  <meta property="og:image" content="https://chipcho9-max.github.io/manintokyo/assets/og.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="メイン">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li><a href="start.html">はじめ方</a></li>
+        <li><a href="principles.html">原則</a></li>
+        <li><a href="markets.html">市場</a></li>
+        <li><a href="strategy.html">戦略</a></li>
+        <li><a href="accounts.html">口座と税金</a></li>
+        <li><a href="nisa.html">NISA</a></li>
+        <li><a href="survival.html">暴落対策</a></li>
+        <li><a href="drawdown.html">出口戦略</a></li>
+        <li><a href="tools.html">計算機</a></li>
+        <li><a href="resources.html">資料</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="言語">
+        <a href="../nisa.html" hreflang="en">EN</a>
+        <a href="nisa.html" aria-current="true" lang="ja">日本語</a>
+        <a href="../ko/nisa.html" lang="ko" hreflang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="テーマ切替">☾</button>
+      <button class="nav-burger" aria-label="メニュー" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="chip chip-jp"><span class="chip-dot"></span>日本</span>
+      <h1 class="mt-2">NISA — 2つの枠の違いと、長期投資家の使い方</h1>
+      <p class="lead">
+        2024年に生まれ変わったNISAは、数十年かけて複利を回す人にとって世界でも屈指の制度です。
+        ただし「つみたて投資枠」と「成長投資枠」の違い、そして生涯1,800万円という枠の
+        仕組みを取り違えたまま使っている人が非常に多い。このページはその2点を軸に、
+        誤解と実務の落とし穴まで一気に整理します。
+      </p>
+      <figure class="quote">
+        <blockquote>
+          <p class="q-text">「複利のリターンという奇跡は、複利のコストという暴虐に飲み込まれる。」</p>
+          <p class="q-orig">"The miracle of compounding returns is overwhelmed by the tyranny of compounding costs."</p>
+        </blockquote>
+        <figcaption>— ジョン・C・ボーグル<span class="q-src">(税金もまた、毎年かかるコストです)</span></figcaption>
+      </figure>
+      <div class="callout warn mt-2">
+        <strong>数字と制度は動きます。</strong> 以下は2026年初時点の情報を教育目的で整理した
+        ものです。制度改正は毎年の税制改正で起こり得ます。実行前に必ず金融庁のNISA特設ページ、
+        国税庁、または利用する金融機関の最新情報をご確認ください。
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="two-quotas">
+    <div class="container">
+      <span class="kicker">まずここから</span>
+      <h2>つみたて投資枠と成長投資枠 — 何が違うのか</h2>
+      <p>
+        最大の誤解は「どちらか選ぶもの」という思い込みです。旧制度(一般NISA/つみたてNISA)は
+        選択制でしたが、<strong>新NISAでは2つの枠を同じ年に併用できます</strong>。
+        違いは「年間いくら入れられるか」と「何を買えるか」の2点に集約されます。
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>&nbsp;</th><th>つみたて投資枠</th><th>成長投資枠</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>年間の枠</strong></td>
+              <td class="num">120万円</td>
+              <td class="num">240万円</td>
+            </tr>
+            <tr>
+              <td><strong>買えるもの</strong></td>
+              <td>金融庁の基準を満たす投資信託・ETFのみ(長期・積立・分散に適した商品に限定。低コストで無分配型の全世界株・S&amp;P 500インデックスが中心)</td>
+              <td>上場株式、ETF、REIT、投資信託など幅広く。ただし整理・監理銘柄、信託期間20年未満、毎月分配型、高レバレッジ型の投信は除外</td>
+            </tr>
+            <tr>
+              <td><strong>買い方</strong></td>
+              <td>積立のみ(定期的・継続的な買付)</td>
+              <td>一括買付も積立も可能</td>
+            </tr>
+            <tr>
+              <td><strong>生涯枠の上限</strong></td>
+              <td class="num">1,800万円まで<br>(単独で全額使える)</td>
+              <td class="num">1,200万円まで<br>(単独では1,800万円を埋められない)</td>
+            </tr>
+            <tr>
+              <td><strong>向いている人</strong></td>
+              <td>毎月淡々と積み立てたい人。長期投資家の大多数はここだけで完結します</td>
+              <td>個別株やETFを持ちたい人、ボーナスなどでまとめて入れたい人</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout mt-2">
+        <strong>名前に騙されないこと。</strong> 「成長投資枠」という名前は、積極運用専用の枠に
+        聞こえます。しかし実際には<strong>成長投資枠でも同じインデックス投信を積立設定できます</strong>。
+        つみたて投資枠の年120万円(月10万円)を使い切ってなお余力がある人が、同じ商品を成長投資枠でも
+        買い続ける — これはごく普通の使い方です。
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lifetime-cap">
+    <div class="container">
+      <span class="kicker">仕組みの核心</span>
+      <h2>生涯1,800万円は「簿価」で管理される</h2>
+      <p>
+        ここを理解すると、NISAの設計思想が一気に見えてきます。生涯非課税保有限度額の
+        1,800万円は<strong>時価ではなく簿価(取得価額)で数えます</strong>。つまり:
+      </p>
+      <ul>
+        <li><strong>値上がりしても枠は減りません。</strong> 1,800万円分を買い切った後、評価額が
+          5,000万円になっても、枠を使い切った状態のまま非課税で持ち続けられます。含み益が
+          いくら膨らんでも追い出されません。これが「無期限非課税」の実質的な威力です。</li>
+        <li><strong>売却すると、翌年に簿価分の枠が復活します。</strong> 500万円で買ったものが
+          800万円に育って売却した場合、翌年に復活するのは<strong>500万円分</strong>(簿価)であって
+          800万円ではありません。</li>
+        <li><strong>復活しても年間枠は増えません。</strong> 復活分を使い直すにも、その年の
+          年間360万円(つみたて120+成長240)の範囲内で買い直すことになります。</li>
+      </ul>
+      <div class="grid-2 mt-2">
+        <div class="card">
+          <h3>1,800万円の内訳ルール</h3>
+          <p><strong>成長投資枠は最大1,200万円まで。</strong> つまり残りの600万円以上は必ず
+             つみたて投資枠で埋めることになります。</p>
+          <p>逆に、<strong>つみたて投資枠だけで1,800万円全額を埋めることは可能</strong>です。
+             成長投資枠を一度も使わなくても、制度上まったく問題ありません。長期のインデックス
+             投資家にとっては、これがむしろ標準形です。</p>
+        </div>
+        <div class="card">
+          <h3>非課税の価値を数字で</h3>
+          <p>1,800万円を年7%で25年運用すると、評価額は約<strong>9,769万円</strong>、含み益は
+             約7,969万円になります。</p>
+          <p>これが課税口座なら、売却時に20.315%で約<strong>1,619万円</strong>の税金。NISAなら
+             ゼロです。銘柄選択の巧拙より、この一点のほうが結果を左右します。</p>
+          <p class="small">年7%は歴史的平均に基づく仮定であり、約束ではありません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pace">
+    <div class="container">
+      <span class="kicker">戦略的な問い</span>
+      <h2>1,800万円を「何年で」埋めるべきか</h2>
+      <p>
+        入れる総額は同じ1,800万円でも、埋めるスピードで最終結果は大きく変わります。
+        非課税で複利が回る期間が変わるからです。下の表は、同じ1,800万円を違うペースで
+        入れて、いずれも<strong>35年目</strong>に評価した場合です(年5%想定):
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>ペース</th><th class="num">埋まるまで</th><th class="num">投資総額</th><th class="num">埋め終えた時点</th><th class="num">35年目の評価額</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>月30万円(年間枠を満額)</td><td class="num">5年</td><td class="num">1,800万円</td><td class="num">約2,034万円</td><td class="num"><strong>約8,793万円</strong></td></tr>
+            <tr><td>月10万円</td><td class="num">15年</td><td class="num">1,800万円</td><td class="num">約2,648万円</td><td class="num">約7,027万円</td></tr>
+            <tr><td>月5万円</td><td class="num">30年</td><td class="num">1,800万円</td><td class="num">約4,077万円</td><td class="num">約5,203万円</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">年5%想定、税金・手数料は考慮せず。例示であり予測ではありません。自分の数字は<a href="tools.html">計算機</a>で試せます。</p>
+      <p class="mt-2">
+        入れたお金は3つとも同じ1,800万円なのに、35年後には<strong>3,500万円以上の差</strong>が
+        つきます。早く埋めるほど、非課税の複利が働く年数が長くなるからです。
+      </p>
+      <div class="callout warn mt-2">
+        <strong>ただし、無理に急がないこと。</strong> この表は「余裕資金があるなら早く埋めた方が
+        有利」という話であって、生活を削って急げという話ではありません。生活防衛資金を崩したり、
+        借金をして枠を埋めるのは本末転倒です。埋めるスピードは、あくまで
+        <a href="start.html#before">生活防衛資金と高金利の借金を片付けた後</a>の余力で決めてください。
+        月5万円を30年続けられる人は、月30万円を2年でやめてしまう人より、ほぼ確実に良い結果になります。
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="myths">
+    <div class="container">
+      <span class="kicker">よくある誤解</span>
+      <h2>NISAで多い勘違い、7つ</h2>
+      <details>
+        <summary>「つみたて投資枠と成長投資枠は、どちらかを選ぶもの」</summary>
+        <div class="details-body"><p>旧制度(一般NISA/つみたてNISA)は年単位の選択制でしたが、<strong>新NISAでは併用が前提</strong>です。同じ年に両方使えて、合計で年360万円まで投資できます。</p></div>
+      </details>
+      <details>
+        <summary>「成長投資枠では積立ができない」</summary>
+        <div class="details-body"><p>できます。名前が誤解を招きますが、成長投資枠でも投資信託の積立設定は可能で、多くのネット証券が対応しています。月10万円(つみたて枠の上限)を超えて積み立てたい人の標準的な使い方です。</p></div>
+      </details>
+      <details>
+        <summary>「1,800万円は時価。値上がりしたら枠からはみ出す」</summary>
+        <div class="details-body"><p>簿価(取得価額)で管理されます。1,800万円分を買った後に評価額が3倍になっても、枠の消費は1,800万円のままで、非課税のまま持ち続けられます。</p></div>
+      </details>
+      <details>
+        <summary>「売ればすぐに枠が復活して、また買える」</summary>
+        <div class="details-body"><p>復活は<strong>翌年</strong>です。しかも復活するのは簿価分だけで、さらにその年の年間枠(360万円)の範囲内でしか買い直せません。「NISA内で短期売買を繰り返す」使い方には向いていない設計です。</p></div>
+      </details>
+      <details>
+        <summary>「損失が出たら、他の利益と相殺(損益通算)できる」</summary>
+        <div class="details-body"><p><strong>できません。</strong>これはNISA最大の弱点です。NISA口座内の損失は税務上「なかったもの」として扱われ、特定口座の利益との損益通算も、翌年以降への繰越控除もできません。利益が非課税になる代わりに、損失も救済されない — 表裏一体の制度です。</p></div>
+      </details>
+      <details>
+        <summary>「NISAなら米国株の配当も完全に非課税」</summary>
+        <div class="details-body"><p>日本の税金(20.315%)はかかりませんが、<strong>米国で源泉徴収される10%は残ります</strong>。しかも課税口座なら確定申告で使える外国税額控除が、NISA口座では(日本で課税されていないため)使えません。配当の多い米国株・ETFをNISAで持つ場合の、地味だが確実なコストです。</p></div>
+      </details>
+      <details>
+        <summary>「投資信託の分配金を再投資しても、枠は減らない」</summary>
+        <div class="details-body"><p>減ります。NISA口座で受け取った分配金を再投資すると、それは<strong>新規の買付</strong>として扱われ、その分の枠を消費します。だからこそ、NISAでは分配金を出さない(自動で内部再投資する)無分配型のインデックス投信が効率的なのです。</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="practical">
+    <div class="container">
+      <span class="kicker">実務の落とし穴</span>
+      <h2>手続きで損をしないための6つ</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. 配当は「株式数比例配分方式」で</h3>
+          <p>国内の上場株式・ETF・REITをNISAで持つ場合、配当金の受取方法を
+             <strong>「株式数比例配分方式」</strong>(証券口座で受け取る方式)にしていないと、
+             <strong>NISA口座なのに配当が課税されます</strong>。銀行振込や郵便局受取のままだと
+             20.315%引かれてしまう — 知らずに損をしている人が最も多い落とし穴です。
+             証券会社の設定画面で一度確認しておいてください。</p>
+        </div>
+        <div class="card">
+          <h3>2. クレカ積立の上限は月10万円</h3>
+          <p>多くのネット証券がクレジットカードでの投信積立にポイントを付けています。上限は
+             月10万円(2024年3月の制度改正で5万円から引き上げ)。つみたて投資枠の月上限
+             (120万円÷12=10万円)とちょうど一致するため、実質的にポイント還元を最大化できます。
+             還元率は各社の改定が頻繁なので、最新の条件を確認してください。</p>
+        </div>
+        <div class="card">
+          <h3>3. 金融機関の変更は「年単位」</h3>
+          <p>NISA口座は<strong>1人1口座</strong>。金融機関の変更は年単位で可能ですが、
+             <strong>その年にすでに1円でも買付をしていると、変更できるのは翌年から</strong>です。
+             手続きにも時間がかかるため、移すつもりなら早めに動くこと。なお、旧口座で買った
+             商品はそのまま非課税で持ち続けられます(移管はされません)。</p>
+        </div>
+        <div class="card">
+          <h3>4. 旧NISAは新NISAとは「別枠」</h3>
+          <p>2023年までの一般NISA・つみたてNISAで買った分は、新NISAの1,800万円とは
+             <strong>別枠</strong>として、それぞれの非課税期間(一般5年・つみたて20年)が終わるまで
+             そのまま持てます。新NISAへのロールオーバー(移し替え)はできません。急いで売る
+             必要はなく、期間満了まで放置するのが基本です。</p>
+        </div>
+        <div class="card">
+          <h3>5. 商品は「無分配・低コスト」を軸に</h3>
+          <p>分配金を出す投信は、再投資のたびにNISA枠を消費します(誤解7参照)。長期の
+             インデックス投資なら、分配金を出さず内部で再投資する低コストの
+             全世界株式またはS&amp;P 500連動ファンドが、NISAの設計と最もかみ合います。
+             具体的な商品選びの考え方は<a href="strategy.html#core">戦略</a>のページへ。</p>
+        </div>
+        <div class="card">
+          <h3>6. iDeCoとの併用も検討を</h3>
+          <p>NISAは掛金が所得控除されませんが、iDeCoは<strong>掛金が全額所得控除</strong>されます。
+             安定した給与収入があるなら、NISAと並行してiDeCoを使うと、運用益の非課税に加えて
+             毎年の所得税・住民税が軽くなります。ただし60歳まで引き出せません。詳細は
+             <a href="accounts.html#japan">口座と税金</a>へ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="weaknesses">
+    <div class="container">
+      <span class="kicker">正直な評価</span>
+      <h2>NISAの弱点も知っておく</h2>
+      <p>
+        このサイトは制度の宣伝をしません。NISAは長期投資家にとって極めて有利な制度ですが、
+        次の3点は事前に理解しておくべき弱点です:
+      </p>
+      <ul>
+        <li><strong>損益通算・繰越控除ができない。</strong> 特定口座で利益、NISAで損失が出ても
+          相殺できません。損失の可能性が高い集中投資・短期売買をNISAでやると、制度の
+          メリットを受けられないどころか、税務上の救済も失います。<strong>NISAは
+          「長期で持てば勝つ確率が高いもの」を入れる箱</strong>だと考えるのが合理的です。</li>
+        <li><strong>米国源泉税10%は避けられない。</strong> 米国株の配当を狙う戦略とは
+          相性が完全ではありません。高配当ETFをNISAに入れる前に、この点は確認を。</li>
+        <li><strong>枠の再利用は年1回のペース。</strong> 売却→翌年復活という設計上、
+          機動的なリバランスや戦術的な売買には向きません。裏を返せば、
+          <strong>制度そのものが「持ち続けること」を促す設計</strong>になっています。
+          長期投資家にとっては、これは欠点ではなく味方です。</li>
+      </ul>
+      <div class="callout mt-2">
+        <strong>出口も考えておく。</strong> NISAは強制的な引き出し(米国のRMDのようなもの)が
+        ないため、取り崩し期には<strong>最後に手をつける口座</strong>にするのが基本です。
+        置いておく1年ごとに非課税の複利が続きます。国別の取り崩し順序は
+        <a href="drawdown.html#order">出口戦略</a>のページで扱っています。
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="container">
+      <span class="kicker">まとめ</span>
+      <h2>NISAチェックリスト</h2>
+      <ol>
+        <li><strong>2つの枠は併用する</strong> — 選択制ではありません。年間最大360万円。</li>
+        <li><strong>つみたて投資枠から埋める</strong> — 月10万円まで。多くの人はこれで十分です。</li>
+        <li><strong>余力があれば成長投資枠でも同じ投信を積立</strong> — 名前に惑わされないこと。</li>
+        <li><strong>配当受取は「株式数比例配分方式」に設定</strong> — 国内株・ETFを持つなら必須の確認。</li>
+        <li><strong>商品は無分配・低コストのインデックスを軸に</strong> — 分配金の再投資は枠を食います。</li>
+        <li><strong>短期売買には使わない</strong> — 損益通算できず、枠の復活も翌年です。</li>
+        <li><strong>取り崩しは最後に</strong> — 無期限非課税なので、置いておくほど有利です。</li>
+      </ol>
+      <div class="grid-3 mt-3">
+        <a class="card card-link" href="accounts.html#japan">
+          <h3>口座の全体像</h3>
+          <p>NISA・iDeCo・特定口座の関係と、埋める優先順位。</p>
+          <span class="more">口座と税金 →</span>
+        </a>
+        <a class="card card-link" href="start.html#japan">
+          <h3>最初の1ヶ月</h3>
+          <p>NISA口座を開いて自動積立を設定するまでの週単位の手順。</p>
+          <span class="more">はじめ方 →</span>
+        </a>
+        <a class="card card-link" href="tools.html">
+          <h3>自分の数字で試す</h3>
+          <p>毎月の積立額と年数から、非課税で育つ金額を計算する。</p>
+          <span class="more">計算機 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — 数十年単位で投資する人のためのガイド。</div>
+      <div>
+        <a href="start.html">はじめ方</a> ·
+        <a href="principles.html">原則</a> ·
+        <a href="markets.html">市場</a> ·
+        <a href="strategy.html">戦略</a> ·
+        <a href="accounts.html">口座と税金</a> ·
+        <a href="nisa.html">NISA</a> ·
+        <a href="survival.html">暴落対策</a> ·
+        <a href="drawdown.html">出口戦略</a> ·
+        <a href="tools.html">計算機</a> ·
+        <a href="resources.html">資料</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      本サイトは教育目的の情報提供のみを行うものであり、投資・税務・法務の助言や、特定の証券の
+      売買の勧誘ではありません。投資には元本割れを含むリスクがあります。過去の実績は将来の成果を
+      保証しません。米国・日本・韓国の税制は頻繁に変わります — 実行前に必ず公式情報や専門家に
+      ご確認ください。
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -150,6 +150,8 @@ li { margin-bottom: 0.4em; }
 
 /* ---------- header / nav ---------- */
 
+.site-header .container { max-width: 1180px; }
+
 .site-header {
   position: sticky;
   top: 0;
@@ -204,10 +206,10 @@ li { margin-bottom: 0.4em; }
 
 .nav-links a {
   display: block;
-  padding: 6px 8px;
+  padding: 6px 7px;
   border-radius: var(--radius-sm);
   color: var(--ink-2);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 500;
   white-space: nowrap;
 }
