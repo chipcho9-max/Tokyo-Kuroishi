@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chipcho9-max.github.io/manintokyo/sitemap.xml
+Sitemap: https://chipcho9-max.github.io/Kuroishi/sitemap.xml
