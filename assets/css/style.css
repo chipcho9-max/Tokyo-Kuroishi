@@ -318,6 +318,80 @@ li { margin-bottom: 0.4em; }
 }
 .quote figcaption .q-src { color: var(--muted); font-weight: 400; }
 
+/* ---------- daily quote banner ----------
+   Distinct from .quote on purpose: .quote sits inside an argument as a
+   citation, the banner is a standalone card whose content changes daily. */
+
+.quote-banner {
+  margin: 36px 0;
+  padding: 18px 26px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--accent-wash), transparent 62%), var(--surface);
+  box-shadow: var(--shadow);
+  min-height: 132px;              /* reserve space so the fill causes no layout shift */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.quote-banner.is-loaded { opacity: 1; }
+
+.quote-banner .qb-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.quote-banner .qb-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+
+.quote-banner figure { margin: 0; }
+.quote-banner blockquote { margin: 0; }
+.quote-banner .qb-text {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.quote-banner .qb-orig {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  text-wrap: balance;
+}
+.quote-banner figcaption {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.quote-banner figcaption .qb-src { color: var(--muted); font-weight: 400; }
+
+/* interstitial strip: the band keeps the section rhythm, the card supplies the
+   visual break, so the banner drops its own margin inside one */
+.quote-band { padding: 34px 0; }
+.quote-band .quote-banner { margin: 0; }
+
+/* keep a short first column (market or country names) on one line — the
+   surrounding .table-wrap scrolls if that makes the table too wide */
+.table-tight td:first-child { white-space: nowrap; }
+
+@media (max-width: 560px) {
+  .quote-banner { padding: 16px 18px 18px; min-height: 156px; }
+  .quote-banner .qb-text { font-size: 1.05rem; }
+}
+
 /* ---------- hero ---------- */
 
 .hero { padding: 72px 0 60px; }
