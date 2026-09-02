@@ -387,6 +387,37 @@ li { margin-bottom: 0.4em; }
    surrounding .table-wrap scrolls if that makes the table too wide */
 .table-tight td:first-child { white-space: nowrap; }
 
+/* ---------- affiliate disclosure ----------
+   Both pieces are injected by assets/js/affiliate.js, so they exist only on
+   pages that actually carry a marked link. */
+
+.aff-badge {
+  display: inline-block;
+  vertical-align: 0.1em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: var(--page);
+  background: var(--muted);
+  text-decoration: none;
+}
+
+.aff-disclosure {
+  display: block;
+  margin: 16px 0 24px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--muted);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface-2);
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.aff-disclosure strong { color: var(--ink); }
+
 @media (max-width: 560px) {
   .quote-banner { padding: 16px 18px 18px; min-height: 156px; }
   .quote-banner .qb-text { font-size: 1.05rem; }

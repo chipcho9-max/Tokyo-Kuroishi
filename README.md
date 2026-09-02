@@ -64,6 +64,26 @@ so a banner never repeats the one next to it.
 - The calculator chart is hand-rolled SVG styled via CSS custom properties, so it adapts to theme changes automatically. Localized pages set `window.CALC_I18N` before loading `assets/js/calculator.js`.
 - SEO: OGP/Twitter meta, canonical + `hreflang` alternates on every page, `sitemap.xml`, `robots.txt`.
 
+## Measurement and affiliate links
+
+Both are built and both are inert until configured, so the site ships without
+loading a third-party script or claiming a commercial relationship it does not
+have.
+
+- `assets/js/analytics.js` — one `CONFIG` object selects Cloudflare Web
+  Analytics, Plausible, or GA4. With no provider set, nothing loads and no
+  request leaves the reader's browser. Outbound clicks are reported
+  automatically; `data-lh-goal="..."` on a link names the goal.
+- `assets/js/affiliate.js` — a link marked `data-aff` gets a visible Ad / PR /
+  광고 badge, `rel="sponsored nofollow noopener"`, and a tracked goal, and the
+  section it sits in gets a disclosure notice in the page's language. The
+  notice is generated from the links, so a page with none shows none.
+- `scripts/set-base-url.js` — moves every absolute URL on the site to a new
+  base in one command, and writes the `CNAME` file for a custom domain.
+
+See [OPERATIONS.md](OPERATIONS.md) for the accounts, DNS, and search-console
+steps that go with them, and for what should not be monetised at all.
+
 ## Run locally
 
 Open `index.html` in a browser, or serve the folder:
