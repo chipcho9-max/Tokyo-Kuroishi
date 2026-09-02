@@ -6,24 +6,29 @@ code side of each is already in place and inert until configured.
 
 ## 1. Custom domain
 
-The site currently answers on `chipcho9-max.github.io/Tokyo-Kuroishi/`. A
-domain you own is worth having before anything else: it is what search engines
-treat as a durable identity, and several ad and affiliate programmes will not
-approve a site on a free subdomain.
+The site answers on **`www.long-horizon.com`**, set by the `CNAME` file in the
+repository root. It previously ran on `chipcho9-max.github.io/Tokyo-Kuroishi/`,
+which now redirects.
+
+To move it again — or to move it back:
 
 ```sh
 node scripts/set-base-url.js https://your-domain.example/
 ```
 
 That rewrites all ~400 absolute URLs (canonical, hreflang, `og:url`,
-`og:image`, `sitemap.xml`, `robots.txt`, README) and writes the `CNAME` file
-GitHub Pages reads. Then, outside the repo:
+`og:image`, `sitemap.xml`, `robots.txt`, README, this file) and writes the
+`CNAME` file GitHub Pages reads. Then, outside the repo:
 
 1. **DNS** — for an apex domain, four `A` records to GitHub Pages' addresses
    (or an `ALIAS`/`ANAME` if your registrar supports it); for `www` or another
    subdomain, one `CNAME` record to `chipcho9-max.github.io`.
 2. **Repo → Settings → Pages → Custom domain** — enter the same hostname.
 3. Wait for the certificate to issue, then tick **Enforce HTTPS**.
+
+**Do step 1 before pushing the `CNAME`.** Once GitHub Pages sees a custom
+domain it redirects the `github.io` address to it, so if DNS is not resolving
+yet the site is reachable at neither address until it is.
 
 Moving back is the same command with the `github.io` URL; it removes `CNAME`.
 

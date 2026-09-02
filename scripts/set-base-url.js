@@ -24,7 +24,7 @@ const LANGS = ["", "ja", "ko"];
 function targets() {
   const files = [];
   for (const lang of LANGS) for (const p of PAGES) files.push(path.join(ROOT, lang, p + ".html"));
-  for (const f of ["sitemap.xml", "robots.txt", "README.md"]) files.push(path.join(ROOT, f));
+  for (const f of ["sitemap.xml", "robots.txt", "README.md", "OPERATIONS.md"]) files.push(path.join(ROOT, f));
   return files.filter((f) => fs.existsSync(f));
 }
 
