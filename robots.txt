@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://longhz.com/sitemap.xml
+Sitemap: https://chipcho9-max.github.io/Tokyo-Kuroishi/sitemap.xml

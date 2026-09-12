@@ -6,8 +6,23 @@ code side of each is already in place and inert until configured.
 
 ## 1. Custom domain
 
-The site answers on **`longhz.com`**, set by the `CNAME` file in the
-repository root. Earlier addresses were `www.long-horizon.com` and
+**Current state: the site answers on `chipcho9-max.github.io/Tokyo-Kuroishi/`,
+with no `CNAME` file.** This is a deliberate rollback, not the intended
+address.
+
+`longhz.com` is the intended address and is registered, but its DNS was not
+pointing at GitHub Pages when the `CNAME` was pushed. Because Pages redirects
+the `github.io` address to whatever custom domain it is given, that took the
+site off the air at every address at once, so the `CNAME` was removed to
+restore service. To finish the move: point `longhz.com` at the four Pages `A`
+records, confirm with `dig +short longhz.com`, then run `set-base-url.js`
+against `https://longhz.com/` again.
+
+If `longhz.com` is managed in Cloudflare, its proxy must be **off** (grey
+cloud) — the opposite of the redirect-only records in section 1b. A proxied
+record stops GitHub issuing its certificate.
+
+Earlier addresses were `www.long-horizon.com` and, before that,
 `chipcho9-max.github.io/Tokyo-Kuroishi/`.
 
 Note that `set-base-url.js` rewrites the base URL where it appears as a full
@@ -106,6 +121,12 @@ curl -sI https://long-horizon.com/ja/nisa.html | head -3
 # expect: HTTP/…  301
 #         location: https://longhz.com/ja/nisa.html
 ```
+
+The rule currently in place points at `longhz.com`, which is not serving yet
+(see section 1). Until it is, `long-horizon.com` redirects to a dead address.
+Either leave it — nobody is using either domain — or repoint the rule at
+`https://chipcho9-max.github.io/Tokyo-Kuroishi/${2}` for as long as the
+rollback lasts.
 
 ### Is it worth doing at all?
 
