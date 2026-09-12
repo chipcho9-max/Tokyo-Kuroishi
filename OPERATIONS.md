@@ -120,6 +120,13 @@ outcome to avoid.
 
 ## 2. Analytics
 
+**Current state: Cloudflare Web Analytics chosen, not yet switched on.**
+`provider` is set to `cloudflare`; `cloudflareToken` is still empty, and both
+are required, so the site currently loads nothing and sends nothing. To
+finish, take the 32-character value from Cloudflare dashboard → Analytics &
+Logs → Web Analytics → add `longhz.com` → the snippet's
+`data-cf-beacon='{"token": "…"}'`, and put it in `cloudflareToken`.
+
 Configured in `assets/js/analytics.js` — one `CONFIG` object at the top. With
 `provider` empty, nothing loads and no request leaves the reader's browser.
 
