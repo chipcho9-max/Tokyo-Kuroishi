@@ -6,17 +6,25 @@ code side of each is already in place and inert until configured.
 
 ## 1. Custom domain
 
-**Current state: the site answers on `www.long-horizon.com`**, set by the
-`CNAME` file in the repository root. DNS is managed in Cloudflare, with `www`
-as a `CNAME` to `chipcho9-max.github.io` and its **proxy off (grey cloud)** —
-a proxied record stops GitHub issuing its certificate.
+**The address is set in Settings → Pages → Custom domain, and nowhere else.**
+
+This repository publishes through a custom GitHub Actions workflow, and on
+that publishing source GitHub's documentation is explicit: *"If you are
+publishing from a custom GitHub Actions workflow, any CNAME file is ignored
+and is not required."* The `CNAME` file in the root is kept so the repository
+records its own intended address, and so a switch to branch-based publishing
+would work — but editing it, or pushing it, does not move the site.
+
+Intended address: **`www.long-horizon.com`**. DNS is managed in Cloudflare,
+with `www` as a `CNAME` to `chipcho9-max.github.io` and its **proxy off (grey
+cloud)** — a proxied record stops GitHub issuing its certificate.
 
 `longhz.com` was tried and reverted. It is registered, but its DNS was never
-pointing at GitHub Pages when the `CNAME` was pushed, and because Pages
-redirects the `github.io` address to whatever custom domain it is given, that
-took the site off the air at every address at once. If it is picked up again,
-the order is: A records first, `dig +short longhz.com` to confirm, and only
-then `set-base-url.js`.
+pointed at GitHub Pages, so it never served anything, and `long-horizon.com`
+was meanwhile redirecting to it in Cloudflare — which is why both domains
+looked dead at once. If it is picked up again, the order is: A records first,
+`dig +short longhz.com` to confirm, then `set-base-url.js`, then the Settings
+→ Pages field.
 
 The lesson that cost an afternoon: **a proxied Cloudflare record and a
 Cloudflare redirect rule both sit in front of GitHub Pages.** Whichever
@@ -34,26 +42,30 @@ node scripts/set-base-url.js https://your-domain.example/
 ```
 
 That rewrites all ~400 absolute URLs (canonical, hreflang, `og:url`,
-`og:image`, `sitemap.xml`, `robots.txt`, README, this file) and writes the
-`CNAME` file GitHub Pages reads. Then, outside the repo:
+`og:image`, `sitemap.xml`, `robots.txt`, README, this file). It is content
+only — it does not change where the site is served. Then, outside the repo:
 
 1. **DNS** — for an apex domain, four `A` records to GitHub Pages' addresses
    (or an `ALIAS`/`ANAME` if your registrar supports it); for `www` or another
    subdomain, one `CNAME` record to `chipcho9-max.github.io`.
-2. **Repo → Settings → Pages → Custom domain** — enter the same hostname.
+2. **Repo → Settings → Pages → Custom domain** — enter the hostname and
+   Save. **This is the step that actually moves the site.** Running the script
+   without doing this leaves the address unchanged and the pages pointing at
+   an address that does not serve them.
 3. Wait for the certificate to issue, then tick **Enforce HTTPS**.
 
-**Do step 1 before pushing the `CNAME`.** Once GitHub Pages sees a custom
-domain it redirects the `github.io` address to it, so if DNS is not resolving
-yet the site is reachable at neither address until it is.
+**Do step 1 before step 2.** Once Pages accepts a custom domain it redirects
+the `github.io` address to it, so if DNS is not resolving the site is
+reachable at neither address until it is.
 
-Moving back is the same command with the `github.io` URL; it removes `CNAME`.
+Moving back is the same command with the `github.io` URL, plus clearing the
+Custom domain field in Settings.
 
 ## 1b. Pointing another domain at the site
 
-GitHub Pages serves **one** custom domain per repository — there is one
-`CNAME` file — so a second domain you own cannot be served by the same site.
-It has to redirect from somewhere else.
+GitHub Pages serves **one** custom domain per repository — the Settings →
+Pages field holds a single hostname — so a second domain you own cannot be
+served by the same site. It has to redirect from somewhere else.
 
 Two things matter more than which tool you use:
 

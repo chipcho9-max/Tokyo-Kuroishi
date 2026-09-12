@@ -9,8 +9,14 @@
    so moving to a custom domain is this one command rather than 400 hand edits.
    Relative links between pages are already path-independent and are untouched.
 
-   For a custom domain it also writes the CNAME file GitHub Pages needs, and
-   removes it again when you move back to a github.io address.
+   It also maintains a CNAME file, but note that this site publishes through a
+   custom GitHub Actions workflow, and GitHub ignores CNAME files on that
+   publishing source: "If you are publishing from a custom GitHub Actions
+   workflow, any CNAME file is ignored and is not required." The address is
+   set only in Settings -> Pages -> Custom domain. The file is kept so the
+   repository still describes its own intended address, and so nothing breaks
+   if the publishing source is ever switched to a branch — but changing it
+   does not move the site.
 */
 
 const fs = require("fs");
@@ -77,7 +83,8 @@ function main() {
     touched++;
   }
 
-  // GitHub Pages reads the custom domain from a CNAME file in the published root
+  /* Kept for documentation and for branch-based publishing; ignored by the
+     Actions publishing source this repository actually uses. */
   const cname = path.join(ROOT, "CNAME");
   const isGitHubDefault = /\.github\.io$/.test(next.hostname);
   if (isGitHubDefault) {
@@ -90,10 +97,12 @@ function main() {
   console.log(`${oldBase}\n  -> ${newBase}`);
   console.log(`${total} URLs rewritten across ${touched} files`);
   if (!isGitHubDefault) {
-    console.log("\nStill to do at the registrar and on GitHub:");
+    console.log("\nThe CNAME file alone does NOT move the site — this repo publishes via");
+    console.log("GitHub Actions, which ignores it. Still to do:");
     console.log("  1. DNS: ALIAS/ANAME or four A records for the apex to GitHub Pages,");
     console.log("     or a CNAME record for a www/subdomain to <user>.github.io");
     console.log("  2. Repo Settings -> Pages -> Custom domain: " + next.hostname);
+    console.log("     <- THIS is what actually changes the address");
     console.log("  3. Wait for the certificate, then tick Enforce HTTPS");
   }
 }
