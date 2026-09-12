@@ -6,8 +6,13 @@ code side of each is already in place and inert until configured.
 
 ## 1. Address
 
-The site is served at **`chipcho9-max.github.io/Tokyo-Kuroishi/`**. No custom
+The site is served at **`chipcho9-max.github.io/kuroishi/`**. No custom
 domain is configured.
+
+That path is the repository name, so renaming the repository changes the
+address. It has been renamed twice (`manintokyo`, `Tokyo-Kuroishi`,
+`kuroishi`); after any rename, run `set-base-url.js` with the new path and
+update the git remote.
 
 **The address is set in Settings → Pages → Custom domain, and nowhere else.**
 This repository publishes through a GitHub Actions workflow, and GitHub's
