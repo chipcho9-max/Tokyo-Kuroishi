@@ -6,13 +6,16 @@ code side of each is already in place and inert until configured.
 
 ## 1. Address
 
-The site is served at **`chipcho9-max.github.io/kuroishi/`**. No custom
-domain is configured.
+The site is served at **`tokyokuroishi.github.io`** — a GitHub *user site*,
+which is why there is no repository path in the URL. No custom domain is
+configured.
 
-That path is the repository name, so renaming the repository changes the
-address. It has been renamed twice (`manintokyo`, `Tokyo-Kuroishi`,
-`kuroishi`); after any rename, run `set-base-url.js` with the new path and
-update the git remote.
+A user site is produced by naming the repository exactly the same as the
+account: account `tokyokuroishi` + repository `tokyokuroishi.github.io`.
+Rename either one and the address moves, so after any rename run
+`set-base-url.js` with the new base and update the git remote. Previous
+addresses were `chipcho9-max.github.io/` over repositories `manintokyo`,
+`Tokyo-Kuroishi` and `kuroishi`.
 
 **The address is set in Settings → Pages → Custom domain, and nowhere else.**
 This repository publishes through a GitHub Actions workflow, and GitHub's
@@ -26,7 +29,7 @@ README, this file) — it does not move the site.
 In this order. Getting it wrong in the other order is what breaks things:
 
 1. **DNS** — apex: four `A` records to GitHub Pages' addresses; subdomain: a
-   `CNAME` to `chipcho9-max.github.io`. If Cloudflare manages the zone, set
+   `CNAME` to `tokyokuroishi.github.io`. If Cloudflare manages the zone, set
    that record's **proxy off (grey cloud)** — proxied, GitHub cannot issue a
    certificate.
 2. **Confirm** — `dig +short <host>` returns GitHub's addresses.

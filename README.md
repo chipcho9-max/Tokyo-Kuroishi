@@ -3,7 +3,7 @@
 An educational static website for **long-term investors** — people in the US, Japan,
 and Korea who plan to hold US stocks for 10, 20, or 30 years.
 
-**Live site:** https://chipcho9-max.github.io/kuroishi/
+**Live site:** https://tokyokuroishi.github.io/
 
 ## Languages
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chipcho9-max.github.io/kuroishi/sitemap.xml
+Sitemap: https://tokyokuroishi.github.io/sitemap.xml
