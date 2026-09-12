@@ -56,6 +56,11 @@ Two things matter more than which tool you use:
 1. Add the old domain as a site on Cloudflare's free plan, and change its
    nameservers at the registrar to the two Cloudflare gives you. This is the
    only real friction; propagation is usually minutes to a few hours.
+
+   Cloudflare imports the existing DNS records during setup, but check the
+   imported list before switching nameservers — anything it missed stops
+   working the moment DNS moves. `MX` records matter most: if any mail
+   address uses the old domain, losing them silently loses mail.
 2. Redirect Rules only run on **proxied** traffic, so the hostname needs a DNS
    record to attach to even though nothing will ever be served from it. Add,
    both with the proxy (orange cloud) **on**:
@@ -64,12 +69,19 @@ Two things matter more than which tool you use:
 
    `192.0.2.1` is the RFC 5737 documentation address — it exists precisely so
    it can be used as a placeholder that routes nowhere.
-3. **Rules → Redirect Rules → Create rule**, with a dynamic expression so the
-   path survives:
-   - If: `http.host` contains the old domain
-   - Then: **Dynamic** redirect, expression
-     `concat("https://longhz.com", http.request.uri.path)`
+3. **Rules → Redirect Rules → Create rule** (this is the "Single Redirects"
+   product; the free plan allows ten per zone, and one is enough). The
+   wildcard form is available on every plan and is easier to get right than
+   an expression:
+   - Request URL: `https://*long-horizon.com/*`
+   - Target URL: `https://longhz.com/${2}`
    - Status **301**, **Preserve query string** on.
+
+   The leading `*` covers `www` as well as the apex. If you prefer an
+   expression, the dynamic equivalent is
+   `concat("https://longhz.com", http.request.uri.path)` with the rule
+   matching `http.host contains "long-horizon.com"` — regular expressions,
+   unlike wildcards, need a Business plan.
 4. Wait for Cloudflare's Universal SSL certificate on the old domain
    (usually ~15 minutes, occasionally longer). Until it issues, `https://`
    on the old domain will warn.
