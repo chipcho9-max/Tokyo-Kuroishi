@@ -164,7 +164,7 @@ li { margin-bottom: 0.4em; }
 .nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   height: 60px;
 }
 
@@ -206,7 +206,7 @@ li { margin-bottom: 0.4em; }
 
 .nav-links a {
   display: block;
-  padding: 6px 7px;
+  padding: 6px 5px;
   border-radius: var(--radius-sm);
   color: var(--ink-2);
   font-size: 0.85rem;
@@ -386,6 +386,78 @@ li { margin-bottom: 0.4em; }
 /* keep a short first column (market or country names) on one line — the
    surrounding .table-wrap scrolls if that makes the table too wide */
 .table-tight td:first-child { white-space: nowrap; }
+
+/* ---------- executive voices (rendered by assets/js/voices.js) ---------- */
+
+.voices-updated {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.voices-list { display: grid; gap: 18px; }
+
+.voice {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+}
+.voice figure { margin: 0; }
+.voice blockquote { margin: 0; }
+
+.voice-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 12px;
+}
+.voice-who { font-weight: 700; color: var(--ink); }
+.voice-role { font-size: 0.85rem; color: var(--ink-2); }
+.voice-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.voice-text {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.voice-orig {
+  margin: 7px 0 0;
+  font-size: 0.83rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.voice-src {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.voice-why {
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.89rem;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+.voice-why strong { color: var(--accent); font-weight: 700; }
+
+@media (max-width: 560px) {
+  .voice { padding: 16px 17px; }
+  .voice-date { margin-left: 0; width: 100%; }
+}
 
 /* ---------- affiliate disclosure ----------
    Both pieces are injected by assets/js/affiliate.js, so they exist only on
