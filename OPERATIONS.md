@@ -4,150 +4,44 @@ Everything here is a setup task that needs an account, a domain, or a payment
 method — the parts of running the site that cannot live in the codebase. The
 code side of each is already in place and inert until configured.
 
-## 1. Custom domain
+## 1. Address
+
+The site is served at **`chipcho9-max.github.io/Tokyo-Kuroishi/`**. No custom
+domain is configured.
 
 **The address is set in Settings → Pages → Custom domain, and nowhere else.**
+This repository publishes through a GitHub Actions workflow, and GitHub's
+documentation is explicit that on that publishing source "any CNAME file is
+ignored and is not required". `scripts/set-base-url.js` rewrites the site's
+own absolute links (canonical, hreflang, og:url, og:image, sitemap, robots,
+README, this file) — it does not move the site.
 
-This repository publishes through a custom GitHub Actions workflow, and on
-that publishing source GitHub's documentation is explicit: *"If you are
-publishing from a custom GitHub Actions workflow, any CNAME file is ignored
-and is not required."* The `CNAME` file in the root is kept so the repository
-records its own intended address, and so a switch to branch-based publishing
-would work — but editing it, or pushing it, does not move the site.
+### Moving to a custom domain later
 
-Intended address: **`www.long-horizon.com`**. DNS is managed in Cloudflare,
-with `www` as a `CNAME` to `chipcho9-max.github.io` and its **proxy off (grey
-cloud)** — a proxied record stops GitHub issuing its certificate.
+In this order. Getting it wrong in the other order is what breaks things:
 
-`longhz.com` was tried and reverted. It is registered, but its DNS was never
-pointed at GitHub Pages, so it never served anything, and `long-horizon.com`
-was meanwhile redirecting to it in Cloudflare — which is why both domains
-looked dead at once. If it is picked up again, the order is: A records first,
-`dig +short longhz.com` to confirm, then `set-base-url.js`, then the Settings
-→ Pages field.
+1. **DNS** — apex: four `A` records to GitHub Pages' addresses; subdomain: a
+   `CNAME` to `chipcho9-max.github.io`. If Cloudflare manages the zone, set
+   that record's **proxy off (grey cloud)** — proxied, GitHub cannot issue a
+   certificate.
+2. **Confirm** — `dig +short <host>` returns GitHub's addresses.
+3. **Rewrite** — `node scripts/set-base-url.js https://<host>/`, then commit.
+4. **Settings → Pages → Custom domain** — enter the host and Save. *This is
+   the step that actually moves the site.*
+5. Tick **Enforce HTTPS** once the certificate issues.
 
-The lesson that cost an afternoon: **a proxied Cloudflare record and a
-Cloudflare redirect rule both sit in front of GitHub Pages.** Whichever
-hostname actually serves the site needs the proxy off and no redirect rule
-matching it.
+To move back, run the script with the `github.io` URL and clear the Custom
+domain field.
 
-Note that `set-base-url.js` rewrites the base URL where it appears as a full
-`https://…/` prefix. Prose like this line that names a host without the scheme
-is not rewritten, so check this file by eye after a move.
+### Domains owned but unused
 
-To move it again — or to move it back:
-
-```sh
-node scripts/set-base-url.js https://your-domain.example/
-```
-
-That rewrites all ~400 absolute URLs (canonical, hreflang, `og:url`,
-`og:image`, `sitemap.xml`, `robots.txt`, README, this file). It is content
-only — it does not change where the site is served. Then, outside the repo:
-
-1. **DNS** — for an apex domain, four `A` records to GitHub Pages' addresses
-   (or an `ALIAS`/`ANAME` if your registrar supports it); for `www` or another
-   subdomain, one `CNAME` record to `chipcho9-max.github.io`.
-2. **Repo → Settings → Pages → Custom domain** — enter the hostname and
-   Save. **This is the step that actually moves the site.** Running the script
-   without doing this leaves the address unchanged and the pages pointing at
-   an address that does not serve them.
-3. Wait for the certificate to issue, then tick **Enforce HTTPS**.
-
-**Do step 1 before step 2.** Once Pages accepts a custom domain it redirects
-the `github.io` address to it, so if DNS is not resolving the site is
-reachable at neither address until it is.
-
-Moving back is the same command with the `github.io` URL, plus clearing the
-Custom domain field in Settings.
-
-## 1b. Pointing another domain at the site
-
-GitHub Pages serves **one** custom domain per repository — the Settings →
-Pages field holds a single hostname — so a second domain you own cannot be
-served by the same site. It has to redirect from somewhere else.
-
-Two things matter more than which tool you use:
-
-- **301, not 302.** A permanent redirect tells search engines the address
-  moved and transfers the link equity. A temporary one leaves the old URL
-  indexed and splits the site between two addresses.
-- **Preserve the path.** `old.example/ja/nisa.html` should land on
-  `new.example/ja/nisa.html`, not on the homepage. A redirect that dumps
-  everyone on `/` loses the reader who followed a deep link.
-
-### Option A — Cloudflare (free, and what to use if the registrar cannot do it well)
-
-1. Add the old domain as a site on Cloudflare's free plan, and change its
-   nameservers at the registrar to the two Cloudflare gives you. This is the
-   only real friction; propagation is usually minutes to a few hours.
-
-   Cloudflare imports the existing DNS records during setup, but check the
-   imported list before switching nameservers — anything it missed stops
-   working the moment DNS moves. `MX` records matter most: if any mail
-   address uses the old domain, losing them silently loses mail.
-2. Redirect Rules only run on **proxied** traffic, so the redirecting
-   hostname needs a DNS record to attach to even though nothing is ever served
-   from it:
-   - `A` · `@` · `192.0.2.1` · proxy (orange cloud) **on**
-
-   `192.0.2.1` is the RFC 5737 documentation address — it exists precisely so
-   it can be used as a placeholder that routes nowhere.
-
-   The hostname that actually serves the site is the opposite in both
-   respects: `www` is a real `CNAME` to `chipcho9-max.github.io` with the
-   **proxy off**, and no redirect rule may match it.
-3. **Rules → Redirect Rules → Create rule** (this is the "Single Redirects"
-   product; the free plan allows ten per zone, and one is enough). The
-   wildcard form is available on every plan and is easier to get right than
-   an expression:
-   - Request URL: `https://long-horizon.com/*`
-   - Target URL: `https://www.long-horizon.com/${1}`
-   - Status **301**, **Preserve query string** on.
-
-   Note the pattern has **no** leading `*`. It must match the bare apex only:
-   a rule that also matches `www` would intercept the hostname that serves the
-   site and redirect it to itself. If you prefer an expression, the dynamic
-   equivalent is `concat("https://www.long-horizon.com",
-   http.request.uri.path)` matching `http.host eq "long-horizon.com"` —
-   regular expressions, unlike wildcards, need a Business plan.
-4. Wait for Cloudflare's Universal SSL certificate on the old domain
-   (usually ~15 minutes, occasionally longer). Until it issues, `https://`
-   on the old domain will warn.
-
-### Option B — the registrar's own URL forwarding
-
-Faster, no nameserver change, and enough if the registrar does it properly.
-Before relying on it, check all three:
-
-- Is it a **301**, or only a 302?
-- Does it **keep the path**, or send everything to the root?
-- Is it a real redirect, or **frame/cloaking** forwarding that keeps the old
-  address in the URL bar? Framed forwarding is the one to avoid — it hides
-  the canonical URL and search engines treat it poorly.
-
-If any answer is wrong, use Option A.
-
-### Verify
-
-```sh
-curl -sI https://long-horizon.com/ja/nisa.html | head -3
-# expect: HTTP/…  301
-#         location: https://www.long-horizon.com/ja/nisa.html
-
-curl -sI https://www.long-horizon.com/ja/nisa.html | head -3
-# expect: HTTP/…  200   — this one must NOT redirect
-```
-
-Check both. A rule that accidentally matches `www` produces a redirect loop
-rather than a working site, and only the second command catches it.
-
-### What this section assumes
-
-It is written for the arrangement actually in place: the bare apex
-`long-horizon.com` redirecting to `www.long-horizon.com`, which serves the
-site. The same shape applies to any other domain pointed here later — one
-hostname serves, every other one redirects to it.
+`long-horizon.com` and `longhz.com` are registered. Nothing in this repository
+points at them and nothing depends on them. To use one, follow the five steps
+above; to retire one, let it lapse. If a second domain should redirect to the
+first, GitHub Pages cannot do it — one repository serves one hostname — so use
+Cloudflare Redirect Rules or the registrar's forwarding, with a **301** that
+**preserves the path**, and make sure the rule does not also match the hostname
+that serves the site.
 
 ## 2. Analytics
 
@@ -155,7 +49,7 @@ hostname serves, every other one redirects to it.
 `provider` is set to `cloudflare`; `cloudflareToken` is still empty, and both
 are required, so the site currently loads nothing and sends nothing. To
 finish, take the 32-character value from Cloudflare dashboard → Analytics &
-Logs → Web Analytics → add `www.long-horizon.com` → the snippet's
+Logs → Web Analytics → add the site → the snippet's
 `data-cf-beacon='{"token": "…"}'`, and put it in `cloudflareToken`.
 
 Configured in `assets/js/analytics.js` — one `CONFIG` object at the top. With
