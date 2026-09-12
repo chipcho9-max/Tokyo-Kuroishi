@@ -17,13 +17,19 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const PAGES = ["index", "start", "principles", "markets", "equities", "strategy",
-               "accounts", "nisa", "survival", "drawdown", "tools", "resources"];
 const LANGS = ["", "ja", "ko"];
 
+/* Pages are discovered from disk rather than listed here. A hardcoded list
+   silently skipped future.html when that page was added later, leaving it
+   pointing at the previous domain. */
 function targets() {
   const files = [];
-  for (const lang of LANGS) for (const p of PAGES) files.push(path.join(ROOT, lang, p + ".html"));
+  for (const lang of LANGS) {
+    const dir = path.join(ROOT, lang);
+    for (const f of fs.readdirSync(dir)) {
+      if (f.endsWith(".html")) files.push(path.join(dir, f));
+    }
+  }
   for (const f of ["sitemap.xml", "robots.txt", "README.md", "OPERATIONS.md"]) files.push(path.join(ROOT, f));
   return files.filter((f) => fs.existsSync(f));
 }

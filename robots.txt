@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.long-horizon.com/sitemap.xml
+Sitemap: https://longhz.com/sitemap.xml

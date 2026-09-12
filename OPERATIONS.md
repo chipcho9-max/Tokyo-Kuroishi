@@ -6,9 +6,13 @@ code side of each is already in place and inert until configured.
 
 ## 1. Custom domain
 
-The site answers on **`www.long-horizon.com`**, set by the `CNAME` file in the
-repository root. It previously ran on `chipcho9-max.github.io/Tokyo-Kuroishi/`,
-which now redirects.
+The site answers on **`longhz.com`**, set by the `CNAME` file in the
+repository root. Earlier addresses were `www.long-horizon.com` and
+`chipcho9-max.github.io/Tokyo-Kuroishi/`.
+
+Note that `set-base-url.js` rewrites the base URL where it appears as a full
+`https://…/` prefix. Prose like this line that names a host without the scheme
+is not rewritten, so check this file by eye after a move.
 
 To move it again — or to move it back:
 
