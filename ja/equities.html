@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AIと株式の20〜30年 — Long Horizon</title>
-  <meta name="description" content="AIが世界を変えるとして、それは株で儲かることを意味するのか。シスコやインテルの歴史、AIバリューチェーンの構造、Nvidia・Tesla・SpaceX・Kioxia・Samsung・SKハイニックスの事実整理、そして期待収益率を自分で試算するツール。">
+  <meta name="description" content="AIが世界を変えるとして、それは株で儲かることを意味するのか。シスコやインテルの歴史、AIバリューチェーンの構造、米国・日本・韓国のサイバーセキュリティ、Nvidia・Tesla・SpaceX・Kioxia・Samsung・SKハイニックスの事実整理、そして期待収益率を自分で試算するツール。">
   <link rel="canonical" href="https://www.long-horizon.com/ja/equities.html">
   <link rel="alternate" hreflang="en" href="https://www.long-horizon.com/equities.html">
   <link rel="alternate" hreflang="ja" href="https://www.long-horizon.com/ja/equities.html">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Long Horizon">
   <meta property="og:title" content="AIと株式の20〜30年 — Long Horizon">
-  <meta property="og:description" content="AIが世界を変えるとして、それは株で儲かることを意味するのか。シスコやインテルの歴史、AIバリューチェーンの構造、Nvidia・Tesla・SpaceX・Kioxia・Samsung・SKハイニックスの事実整理、そして期待収益率を自分で試算するツール。">
+  <meta property="og:description" content="AIが世界を変えるとして、それは株で儲かることを意味するのか。シスコやインテルの歴史、AIバリューチェーンの構造、米国・日本・韓国のサイバーセキュリティ、Nvidia・Tesla・SpaceX・Kioxia・Samsung・SKハイニックスの事実整理、そして期待収益率を自分で試算するツール。">
   <meta property="og:url" content="https://www.long-horizon.com/ja/equities.html">
   <meta property="og:image" content="https://www.long-horizon.com/assets/og.png">
   <meta property="og:locale" content="ja_JP">
@@ -63,6 +63,8 @@
         前提として受け入れます。しかし投資家にとっての本当の問いはその先にあります —
         <strong>「その変化から、自分の資産は本当に利益を得られるのか」</strong>。
         技術の見立てが正しくても株で負けることは、歴史上くり返し起きています。
+        同じ検証を<a href="#cybersecurity">サイバーセキュリティ</a>にも当てました —
+        需要が法律で決まっている分野ですら、リターンは決まらないからです。
       </p>
       <figure class="quote">
         <blockquote>
@@ -297,6 +299,193 @@
              追加のAI投資は慎重にサイズを決める必要があります。</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="cybersecurity">
+    <div class="container">
+      <span class="kicker">請求書のもう一方の側</span>
+      <h2>サイバーセキュリティ — 需要は法律で決まる。リターンは決まらない</h2>
+      <p>
+        AIを推す論拠は、そのままセキュリティを推す論拠でもあります。コードを書くモデルはフィッシングメールも書き、
+        旅程を予約するエージェントはあなたの認証情報を握ります。「今後20年でセキュリティ支出は増えるか」と聞けば、
+        ほぼ全員が「増える」と答えるでしょう。そしてその答えはほぼ確実に正しい。
+        <strong>ただしそれは問いの簡単なほうの半分であり、あなたにお金を払ってくれるほうの半分ではありません。</strong>
+      </p>
+
+      <h3 class="mt-3">なぜこの需要は珍しく予測しやすいのか</h3>
+      <p>
+        多くのセクター論は予想の上に乗っています。この分野はかなりの部分が
+        <strong>公表された期日と法的義務</strong>の上に乗っている — それは別物で、より硬い。
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>ドライバー</th><th>実際に確定していること</th><th>時間軸</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ポスト量子暗号</strong></td>
+              <td>NISTが2024年8月に後継の標準を確定しました(ML-KEM、ML-DSA、SLH-DSA)。インターネットの大半を支えているRSA-2048とECC P-256は、2030年頃に非推奨、2035年までに標準から除外される方向です。米国NSAのCNSA 2.0の工程表は、2027年から新規の国家安全保障システムに量子耐性を要求し、その後アプリケーション、インフラへと広がります。</td>
+              <td>ほぼすべてのコンピューティングにおける、期限付き・義務としての暗号の入れ替え。「harvest now, decrypt later」 — 今の通信を保存しておき、量子計算機ができた時点で解読する — があるため期限は遡及的に効き、先送りできません。</td>
+            </tr>
+            <tr>
+              <td><strong>日本:能動的サイバー防御</strong></td>
+              <td>サイバー対処能力強化法(2025年5月成立)が<strong>2026年10月1日に施行</strong>されます。国と指定された重要インフラ事業者が攻撃情報を共有し、被害が広がる前に動くための枠組みです。</td>
+              <td>対象が定められた事業者に、確定した期日で義務が発生します。</td>
+            </tr>
+            <tr>
+              <td><strong>韓国:情報保護公示</strong></td>
+              <td>情報保護公示(정보보호 공시)は既に一定範囲の企業を拘束しており、<strong>2027年から全上場企業への拡大</strong>が進められています。加えて公共調達は国内認証(ISMS-P、CC認証、検証済暗号モジュール)を要求します。</td>
+              <td>開示義務は、セキュリティを「裁量的なコスト」から「報告される数字」に変えます。これは予算の付き方を変えます。</td>
+            </tr>
+            <tr>
+              <td><strong>欧州・米国</strong></td>
+              <td>EUのNIS2とDORA。米国では重要インシデントの開示を上場企業に求めるSEC規則。</td>
+              <td>同じ転換が、規制上の二大ブロックで起きています。</td>
+            </tr>
+            <tr>
+              <td><strong>AIが攻守両方を加速</strong></td>
+              <td>流暢で標的を絞ったフィッシング文面の限界費用はほぼゼロになり、音声・映像のディープフェイクは実用的な詐欺の道具になり、AIエージェントはこれまで存在しなかった攻撃面を作りました — プロンプトインジェクション、そしてエージェント自身が持つ認証情報と権限。</td>
+              <td>期限ではありませんが、攻撃側の経済性の構造変化であり、元には戻りません。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">
+        規制のスケジュールは延期も改正もされます。依拠する前に所管当局で確認してください —
+        日本はNISCと内閣官房、韓国はKISAと金融委員会、米国はNISTとSEC。
+      </p>
+
+      <h3 class="mt-3">そして、リターンを決めるほうの半分</h3>
+      <p>
+        サイバーセキュリティ支出は20年間ほぼ毎年増えました。
+        <strong>その同じ20年間で、多くのサイバーセキュリティ銘柄は長期保有先として振るいませんでした。</strong>
+        これは<a href="markets.html#emerging">新興国市場の節</a>がGDP成長と株主リターンの間に見た溝と、
+        <a href="markets.html#korea">韓国</a>が企業の質と少数株主に届くものの間に見た溝と、まったく同じ溝です。
+      </p>
+      <div class="grid-2 mt-2">
+        <div class="card">
+          <h3>シマンテック</h3>
+          <p>長年このカテゴリの支配的な名前で、一般消費者が名前を言える唯一のセキュリティ企業でした。
+             エンタープライズ事業は最終的にブロードコムへ売却され、会社は分割されました。
+             カテゴリは伸び続けました。株主がその成長を持ち続けられたわけではありません。</p>
+        </div>
+        <div class="card">
+          <h3>FireEye / Mandiant</h3>
+          <p>侵害調査の代名詞で、当時最大級の事件のたびに呼ばれた会社です。製品事業を売却し、
+             残った部分はGoogleに買収されました。
+             <strong>その分野の第一人者であることと、複利で伸び続ける投資先であることは別です。</strong></p>
+        </div>
+      </div>
+      <p class="mt-2">
+        仕組みは不思議でも何でもありません。セキュリティ技術は入れ替わりが速く、
+        アンチウイルス → 次世代ファイアウォール → エンドポイント検知 → ゼロトラスト → クラウド設定管理と、
+        主役のカテゴリ自体が置き換わり続けます。そして<strong>その置き換えで勝つのは、たいてい前の王者ではありません。</strong>
+      </p>
+
+      <h3 class="mt-3">統合 — 独立系を持つことは「買収される側」に賭けること</h3>
+      <p>3年間で3件、いずれもエンタープライズソフト史上最大級の案件です。</p>
+      <div class="table-wrap mt-2">
+        <table class="table-tight">
+          <thead>
+            <tr><th>案件</th><th>規模</th><th>状況</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Cisco → Splunk</strong></td><td>約280億ドル</td><td>2024年3月完了</td></tr>
+            <tr><td><strong>Palo Alto Networks → CyberArk</strong></td><td>約250億ドル</td><td>2026年2月11日完了</td></tr>
+            <tr><td><strong>Google → Wiz</strong></td><td>約320億ドル</td><td>2026年3月11日完了 — Google史上最大の買収</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout mt-2">
+        <strong>20〜30年保有する人にとっての意味。</strong> このセクターの成長は、
+        少数の大手プラットフォームが独立系を買い上げる形で吸い上げられつつあります。
+        独立系のセキュリティ企業を数十年持つというのは、多くの場合そもそも複利の賭けではなく、
+        <strong>「いつか買収される」ほうへの賭け</strong>になります。そして買収は保有を終わらせます。
+        あなたの30年の持ち分は、3年目に、他人が交渉した価格で、現金で、たいていは課税を伴って、
+        勝手に清算されます。
+      </div>
+
+      <h3 class="mt-3">この業界固有のリスク — 守る側が単一障害点になる</h3>
+      <p>
+        2024年7月19日、CrowdStrikeが不具合のある定義更新を配信しました。
+        <strong>約850万台のWindows機</strong> — 航空会社、病院、銀行、放送局 — が起動しなくなりました。
+        ある分析はフォーチュン500企業だけで<strong>約54億ドル</strong>の損害と見積もっています。
+        株価は事故直前の約343ドルから8月初旬には約201ドルまで下落し、300億ドル超の時価総額が消えました。
+        <strong>およそ41%の下落を、攻撃者ではなく自社の更新が引き起こした</strong>ことになります。
+      </p>
+      <p>
+        <strong>そして約3ヶ月で300ドル超まで回復しました。</strong>
+        この両方が重要で、一見逆のことを言っていますが、どちらも本当です。
+        セキュリティ製品はOSの深部で動くため、ベンダー自身が世界を止められる —
+        他の業界にほとんど類例のない運用リスクの集中です。それでも顧客の多くは残りました。
+        エンドポイント基盤の入れ替えが途方もなく大変だからです。
+        <strong>事業を強くしている乗り換えコストそのものが、障害を破滅的にした</strong>のです。
+      </p>
+
+      <h3 class="mt-3">3つの市場</h3>
+      <div class="grid-2 mt-2">
+        <div class="card">
+          <span class="chip chip-us"><span class="chip-dot"></span>米国</span>
+          <h3 class="mt-2">プラットフォームの本拠地 — ただし最大手はセキュリティ企業ではない</h3>
+          <p>名前が挙がる上場専業は、Palo Alto Networks(プラットフォーム統合、CyberArkによりID管理も)、
+             CrowdStrike(エンドポイント/XDR)、Zscaler(ゼロトラストアクセス)、
+             Fortinet(ファイアウォール、ハード＋ソフト)、Cloudflare(エッジ/DDoS)、SentinelOneなど。</p>
+          <p class="mt-2"><strong>ただし売上規模で最大のセキュリティベンダーはMicrosoftです</strong> —
+             Defender、Entra、Sentinelの合計。GoogleはMandiantとWizを保有し、CiscoはSplunk、
+             ブロードコムは旧シマンテックのエンタープライズ事業を持っています。
+             広範な米国インデックスを持っているなら、<strong>あなたは既にこのセクターの最大の保有者たちを持っています</strong>。
+             このページで最も実用的な事実はこれです。</p>
+        </div>
+        <div class="card">
+          <span class="chip chip-jp"><span class="chip-dot"></span>日本</span>
+          <h3 class="mt-2">需要の多くはSIerを通って流れる</h3>
+          <p>トレンドマイクロ(4704、東証プライム)が日本では珍しい大型の上場専業です。
+             規模の小さい上場企業にはラック(3857)、デジタルアーツ(2326)、FFRIセキュリティ(3692)、
+             サイバーセキュリティクラウド(4493)など。セコム(9735)は物理警備とサイバーの接点にいます。</p>
+          <p class="mt-2">銘柄の一覧より構造のほうが重要です。日本のセキュリティ支出のかなりの部分は、
+             <strong>SIer</strong> — NEC、富士通、NTTデータ、日立とその子会社 — が
+             より大きな契約の一部として提供します。つまりセキュリティ予算が増えても、
+             それは専業企業の売上ではなく、大きくて成長の遅いITサービス事業の中の一行として現れ得ます。
+             2026年10月の法施行で発生するコンプライアンス作業の多くも、実際にはここで吸収されます。</p>
+        </div>
+      </div>
+      <div class="card mt-2">
+        <span class="chip chip-kr"><span class="chip-dot"></span>韓国</span>
+        <h3 class="mt-2">保護された国内市場 — それは同時に天井でもある</h3>
+        <p>アンラボ(安哲秀研究所、053800)が象徴的な存在で、ほかにWINS(136540)、
+           ジニアンズ(263860)、イグルー(067920)、ラオンセキュア(042510)、ファス(150900)など。
+           SKシールダスは非上場(EQTが過半を保有)、シキュアイはサムスンSDS傘下です。</p>
+        <p class="mt-2">韓国固有の特徴が2つあり、互いに逆向きに働きます。
+           <strong>公共調達は国内認証を要求します</strong> — ISMS-P、CC認証、検証済暗号モジュール。
+           これは国内企業に実際の市場を確保する一方で、天井も作ります。
+           韓国の認証に合わせて作られた製品は輸出しにくいからです。
+           市場規模は2026年に4兆ウォン超と見込まれていますが、市場の大きさと企業の収益性は別の問いです。
+           アンラボの2026年上期は売上約1,304億ウォン、営業利益約73億ウォン —
+           <strong>営業利益率にして約5.6%で、米国の大手プラットフォームとは桁が違います。</strong></p>
+        <p class="mt-2"><strong>そしてこのサイトだからこそ書いておくべき注意が1つ。</strong>
+           アンラボは韓国の<em>政治テーマ株</em>の教科書的な例です。創業者が政治家になったため、
+           株価が業績ではなく政治ニュースで繰り返し動いてきました。
+           実体のある製品を持つ実体のある企業でも、株価が長期間ファンダメンタルズから切り離されることはあります。
+           <strong>値動きを事業で説明できないなら、自分が何を持っているのか分かっていない</strong>ということです。</p>
+      </div>
+
+      <h3 class="mt-3">長期投資家としての実際の扱い方</h3>
+      <ul>
+        <li><strong>まず既に持っているものを確認する。</strong> Microsoft、Google、Cisco、ブロードコム、
+            Palo Altoはすべて広範な米国インデックスに入っています。多くの読者にとって
+            「サイバーセキュリティにどう投資するか」への正直な答えは、
+            <strong>既に持っているので何も買う必要がない</strong>、です。</li>
+        <li><strong>テーマETFには<a href="#how-to-act">上の原則</a>どおりの警戒を。</strong>
+            セキュリティETFは構成銘柄の入れ替えが激しく、買収で保有銘柄が次々に消えます。
+            手数料を払って、勝ち銘柄を現金に換えられ続ける形になりがちです。</li>
+        <li><strong>個別に買うなら<a href="#expected-return">分解ツール</a>に通す。</strong>
+            自分の前提が、利益成長と出口のPERに何を要求しているのかを見てください。
+            そのうえで<a href="#base-rates">ベースレート</a>をもう一度読むこと。</li>
+        <li><strong>需要の確実性を、勝者の確実性と取り違えない。</strong>
+            需要が法律で決まっているということは、まさにその需要をめぐる競争が激烈だということです。</li>
+      </ul>
     </div>
   </section>
 
