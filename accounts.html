@@ -30,16 +30,21 @@
     <nav class="nav" aria-label="Main">
       <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
       <ul class="nav-links">
+        <li class="nav-sec">Begin</li>
         <li><a href="start.html">Start</a></li>
         <li><a href="principles.html">Principles</a></li>
+        <li class="nav-sec">Markets</li>
         <li><a href="markets.html">Markets</a></li>
         <li><a class="nav-main" href="equities.html"><span class="nav-star" aria-hidden="true">★</span>AI</a></li>
         <li><a class="nav-main" href="future.html"><span class="nav-star" aria-hidden="true">★</span>Future</a></li>
+        <li class="nav-sec">Putting it to work</li>
         <li><a href="strategy.html">Strategy</a></li>
         <li><a href="accounts.html">Accounts</a></li>
         <li><a href="nisa.html">NISA</a></li>
+        <li class="nav-sec">When it goes wrong</li>
         <li><a href="survival.html">Crashes</a></li>
         <li><a href="drawdown.html">Drawdown</a></li>
+        <li class="nav-sec">Tools</li>
         <li><a href="tools.html">Calculator</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
@@ -71,8 +76,10 @@
         <figcaption>— John C. Bogle<span class="q-src">, founder of Vanguard</span></figcaption>
       </figure>
       <div class="callout warn mt-2">
-        <strong>Dates and numbers move.</strong> Contribution limits, tax rates, and program rules
-        below are stated as of early 2026 and simplified for education. They change with almost
+        <strong>Which year these figures are for.</strong> Everything below is the
+        <strong>2026 tax year</strong> — US limits are the IRS figures for 2026, Japan is the NISA
+        and iDeCo system in force in 2026, Korea is the regime after the 2026 ISA expansion. Each
+        section lists its primary source and the date the figures were last checked. They change with almost
         every budget cycle in all three countries. Verify against official sources (IRS, 国税庁/金融庁,
         국세청/금융위원회) or a licensed professional before acting.
       </div>
@@ -86,24 +93,24 @@
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>Account</th><th>Annual limit (2025)</th><th>Tax treatment</th><th>Long-horizon note</th></tr>
+            <tr><th>Account</th><th>Annual limit — 2026 tax year</th><th>Tax treatment</th><th>Long-horizon note</th></tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>401(k) / 403(b)</strong></td>
-              <td class="num">$23,500 (employee)</td>
+              <td class="num">$24,500 (employee)<br><span class="small">+$8,000 catch-up at 50+; $11,250 at ages 60&ndash;63</span></td>
               <td>Traditional: deductible now, taxed on withdrawal. Roth: taxed now, tax-free later.</td>
               <td>Always capture the full employer match first — it is an instant, guaranteed return no market can offer.</td>
             </tr>
             <tr>
               <td><strong>IRA / Roth IRA</strong></td>
-              <td class="num">$7,000</td>
+              <td class="num">$7,500<br><span class="small">+$1,100 catch-up at 50+</span></td>
               <td>Roth: contributions after-tax, all growth and withdrawals tax-free in retirement (income limits apply).</td>
               <td>Decades of compounding entirely tax-free makes the Roth especially powerful for the young; contributions (not gains) can be withdrawn anytime.</td>
             </tr>
             <tr>
               <td><strong>HSA</strong></td>
-              <td class="num">$4,300 (self)</td>
+              <td class="num">$4,400 (self) / $8,750 (family)</td>
               <td>Triple-advantaged with a high-deductible health plan: deductible in, growth untaxed, medical withdrawals untaxed.</td>
               <td>Investable HSA balances are a stealth retirement account for those eligible.</td>
             </tr>
@@ -126,6 +133,14 @@
           <li>Rest of 401(k) to the limit.</li>
           <li>Taxable brokerage with broad index funds; hold ≥1 year, ideally decades.</li>
         </ol>
+      </div>
+      <div class="srcnote">
+        <span class="srcnote-h">Source</span>
+        <ul>
+          <li>2026 contribution limits — IRS, <a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" rel="noopener">"401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500"</a>.</li>
+          <li>Long-term capital-gains and qualified-dividend rates, and the basis step-up &mdash; <a href="https://www.irs.gov/" rel="noopener">IRS</a>. Bracket thresholds are indexed annually; this page relies on the 0/15/20% structure, not on the thresholds.</li>
+        </ul>
+        <span class="checked">Last checked: 12 September 2026.</span>
       </div>
     </div>
   </section>
@@ -201,6 +216,15 @@
   <section class="section quote-band">
     <div class="container">
       <div class="quote-banner" data-quote-slot="6"></div>
+      <div class="srcnote">
+        <span class="srcnote-h">Source</span>
+        <ul>
+          <li>NISA quotas, the &yen;18M lifetime cap and the book-value reinstatement rule &mdash; <a href="https://www.fsa.go.jp/policy/nisa2/know/index.html" rel="noopener">Financial Services Agency, NISA site</a>.</li>
+          <li>The 20.315% rate on gains and dividends in an ordinary account &mdash; <a href="https://www.nta.go.jp/" rel="noopener">National Tax Agency</a>.</li>
+          <li>iDeCo contribution ceilings, which depend on employment status and company pension arrangements &mdash; <a href="https://www.mhlw.go.jp/" rel="noopener">Ministry of Health, Labour and Welfare</a>. Confirm your own ceiling; it is not a single national number.</li>
+        </ul>
+        <span class="checked">Last checked: 12 September 2026.</span>
+      </div>
     </div>
   </section>
 
@@ -237,8 +261,8 @@
             </tr>
             <tr>
               <td><strong>ISA (중개형)</strong></td>
-              <td class="num">₩20M/yr, ₩100M total</td>
-              <td>Gains up to ₩2M (₩4M for lower incomes) tax-free; excess taxed at 9.9% separately, not comprehensively. 3-year minimum holding.</td>
+              <td class="num">₩40M/yr, ₩200M total<br><span class="small">raised from ₩20M / ₩100M in 2026</span></td>
+              <td>Gains up to ₩5M tax-free (₩10M on the 서민형 / 청년형 variants), raised from ₩2M / ₩4M in 2026; excess taxed at 9.9% separately, not comprehensively. 3-year minimum holding.</td>
               <td>Holds Korean-listed stocks and ETFs (not foreign-listed directly). On maturity, proceeds can roll into 연금저축 for an extra credit — a powerful relay for patient savers.</td>
             </tr>
             <tr>
@@ -267,6 +291,15 @@
           <li>ISA (중개형) toward its annual limit.</li>
           <li>Taxable account — Korean-listed or US-listed funds per the tax note above.</li>
         </ol>
+      </div>
+      <div class="srcnote">
+        <span class="srcnote-h">Source</span>
+        <ul>
+          <li>The 22% rate on overseas share disposals, the &#8361;2.5M annual deduction and the May self-assessment &mdash; <a href="https://www.nts.go.kr/" rel="noopener">National Tax Service</a>.</li>
+          <li>&#50672;&#44552;&#51200;&#52629; and IRP tax-credit rates and ceilings &mdash; <a href="https://www.nts.go.kr/" rel="noopener">National Tax Service</a>; product rules via <a href="https://www.fsc.go.kr/" rel="noopener">Financial Services Commission</a>.</li>
+          <li>The 2026 ISA expansion &mdash; the &#51312;&#49464;&#53945;&#47168;&#51228;&#54620;&#48277; amendment; see <a href="https://www.moef.go.kr/" rel="noopener">Ministry of Economy and Finance</a>. <strong>Verify the ISA figures before acting:</strong> secondary coverage of this change disagreed on the exact commencement date, so the amounts here are stated as the expanded limits now in force, not as of a specific date.</li>
+        </ul>
+        <span class="checked">Last checked: 12 September 2026.</span>
       </div>
     </div>
   </section>
@@ -323,7 +356,9 @@
         <a href="survival.html">Crashes</a> ·
         <a href="drawdown.html">Drawdown</a> ·
         <a href="tools.html">Calculator</a> ·
-        <a href="resources.html">Resources</a>
+        <a href="resources.html">Resources</a> ·
+        <a href="about.html">About</a> ·
+        <a href="privacy.html">Privacy</a>
       </div>
     </div>
     <p class="disclaimer">

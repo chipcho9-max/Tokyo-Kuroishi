@@ -30,16 +30,21 @@
     <nav class="nav" aria-label="메인">
       <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
       <ul class="nav-links">
+        <li class="nav-sec">시작</li>
         <li><a href="start.html">시작하기</a></li>
         <li><a href="principles.html">원칙</a></li>
+        <li class="nav-sec">시장 알기</li>
         <li><a href="markets.html">시장</a></li>
         <li><a class="nav-main" href="equities.html"><span class="nav-star" aria-hidden="true">★</span>AI와 주식</a></li>
         <li><a class="nav-main" href="future.html"><span class="nav-star" aria-hidden="true">★</span>미래</a></li>
+        <li class="nav-sec">실행하기</li>
         <li><a href="strategy.html">전략</a></li>
         <li><a href="accounts.html">계좌와 세금</a></li>
         <li><a href="nisa.html">NISA</a></li>
+        <li class="nav-sec">떨어졌을 때</li>
         <li><a href="survival.html">폭락 대비</a></li>
         <li><a href="drawdown.html">인출 전략</a></li>
+        <li class="nav-sec">도구</li>
         <li><a href="tools.html">계산기</a></li>
         <li><a href="resources.html">자료</a></li>
       </ul>
@@ -60,9 +65,10 @@
       <span class="kicker">계산기</span>
       <h1>당신의 '수십 년'의 가치를 보다</h1>
       <p class="lead">
-        이것은 예측이지 약속이 아닙니다: 가정한 평균 수익률로, 꾸준한 월 적립을 시뮬레이션한
-        것입니다. 실제 시장이 이 평균을 내주는 것은 긴 기간뿐이고, 결코 직선으로 주지 않습니다 —
-        그래서 계획은 수십 년으로 세우는 것입니다.
+        <strong>이것은 당신이 고른 가정에 대한 계산이지, 이 사이트가 보증하는 예측이 아닙니다.</strong>
+        입력한 숫자 &mdash; 아무도 미리 알 수 없는 수익률을 포함해 &mdash; 를 복리로 굴린 것뿐입니다.
+        그 가정 하나만 바꿔도 답은 당신이 실제로 내릴 수 있는 어떤 결정보다 크게 움직입니다.
+        아래 <a href="#compare">수익률별 비교</a>는 그것을 위해 두었습니다.
       </p>
     </div>
   </section>
@@ -113,14 +119,28 @@
             <button type="button" data-rate="10" aria-pressed="false">명목 10%</button>
           </div>
 
+          <label for="calc-fee">연간 비용 — 운용보수·계좌 수수료 등(%)</label>
+          <input type="number" id="calc-fee" value="0.1" min="0" max="5" step="0.05">
+          <p class="small" style="margin-top:-6px;">위의 수익률에서 뺍니다. 광범위한 인덱스 펀드는 보통 0.2% 미만, 액티브 펀드는 1% 이상인 경우도 드물지 않습니다.</p>
+
+          <label for="calc-inflation">가정 물가상승률(%)</label>
+          <input type="number" id="calc-inflation" value="2" min="0" max="10" step="0.1">
+          <p class="small" style="margin-top:-6px;">결과를 '지금의 돈'으로 바꿔 말하기 위해서만 씁니다. 운용 수익률 자체는 바뀌지 않습니다.</p>
+
           <label for="calc-years">기간: <span class="range-value" id="calc-years-out">25년</span></label>
           <input type="range" id="calc-years" min="5" max="40" step="1" value="25">
 
           <p class="small" style="margin-top: 16px;">
-            프리셋은 S&amp;P 500의 대략적인 역사적 평균 — 명목 연 약 10%, 인플레이션 조정 후
-            약 7% — 과 더 신중한 5%입니다. 결과에는 세금·수수료가 포함되지 않습니다. 계좌의
-            중요성은 <a href="accounts.html">계좌와 세금</a>으로.
+            프리셋은 S&amp;P 500의 대략적인 역사적 평균 &mdash; 명목 연 약 10%, 물가 조정 후 약 7% &mdash;
+            과 더 신중한 5%입니다. <strong>과거의 평균은 당신이 받을 권리가 있는 수익률이 아닙니다.</strong>
+            비용은 아래에서 차감하지만 <strong>세금은 차감하지 않았습니다</strong> &mdash;
+            계좌와 나라에 따라 달라지기 때문입니다. <a href="accounts.html">계좌와 세금</a>으로.
           </p>
+          <div class="calc-saved">
+            <button type="button" id="calc-save">이 입력 저장</button>
+            <button type="button" id="calc-clear">지우기</button>
+            <span class="saved-msg" id="calc-saved-msg">'저장'을 누르기 전까지는 저장되지 않습니다. 이 브라우저 안에만 남고 어디로도 전송되지 않습니다.</span>
+          </div>
         </div>
 
         <div class="card">
@@ -128,7 +148,9 @@
             <div class="hf-label" id="calc-hero-label">미래 평가액(예상)</div>
             <div class="hf-value" id="calc-hero-value">—</div>
             <div class="hf-note" id="calc-hero-note"></div>
+            <div class="real-line" id="calc-real"></div>
           </div>
+          <div class="assume" id="calc-assume"></div>
 
           <div class="viz-legend" aria-hidden="false">
             <span class="lg-item"><span class="lg-swatch s1"></span> 포트폴리오 평가액</span>
@@ -155,6 +177,28 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="mt-3" id="compare">
+        <h2>같은 계획을 다른 수익률로 계산하면</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>연간 수익률(비용 차감 후)</th>
+                <th class="num" id="calc-compare-h3">미래 평가액</th>
+                <th class="num" id="calc-compare-h4">지금의 돈으로 환산</th>
+              </tr>
+            </thead>
+            <tbody id="calc-compare-body"></tbody>
+          </table>
+        </div>
+        <p class="small mt-2">
+          이 표에서 바꾸는 것은 가정한 수익률뿐입니다. 맨 위 행과 맨 아래 행의 차이는 적립액에
+          대해 당신이 내릴 수 있는 거의 어떤 결정보다도 큽니다 &mdash; 이 도구가 '얼마가 될지'를
+          알려 줄 수 없는 정직한 이유가 이것입니다. 잔고를 맞히기 위해서가 아니라, 스스로 정할 수
+          있는 입력인 적립액을 정하기 위해 쓰세요.
+        </p>
       </div>
 
       <div class="mt-3">
@@ -222,7 +266,9 @@
         <a href="survival.html">폭락 대비</a> ·
         <a href="drawdown.html">인출 전략</a> ·
         <a href="tools.html">계산기</a> ·
-        <a href="resources.html">자료</a>
+        <a href="resources.html">자료</a> ·
+        <a href="about.html">사이트 소개</a> ·
+        <a href="privacy.html">개인정보</a>
       </div>
     </div>
     <p class="disclaimer">
@@ -250,9 +296,28 @@ window.CALC_I18N = {
   stat3Fwd: "평가액 ÷ 납입액",
   stat3Goal: "최종 평가액(예상)",
   perMonth: "/월",
-  heroNoteFwd: function (y, r) { return "연 " + r + "%로 " + y + "년 운용 시(세전·인플레이션 조정 전)"; },
-  heroNoteGoal: function (y, r, target) { return "연 " + r + "%로 " + y + "년 후 " + target + "에 도달하기 위해 필요한 월 적립액"; },
+  heroNoteFwd: function (y, r) { return "비용 차감 후 연 " + r + "%가 " + y + "년 이어졌을 경우의 금액. 예측이 아니라 가정입니다"; },
+  heroNoteGoal: function (y, r, target) { return "비용 차감 후 연 " + r + "%가 이어진다고 가정할 때, " + y + "년 만에 " + target + "에 도달하려면 필요한 월 적립액"; },
   chartAria: "연도별 포트폴리오 평가액과 누적 납입액 예상 그래프",
+  realLabel: function (y) { return "물가상승을 연 " + y + "%로 보면, 지금의 돈으로:"; },
+  assumeH: "이 금액에 들어 있는 것과 들어 있지 않은 것",
+  assumeNet: function (g, f, n) { return "사용한 수익률: 가정 " + g + "% 에서 연간 비용 " + f + "% 를 빼 <strong>차감 후 " + n + "%</strong>. 수익률에서 이 외에는 빼지 않았습니다."; },
+  assumeTax: "세금은 빼지 않았습니다. 손에 남는 금액은 계좌와 나라에 따라 달라집니다 — <a href=\"accounts.html\">계좌와 세금</a>을 참고하세요.",
+  assumeInfl: "크게 표시된 금액은 미래 통화 기준입니다. 바로 아래 줄이 같은 금액을 지금의 구매력으로 바꿔 말한 것입니다.",
+  assumeSeq: "수익률은 매년 일정하다고 보고 계산했습니다. 실제 시장은 결코 그렇지 않고, 좋은 해와 나쁜 해가 오는 순서만으로도 결과가 달라집니다 — 특히 인출을 시작한 뒤에는.",
+  cmpH: "같은 계획을 다른 수익률로 계산하면",
+  cmpNote: "",
+  cmpRate: "연간 수익률(비용 차감 후)",
+  cmpFinal: "미래 평가액",
+  cmpReal: "지금의 돈으로 환산",
+  cmpMonthly: "필요한 월 적립액",
+  cmpContrib: "총 납입하게 되는 금액",
+  cmpYours: "당신의 가정",
+  saveBtn: "이 입력 저장",
+  clearBtn: "지우기",
+  savedAt: function (d) { return d + "에 이 브라우저에 저장했습니다."; },
+  savedNone: "'저장'을 누르기 전까지는 저장되지 않습니다. 이 브라우저 안에만 남고 어디로도 전송되지 않습니다.",
+  savedCleared: "저장한 입력을 지웠습니다.",
 };
 </script>
 <script src="../assets/js/calculator.js"></script>

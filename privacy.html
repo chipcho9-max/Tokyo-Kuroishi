@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy — Long Horizon</title>
+  <meta name="description" content="What this site loads and stores in your browser: no cookies, no analytics running, no third-party requests — and what changes if measurement is enabled.">
+  <link rel="canonical" href="https://tokyokuroishi.github.io/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/privacy.html">
+  <link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/privacy.html">
+  <link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://tokyokuroishi.github.io/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Long Horizon">
+  <meta property="og:title" content="Privacy — Long Horizon">
+  <meta property="og:description" content="What this site loads and stores in your browser: no cookies, no analytics running, no third-party requests — and what changes if measurement is enabled.">
+  <meta property="og:url" content="https://tokyokuroishi.github.io/privacy.html">
+  <meta property="og:image" content="https://tokyokuroishi.github.io/assets/og.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232a78d6%22/%3E%3Cpath d=%22M7 22 L13 15 L18 18 L25 9%22 stroke=%22%23fff%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/analytics.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
+      <ul class="nav-links">
+        <li class="nav-sec">Begin</li>
+        <li><a href="start.html">Start</a></li>
+        <li><a href="principles.html">Principles</a></li>
+        <li class="nav-sec">Markets</li>
+        <li><a href="markets.html">Markets</a></li>
+        <li><a class="nav-main" href="equities.html"><span class="nav-star" aria-hidden="true">★</span>AI</a></li>
+        <li><a class="nav-main" href="future.html"><span class="nav-star" aria-hidden="true">★</span>Future</a></li>
+        <li class="nav-sec">Putting it to work</li>
+        <li><a href="strategy.html">Strategy</a></li>
+        <li><a href="accounts.html">Accounts</a></li>
+        <li><a href="nisa.html">NISA</a></li>
+        <li class="nav-sec">When it goes wrong</li>
+        <li><a href="survival.html">Crashes</a></li>
+        <li><a href="drawdown.html">Drawdown</a></li>
+        <li class="nav-sec">Tools</li>
+        <li><a href="tools.html">Calculator</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+      <div class="lang-switch" aria-label="Language">
+        <a href="privacy.html" aria-current="true">EN</a>
+        <a href="ja/privacy.html" lang="ja" hreflang="ja">日本語</a>
+        <a href="ko/privacy.html" lang="ko" hreflang="ko">한국어</a>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme">☾</button>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Privacy</span>
+      <h1>What this site collects: as of today, nothing</h1>
+      <p class="lead">
+        Most privacy pages describe a policy. This one describes the code &mdash; what the site
+        actually loads and stores in your browser right now, which is unusually little, and what
+        will change if measurement is ever switched on.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="today">
+    <div class="container">
+      <span class="kicker">Current state</span>
+      <h2>No analytics, no cookies, no third-party requests</h2>
+      <p>
+        Long Horizon is static HTML served from GitHub Pages. There are no accounts, no logins,
+        no forms, no comment system and no newsletter. There is nowhere for your data to go
+        because there is no server of ours to send it to.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>Thing</th><th>Status on this site</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Cookies</strong></td><td>None. The site sets no cookie of any kind, which is why you are not being asked to consent to one.</td></tr>
+            <tr><td><strong>Analytics</strong></td><td><strong>Not running.</strong> The measurement code is present but has no account token configured, so nothing loads and no request is made. See below.</td></tr>
+            <tr><td><strong>Advertising</strong></td><td>None. No ad network, no tracking pixel, no retargeting.</td></tr>
+            <tr><td><strong>Affiliate links</strong></td><td>None currently on any page.</td></tr>
+            <tr><td><strong>Third-party fonts, scripts or CDNs</strong></td><td>None. Every stylesheet, script and image is served from this site's own address. The page makes no request to any other domain unless you click an outbound link.</td></tr>
+            <tr><td><strong>Social embeds</strong></td><td>None. No YouTube, X or Facebook embeds, which are the usual silent trackers.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="browser">
+    <div class="container">
+      <span class="kicker">Your browser</span>
+      <h2>What is stored locally, and why it never reaches us</h2>
+      <p>
+        The site uses your browser's <code>localStorage</code> for a few conveniences. This data
+        stays in your browser on that device. It is never transmitted anywhere, is not readable by
+        this site's operator, and is deleted when you clear site data.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <thead>
+            <tr><th>Key</th><th>What it holds</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>lh-theme</code></td><td><code>"dark"</code> or <code>"light"</code></td><td>So the theme you picked survives to the next page.</td></tr>
+            <tr><td><code>lh-calc</code></td><td>The numbers you last typed into the calculator</td><td>So the calculator reopens with your figures instead of the defaults. Written only when you press Save.</td></tr>
+            <tr><td><code>lh-no-analytics</code></td><td><code>"1"</code>, if you set it</td><td>Suppresses analytics for you specifically, if analytics is ever switched on.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small mt-2">
+        None of these identifies you. None of them is a cookie, so none of them is sent with any
+        request. You can inspect all three in your browser's developer tools.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="host">
+    <div class="container">
+      <span class="kicker">Hosting</span>
+      <h2>What GitHub sees, which is not within this site's control</h2>
+      <p>
+        The site is hosted on <strong>GitHub Pages</strong>. Like any web host, GitHub's servers
+        receive the ordinary details of your request &mdash; your IP address, the page requested,
+        your browser's user-agent string &mdash; in order to deliver the page to you. That
+        happens at the hosting layer and is governed by
+        <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">GitHub's privacy statement</a>,
+        not by this page. This site's operator does not receive, see or store those logs.
+      </p>
+      <p class="mt-2">
+        This is worth stating plainly rather than leaving out: "we collect nothing" is true of
+        this site and untrue of the internet. Something always sees the request.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="analytics">
+    <div class="container">
+      <span class="kicker">If measurement is switched on</span>
+      <h2>What will change, in advance of it changing</h2>
+      <p>
+        The site is built to use <strong>Cloudflare Web Analytics</strong> if and when counting
+        visitors becomes worth doing. It is currently inert: the provider is selected in the code
+        but the account token is empty, and both are required before a single request is made. You
+        can confirm this yourself in your browser's network tab &mdash; there is nothing to block.
+      </p>
+      <p class="mt-2">When it is enabled, this is what it will and will not do:</p>
+      <ul>
+        <li><strong>No cookies and no identifier.</strong> It counts page views without storing
+          anything in your browser and without assigning you a visitor ID.</li>
+        <li><strong>No cross-site tracking.</strong> It cannot see where you went before or after
+          this site, and builds no profile of you.</li>
+        <li><strong>Aggregate only.</strong> Page, referrer, country, browser and device type
+          &mdash; as counts, not as records of individual visits.</li>
+        <li><strong>A script from <code>static.cloudflareinsights.com</code> will load</strong>,
+          which will be the first third-party request this site makes. Content blockers stop it.</li>
+      </ul>
+      <div class="callout mt-2">
+        <strong>Opting out in advance.</strong> Run this once in your browser's console on this
+        site and analytics will never load for you, now or later:
+        <br><code>localStorage.setItem("lh-no-analytics", "1")</code>
+      </div>
+      <p class="mt-2 small">
+        Cloudflare Web Analytics has no custom-event capability, so even when enabled the site
+        cannot record which links you clicked. If that ever becomes necessary, it would mean a
+        different provider, and this page would say so <em>before</em> the change, not after.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="ads">
+    <div class="container">
+      <span class="kicker">Advertising</span>
+      <h2>There is none &mdash; and how you would know if that changed</h2>
+      <p>
+        No page on this site currently carries advertising, affiliate links or sponsored content,
+        and nothing is collected for advertising purposes.
+      </p>
+      <p class="mt-2">
+        The site is built so that a commercial link cannot appear quietly. Any affiliate link is
+        tagged in the page source, and the site then <strong>adds a visible badge at the link
+        itself and generates a disclosure notice in that section automatically</strong>. Because
+        the notice is generated from the links rather than written by hand, it cannot claim a
+        relationship that does not exist, and it cannot go missing when one does. That design
+        exists to satisfy Japan's stealth-marketing rule (景品表示法, in force since October 2023),
+        the FTC's endorsement guides, and Korea's 표시광고법 &mdash; all of which require an
+        advertisement to be identifiable where the reader meets it, not in a footer.
+      </p>
+      <p class="mt-2">
+        Affiliate links, if added, would be outbound links to a third party. Once you click one,
+        you are on their site under their privacy policy, not this one.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="rights">
+    <div class="container">
+      <span class="kicker">Your rights</span>
+      <h2>There is no data to request, correct or delete</h2>
+      <p>
+        Rights of access, correction and erasure under the GDPR, Japan's 個人情報保護法 and Korea's
+        PIPA all operate on personal data held by an operator. <strong>This site holds none.</strong>
+        It has no database, no mailing list and no record of who visited. If analytics is switched
+        on it will remain aggregate and non-identifying, which means there is still no individual
+        record to hand over or erase.
+      </p>
+      <p class="mt-2">
+        The data stored in your browser is yours and is removed by clearing site data for this
+        domain, with no request to anyone needed.
+      </p>
+      <div class="callout warn mt-2">
+        <strong>Questions about this page</strong> &mdash; including "is this actually true?"
+        &mdash; go to <a href="https://github.com/tokyokuroishi/tokyokuroishi.github.io/issues" rel="noopener">the site's public issue tracker</a>.
+        The entire site, including every script described here, is public source code: you can read
+        what it does rather than take this page's word for it.
+      </div>
+      <p class="small mt-3">This page last updated: 12 September 2026. If the site's behaviour changes, this page changes in the same commit.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div><strong>Long Horizon</strong> — a field guide for decade-scale investors.</div>
+      <div>
+        <a href="start.html">Start</a> ·
+        <a href="principles.html">Principles</a> ·
+        <a href="markets.html">Markets</a> ·
+        <a href="equities.html">AI &amp; Stocks</a> ·
+        <a href="future.html">Future</a> ·
+        <a href="strategy.html">Strategy</a> ·
+        <a href="accounts.html">Accounts &amp; Tax</a> ·
+        <a href="nisa.html">NISA</a> ·
+        <a href="survival.html">Crashes</a> ·
+        <a href="drawdown.html">Drawdown</a> ·
+        <a href="tools.html">Calculator</a> ·
+        <a href="resources.html">Resources</a> ·
+        <a href="about.html">About</a> ·
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      Educational content only. Nothing on this site is investment, tax, or legal advice, or an
+      offer or solicitation to buy or sell any security. Investing involves risk, including loss
+      of principal. Historical returns do not guarantee future results. Tax rules cited for the
+      US, Japan, and Korea change frequently — verify with official sources before acting.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/daily-quote.js"></script>
+<script src="assets/js/affiliate.js"></script>
+</body>
+</html>

@@ -1,4 +1,11 @@
 /* Long Horizon — compound growth / DCA calculator
+
+   This is arithmetic on the reader's own assumptions, not a projection the site
+   stands behind, and the UI is written so that cannot be misread: the assumed
+   return is deducted for costs, restated in today's money, and shown beside the
+   same contributions run at other rates. The spread between those rows is the
+   point — it is wider than anything the reader can control.
+
    Two modes:
      future — monthly amount → projected value
      goal   — target amount → required monthly (binary search over the same simulation)
@@ -25,9 +32,28 @@
     stat3Fwd: "Value ÷ contributions",
     stat3Goal: "Projected final value",
     perMonth: "/mo",
-    heroNoteFwd: function (y, r) { return "Projected value after " + y + " years at " + r + "% a year, before tax and inflation"; },
-    heroNoteGoal: function (y, r, target) { return "Monthly investment needed to reach " + target + " in " + y + " years at " + r + "% a year"; },
+    heroNoteFwd: function (y, r) { return "If " + r + "% a year net of costs were achieved for " + y + " years — an assumption, not a forecast"; },
+    heroNoteGoal: function (y, r, target) { return "Monthly investment needed to reach " + target + " in " + y + " years, if " + r + "% a year net of costs were achieved"; },
     chartAria: "Projected portfolio value and cumulative contributions by year",
+    realLabel: function (y) { return "In today's money (at " + y + "% inflation a year):"; },
+    assumeH: "What this figure does and does not include",
+    assumeNet: function (g, f, n) { return "Return used: " + g + "% assumed, minus " + f + "% annual costs = <strong>" + n + "% net</strong>. Nothing else is deducted from the growth rate."; },
+    assumeTax: "No tax is deducted. What you keep depends on the account and the country — see <a href=\"accounts.html\">Accounts &amp; Tax</a>.",
+    assumeInfl: "The headline figure is in future currency. The line beneath it restates the same amount in today's purchasing power.",
+    assumeSeq: "Returns are applied as a constant every year. Real markets never do that, and the order in which good and bad years arrive changes the outcome — especially once you are withdrawing.",
+    cmpH: "The same plan at other rates of return",
+    cmpNote: "Nothing above changes except the assumed return. The gap between the top and bottom rows is larger than almost any decision you can make about contributions — which is the honest reason this tool cannot tell you what you will have.",
+    cmpRate: "Annual return (net)",
+    cmpFinal: "Projected value",
+    cmpReal: "In today's money",
+    cmpMonthly: "Monthly needed",
+    cmpContrib: "Total you would pay in",
+    cmpYours: "your assumption",
+    saveBtn: "Save these inputs",
+    clearBtn: "Clear",
+    savedAt: function (d) { return "Saved in this browser on " + d + "."; },
+    savedNone: "Inputs are not saved until you press Save. They stay in this browser and are never sent anywhere.",
+    savedCleared: "Saved inputs cleared.",
   }, window.CALC_I18N || {});
 
   var els = {
@@ -36,6 +62,8 @@
     monthly: document.getElementById("calc-monthly"),
     target: document.getElementById("calc-target"),
     ret: document.getElementById("calc-return"),
+    fee: document.getElementById("calc-fee"),
+    infl: document.getElementById("calc-inflation"),
     stepup: document.getElementById("calc-stepup"),
     years: document.getElementById("calc-years"),
     yearsOut: document.getElementById("calc-years-out"),
@@ -53,6 +81,14 @@
     chartHost: document.getElementById("calc-chart"),
     tooltip: document.getElementById("calc-tooltip"),
     tableBody: document.getElementById("calc-table-body"),
+    realLine: document.getElementById("calc-real"),
+    assumeBox: document.getElementById("calc-assume"),
+    cmpBody: document.getElementById("calc-compare-body"),
+    cmpHead3: document.getElementById("calc-compare-h3"),
+    cmpHead4: document.getElementById("calc-compare-h4"),
+    saveBtn: document.getElementById("calc-save"),
+    clearBtn: document.getElementById("calc-clear"),
+    savedMsg: document.getElementById("calc-saved-msg"),
   };
   if (!els.chartHost) return;
 
@@ -94,15 +130,35 @@
     return s + Math.round(v);
   }
 
+  /* The headline growth rate is the assumed gross return minus the annual cost,
+     because a fee is not a footnote — it compounds against you exactly the way
+     the return compounds for you. */
   function readInputs() {
+    var gross = Math.min(20, Math.max(-5, Number(els.ret.value) || 0)) / 100;
+    var fee = els.fee ? Math.min(5, Math.max(0, Number(els.fee.value) || 0)) / 100 : 0;
     return {
       initial: Math.max(0, Number(els.initial.value) || 0),
       monthly: Math.max(0, Number(els.monthly.value) || 0),
       target: Math.max(0, Number(els.target && els.target.value) || 0),
-      annualReturn: Math.min(20, Math.max(-5, Number(els.ret.value) || 0)) / 100,
+      gross: gross,
+      fee: fee,
+      annualReturn: gross - fee,
+      inflation: els.infl ? Math.min(10, Math.max(0, Number(els.infl.value) || 0)) / 100 : 0,
       stepup: Math.min(20, Math.max(0, Number(els.stepup.value) || 0)) / 100,
       years: Math.min(40, Math.max(5, Number(els.years.value) || 25)),
     };
+  }
+
+  /* Same nominal amount expressed in today's purchasing power. */
+  function toReal(v, p) {
+    return v / Math.pow(1 + p.inflation, p.years);
+  }
+
+  function finalValueAt(p, rate, monthly) {
+    var q = {};
+    for (var k in p) q[k] = p[k];
+    q.annualReturn = rate;
+    return finalValue(q, monthly);
   }
 
   /* Simulate month by month; keep one data point per year.
@@ -341,6 +397,149 @@
     }
   }
 
+  /* ---------- assumptions, real terms, rate comparison ---------- */
+
+  function renderAssumptions(p) {
+    if (!els.assumeBox) return;
+    els.assumeBox.textContent = "";
+    var h = document.createElement("span");
+    h.className = "assume-h";
+    h.textContent = L.assumeH;
+    els.assumeBox.appendChild(h);
+    var ul = document.createElement("ul");
+    [
+      L.assumeNet(fmtRate(p.gross), fmtRate(p.fee), fmtRate(p.annualReturn)),
+      L.assumeTax,
+      L.assumeInfl,
+      L.assumeSeq
+    ].forEach(function (t) {
+      var li = document.createElement("li");
+      li.innerHTML = t;              /* fixed localized strings, no user input */
+      ul.appendChild(li);
+    });
+    els.assumeBox.appendChild(ul);
+  }
+
+  function renderReal(p, finalNominal) {
+    if (!els.realLine) return;
+    els.realLine.textContent = "";
+    if (p.inflation <= 0) { els.realLine.style.display = "none"; return; }
+    els.realLine.style.display = "";
+    var lbl = document.createElement("span");
+    lbl.textContent = L.realLabel(fmtRate(p.inflation)) + " ";
+    var val = document.createElement("span");
+    val.className = "rl-val";
+    val.textContent = fmtFull(toReal(finalNominal, p));
+    els.realLine.appendChild(lbl);
+    els.realLine.appendChild(val);
+  }
+
+  /* A ladder of plausible net returns with the reader's own rate slotted in and
+     marked. Seeing the same contributions land two-and-a-half times apart is the
+     part of this page that survives being skimmed. */
+  function comparisonRates(p) {
+    var ladder = [0.02, 0.04, 0.06, 0.08, 0.10];
+    var mine = Math.round(p.annualReturn * 10000) / 10000;
+    var out = ladder.filter(function (r) { return Math.abs(r - mine) > 0.0025; });
+    out.push(mine);
+    out.sort(function (a, b) { return a - b; });
+    return out.map(function (r) { return { rate: r, mine: Math.abs(r - mine) < 1e-9 }; });
+  }
+
+  function renderComparison(p) {
+    if (!els.cmpBody) return;
+    if (els.cmpHead3) els.cmpHead3.textContent = mode === "goal" ? L.cmpMonthly : L.cmpFinal;
+    if (els.cmpHead4) els.cmpHead4.textContent = mode === "goal" ? L.cmpContrib : L.cmpReal;
+    els.cmpBody.textContent = "";
+    comparisonRates(p).forEach(function (row) {
+      var tr = document.createElement("tr");
+
+      var tdR = document.createElement("td");
+      tdR.textContent = fmtRate(row.rate) + "%";
+      if (row.mine) {
+        tdR.className = "rate-self";
+        var tag = document.createElement("span");
+        tag.className = "small";
+        tag.textContent = " — " + L.cmpYours;
+        tdR.appendChild(tag);
+      }
+      tr.appendChild(tdR);
+
+      var primary, secondary;
+      if (mode === "goal") {
+        var q = {}; for (var k in p) q[k] = p[k];
+        q.annualReturn = row.rate;
+        var need = requiredMonthly(q);
+        var pts = simulate(q, need);
+        primary = fmtFull(need) + L.perMonth;
+        /* the target is fixed, so restating it per row says nothing; what the
+           reader is buying with a higher return is a smaller total outlay */
+        secondary = fmtFull(pts[pts.length - 1].contributed);
+      } else {
+        var nominal = finalValueAt(p, row.rate);
+        primary = fmtFull(nominal);
+        secondary = p.inflation > 0 ? fmtFull(toReal(nominal, p)) : "—";
+      }
+
+      var tdV = document.createElement("td");
+      tdV.className = "num";
+      if (row.mine) tdV.classList.add("rate-self");
+      tdV.textContent = primary;
+      tr.appendChild(tdV);
+
+      var tdReal = document.createElement("td");
+      tdReal.className = "num";
+      if (row.mine) tdReal.classList.add("rate-self");
+      tdReal.textContent = secondary;
+      tr.appendChild(tdReal);
+
+      els.cmpBody.appendChild(tr);
+    });
+  }
+
+  /* ---------- saved inputs ----------
+     Written only on an explicit press, kept in this browser, never transmitted.
+     The privacy page documents this key by name, so do not rename it lightly. */
+
+  var SAVE_KEY = "lh-calc";
+  var SAVE_FIELDS = ["currency", "initial", "monthly", "target", "ret", "fee", "infl", "stepup", "years"];
+
+  function saveInputs() {
+    var data = { mode: mode, saved: new Date().toISOString().slice(0, 10) };
+    SAVE_FIELDS.forEach(function (f) { if (els[f]) data[f] = els[f].value; });
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+      if (els.savedMsg) els.savedMsg.textContent = L.savedAt(data.saved);
+    } catch (e) {
+      if (els.savedMsg) els.savedMsg.textContent = L.savedNone;
+    }
+  }
+
+  function clearInputs() {
+    try { localStorage.removeItem(SAVE_KEY); } catch (e) { /* private mode */ }
+    if (els.savedMsg) els.savedMsg.textContent = L.savedCleared;
+  }
+
+  function restoreInputs() {
+    var raw;
+    try { raw = localStorage.getItem(SAVE_KEY); } catch (e) { return false; }
+    if (!raw) { if (els.savedMsg) els.savedMsg.textContent = L.savedNone; return false; }
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return false; }
+    SAVE_FIELDS.forEach(function (f) {
+      if (els[f] && typeof data[f] === "string") els[f].value = data[f];
+    });
+    if (els.savedMsg) els.savedMsg.textContent = L.savedAt(data.saved || "—");
+    syncPresets();
+    return data.mode === "goal" ? "goal" : "future";
+  }
+
+  function syncPresets() {
+    els.presets.forEach(function (b) {
+      b.setAttribute("aria-pressed", Number(b.dataset.rate) === Number(els.ret.value) ? "true" : "false");
+    });
+  }
+
   /* ---------- orchestration ---------- */
 
   function fmtRate(r) {
@@ -374,6 +573,9 @@
     els.statContrib.textContent = fmtFull(last.contributed);
     els.statGrowth.textContent = fmtFull(last.value - last.contributed);
 
+    renderReal(p, mode === "goal" ? p.target : last.value);
+    renderAssumptions(p);
+    renderComparison(p);
     renderChart(points);
     renderTable(points);
   }
@@ -400,15 +602,13 @@
     });
   });
 
-  [els.initial, els.monthly, els.target, els.stepup].forEach(function (el) {
+  [els.initial, els.monthly, els.target, els.stepup, els.fee, els.infl].forEach(function (el) {
     if (el) el.addEventListener("input", recalc);
   });
-  els.ret.addEventListener("input", function () {
-    els.presets.forEach(function (b) {
-      b.setAttribute("aria-pressed", Number(b.dataset.rate) === Number(els.ret.value) ? "true" : "false");
-    });
-    recalc();
-  });
+
+  if (els.saveBtn) els.saveBtn.addEventListener("click", saveInputs);
+  if (els.clearBtn) els.clearBtn.addEventListener("click", clearInputs);
+  els.ret.addEventListener("input", function () { syncPresets(); recalc(); });
   els.years.addEventListener("input", recalc);
   els.currency.addEventListener("change", function () {
     var c = CURRENCIES[currency()];
@@ -423,5 +623,5 @@
     els.tooltip.style.display = "none";
   });
 
-  setMode("future");
+  setMode(restoreInputs() || "future");
 })();

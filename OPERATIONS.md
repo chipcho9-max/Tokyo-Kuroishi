@@ -90,6 +90,11 @@ To keep your own visits out of the numbers, once on the live site:
 localStorage.setItem("lh-no-analytics", "1")
 ```
 
+**`privacy.html` describes this state in all three languages and says the site
+currently loads nothing.** That page is a factual claim about the code, so
+filling in `cloudflareToken` makes it false the moment it deploys. Change both
+in the same commit, or the site is misdescribing itself to its readers.
+
 ## 3. Search consoles
 
 Verification tags are already in the `<head>` of all three `index.html` files,

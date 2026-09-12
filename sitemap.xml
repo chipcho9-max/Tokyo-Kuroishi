@@ -19,6 +19,24 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/"/>
   </url>
   <url>
+    <loc>https://tokyokuroishi.github.io/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/about.html"/>
+  </url>
+  <url>
+    <loc>https://tokyokuroishi.github.io/ja/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/about.html"/>
+  </url>
+  <url>
+    <loc>https://tokyokuroishi.github.io/ko/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/about.html"/>
+  </url>
+  <url>
     <loc>https://tokyokuroishi.github.io/accounts.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/accounts.html"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/accounts.html"/>
@@ -143,6 +161,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/principles.html"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/principles.html"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/principles.html"/>
+  </url>
+  <url>
+    <loc>https://tokyokuroishi.github.io/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://tokyokuroishi.github.io/ja/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://tokyokuroishi.github.io/ko/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tokyokuroishi.github.io/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tokyokuroishi.github.io/ja/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tokyokuroishi.github.io/ko/privacy.html"/>
   </url>
   <url>
     <loc>https://tokyokuroishi.github.io/resources.html</loc>

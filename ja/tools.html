@@ -30,16 +30,21 @@
     <nav class="nav" aria-label="メイン">
       <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
       <ul class="nav-links">
+        <li class="nav-sec">はじめに</li>
         <li><a href="start.html">はじめ方</a></li>
         <li><a href="principles.html">原則</a></li>
+        <li class="nav-sec">市場を知る</li>
         <li><a href="markets.html">市場</a></li>
         <li><a class="nav-main" href="equities.html"><span class="nav-star" aria-hidden="true">★</span>AIと株式</a></li>
         <li><a class="nav-main" href="future.html"><span class="nav-star" aria-hidden="true">★</span>未来</a></li>
+        <li class="nav-sec">実行する</li>
         <li><a href="strategy.html">戦略</a></li>
         <li><a href="accounts.html">口座と税金</a></li>
         <li><a href="nisa.html">NISA</a></li>
+        <li class="nav-sec">下がったとき</li>
         <li><a href="survival.html">暴落対策</a></li>
         <li><a href="drawdown.html">出口戦略</a></li>
+        <li class="nav-sec">道具</li>
         <li><a href="tools.html">計算機</a></li>
         <li><a href="resources.html">資料</a></li>
       </ul>
@@ -60,9 +65,10 @@
       <span class="kicker">計算機</span>
       <h1>あなたの「数十年」の価値を見る</h1>
       <p class="lead">
-        これは予測であって約束ではありません:想定した平均リターンでの、淡々とした毎月積立の
-        シミュレーションです。実際の市場がこの平均を届けてくれるのは長い期間だけ、しかも決して
-        一直線ではありません — だからこそ計画は数十年でつくるのです。
+        <strong>これは、あなたが選んだ仮定に対する計算であって、このサイトが保証する予測ではありません。</strong>
+        入力された数字 &mdash; 誰にも事前には分からない利回りを含めて &mdash; を複利で回しているだけです。
+        その仮定を1つ動かすだけで、答えはあなたが実際に下せるどの判断よりも大きく動きます。
+        下の<a href="#compare">利回り別の比較</a>は、そのために置いてあります。
       </p>
     </div>
   </section>
@@ -113,14 +119,28 @@
             <button type="button" data-rate="10" aria-pressed="false">名目 10%</button>
           </div>
 
+          <label for="calc-fee">年間コスト — 信託報酬・口座管理料など(%)</label>
+          <input type="number" id="calc-fee" value="0.1" min="0" max="5" step="0.05">
+          <p class="small" style="margin-top:-6px;">上の利回りから差し引きます。広範なインデックスファンドなら通常0.2%未満、アクティブファンドは1%以上のことも珍しくありません。</p>
+
+          <label for="calc-inflation">想定インフレ率(%)</label>
+          <input type="number" id="calc-inflation" value="2" min="0" max="10" step="0.1">
+          <p class="small" style="margin-top:-6px;">結果を「今のお金」に言い換えるためだけに使います。運用の利回り自体は変わりません。</p>
+
           <label for="calc-years">期間:<span class="range-value" id="calc-years-out">25年</span></label>
           <input type="range" id="calc-years" min="5" max="40" step="1" value="25">
 
           <p class="small" style="margin-top: 16px;">
-            プリセットはS&amp;P 500のおおよその歴史的平均 — 名目で年約10%、インフレ調整後で約7% —
-            と、より慎重な5%です。結果は税金・手数料を含みません。口座の重要性は
-            <a href="accounts.html">口座と税金</a>へ。
+            プリセットはS&amp;P 500のおおよその歴史的平均 &mdash; 名目で年約10%、インフレ調整後で約7% &mdash;
+            と、より慎重な5%です。<strong>過去の平均は、あなたが受け取る権利のある利回りではありません。</strong>
+            コストは下で差し引きますが、<strong>税金は差し引いていません</strong> &mdash;
+            口座と国によって変わるためです。<a href="accounts.html">口座と税金</a>へ。
           </p>
+          <div class="calc-saved">
+            <button type="button" id="calc-save">この入力を保存</button>
+            <button type="button" id="calc-clear">消去</button>
+            <span class="saved-msg" id="calc-saved-msg">「保存」を押すまで保存されません。保存先はこのブラウザ内だけで、どこにも送信されません。</span>
+          </div>
         </div>
 
         <div class="card">
@@ -128,7 +148,9 @@
             <div class="hf-label" id="calc-hero-label">将来の評価額(予測)</div>
             <div class="hf-value" id="calc-hero-value">—</div>
             <div class="hf-note" id="calc-hero-note"></div>
+            <div class="real-line" id="calc-real"></div>
           </div>
+          <div class="assume" id="calc-assume"></div>
 
           <div class="viz-legend" aria-hidden="false">
             <span class="lg-item"><span class="lg-swatch s1"></span> ポートフォリオ評価額</span>
@@ -155,6 +177,28 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="mt-3" id="compare">
+        <h2>同じ計画を、別の利回りで計算すると</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>年間利回り(コスト差引後)</th>
+                <th class="num" id="calc-compare-h3">将来の評価額</th>
+                <th class="num" id="calc-compare-h4">今のお金に換算</th>
+              </tr>
+            </thead>
+            <tbody id="calc-compare-body"></tbody>
+          </table>
+        </div>
+        <p class="small mt-2">
+          この表で変えているのは想定利回りだけです。上の行と下の行の差は、積立額について
+          あなたが下せるほぼどんな判断よりも大きい &mdash;
+          この道具が「いくらになるか」を教えられない、正直な理由がこれです。
+          残高を当てるためではなく、自分で決められる入力である積立額を決めるために使ってください。
+        </p>
       </div>
 
       <div class="mt-3">
@@ -222,7 +266,9 @@
         <a href="survival.html">暴落対策</a> ·
         <a href="drawdown.html">出口戦略</a> ·
         <a href="tools.html">計算機</a> ·
-        <a href="resources.html">資料</a>
+        <a href="resources.html">資料</a> ·
+        <a href="about.html">このサイトについて</a> ·
+        <a href="privacy.html">プライバシー</a>
       </div>
     </div>
     <p class="disclaimer">
@@ -250,9 +296,28 @@ window.CALC_I18N = {
   stat3Fwd: "評価額 ÷ 積立額",
   stat3Goal: "最終評価額(予測)",
   perMonth: "/月",
-  heroNoteFwd: function (y, r) { return "年率" + r + "%で" + y + "年間運用した場合(税引前・インフレ調整前)"; },
-  heroNoteGoal: function (y, r, target) { return "年率" + r + "%で" + y + "年後に" + target + "へ到達するのに必要な毎月の積立額"; },
+  heroNoteFwd: function (y, r) { return "コスト差引後で年" + r + "%が" + y + "年続いた場合の金額。予測ではなく仮定です"; },
+  heroNoteGoal: function (y, r, target) { return "コスト差引後で年" + r + "%が続いたと仮定した場合に、" + y + "年で" + target + "へ届くのに必要な毎月の積立額"; },
   chartAria: "年ごとのポートフォリオ評価額と累計積立額の予測グラフ",
+  realLabel: function (y) { return "インフレを年" + y + "%とすると、今のお金で："; },
+  assumeH: "この金額に入っているもの・入っていないもの",
+  assumeNet: function (g, f, n) { return "使っている利回り：想定" + g + "% から年間コスト" + f + "% を引いて<strong>差引後" + n + "%</strong>。利回りからこれ以外は引いていません。"; },
+  assumeTax: "税金は引いていません。手元に残る額は口座と国によって変わります — <a href=\"accounts.html\">口座と税金</a>を参照してください。",
+  assumeInfl: "大きく出ている金額は将来の通貨での額です。そのすぐ下の行が、同じ金額を今の購買力に言い換えたものです。",
+  assumeSeq: "利回りは毎年一定として計算しています。実際の市場は決してそうならず、良い年と悪い年が来る順番でも結果は変わります — 特に取り崩しを始めた後は。",
+  cmpH: "同じ計画を、別の利回りで計算すると",
+  cmpNote: "",
+  cmpRate: "年間利回り(コスト差引後)",
+  cmpFinal: "将来の評価額",
+  cmpReal: "今のお金に換算",
+  cmpMonthly: "必要な毎月の積立額",
+  cmpContrib: "払い込む総額",
+  cmpYours: "あなたの仮定",
+  saveBtn: "この入力を保存",
+  clearBtn: "消去",
+  savedAt: function (d) { return d + " にこのブラウザへ保存しました。"; },
+  savedNone: "「保存」を押すまで保存されません。保存先はこのブラウザ内だけで、どこにも送信されません。",
+  savedCleared: "保存した入力を消去しました。",
 };
 </script>
 <script src="../assets/js/calculator.js"></script>

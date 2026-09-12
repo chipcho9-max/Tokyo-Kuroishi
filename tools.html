@@ -30,16 +30,21 @@
     <nav class="nav" aria-label="Main">
       <a class="brand" href="index.html"><span class="brand-mark">LH</span> Long Horizon</a>
       <ul class="nav-links">
+        <li class="nav-sec">Begin</li>
         <li><a href="start.html">Start</a></li>
         <li><a href="principles.html">Principles</a></li>
+        <li class="nav-sec">Markets</li>
         <li><a href="markets.html">Markets</a></li>
         <li><a class="nav-main" href="equities.html"><span class="nav-star" aria-hidden="true">★</span>AI</a></li>
         <li><a class="nav-main" href="future.html"><span class="nav-star" aria-hidden="true">★</span>Future</a></li>
+        <li class="nav-sec">Putting it to work</li>
         <li><a href="strategy.html">Strategy</a></li>
         <li><a href="accounts.html">Accounts</a></li>
         <li><a href="nisa.html">NISA</a></li>
+        <li class="nav-sec">When it goes wrong</li>
         <li><a href="survival.html">Crashes</a></li>
         <li><a href="drawdown.html">Drawdown</a></li>
+        <li class="nav-sec">Tools</li>
         <li><a href="tools.html">Calculator</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
@@ -60,9 +65,11 @@
       <span class="kicker">Calculator</span>
       <h1>See what your decades are worth</h1>
       <p class="lead">
-        A projection, not a promise: steady monthly investing at an assumed average return.
-        Real markets deliver these averages only across long periods and never in a straight
-        line — which is precisely why the plan is built for decades.
+        <strong>This is arithmetic on assumptions you choose, not a projection this site stands
+        behind.</strong> It takes the numbers you type in &mdash; including a rate of return that
+        nobody can know in advance &mdash; and compounds them. Change that one assumption and the
+        answer moves further than any decision you can actually make, which is what
+        <a href="#compare">the comparison table</a> below is for.
       </p>
     </div>
   </section>
@@ -113,14 +120,28 @@
             <button type="button" data-rate="10" aria-pressed="false">Nominal 10%</button>
           </div>
 
+          <label for="calc-fee">Annual costs — fund fees and platform charges (%)</label>
+          <input type="number" id="calc-fee" value="0.1" min="0" max="5" step="0.05">
+          <p class="small" style="margin-top:-6px;">Deducted from the return above. A broad index fund is typically well under 0.2%; an actively managed fund is often 1% or more.</p>
+
+          <label for="calc-inflation">Assumed inflation (%)</label>
+          <input type="number" id="calc-inflation" value="2" min="0" max="10" step="0.1">
+          <p class="small" style="margin-top:-6px;">Used only to restate the result in today's money. It does not change the growth rate.</p>
+
           <label for="calc-years">Horizon: <span class="range-value" id="calc-years-out">25 years</span></label>
           <input type="range" id="calc-years" min="5" max="40" step="1" value="25">
 
           <p class="small" style="margin-top: 16px;">
-            Presets reflect the S&amp;P 500's rough historical averages — about 10% a year nominal,
-            about 7% after inflation — and a more cautious 5%. Results ignore taxes and fees;
-            see <a href="accounts.html">Accounts &amp; Tax</a> for why wrappers matter.
+            Presets reflect the S&amp;P 500's rough historical averages &mdash; about 10% a year
+            nominal, about 7% after inflation &mdash; and a more cautious 5%. A past average is not
+            a rate you are entitled to. Costs are deducted below; <strong>tax is not</strong>, because
+            it depends on your account and country &mdash; see <a href="accounts.html">Accounts &amp; Tax</a>.
           </p>
+          <div class="calc-saved">
+            <button type="button" id="calc-save">Save these inputs</button>
+            <button type="button" id="calc-clear">Clear</button>
+            <span class="saved-msg" id="calc-saved-msg">Inputs are not saved until you press Save. They stay in this browser and are never sent anywhere.</span>
+          </div>
         </div>
 
         <div class="card">
@@ -128,7 +149,9 @@
             <div class="hf-label" id="calc-hero-label">Projected portfolio value</div>
             <div class="hf-value" id="calc-hero-value">—</div>
             <div class="hf-note" id="calc-hero-note"></div>
+            <div class="real-line" id="calc-real"></div>
           </div>
+          <div class="assume" id="calc-assume"></div>
 
           <div class="viz-legend" aria-hidden="false">
             <span class="lg-item"><span class="lg-swatch s1"></span> Portfolio value</span>
@@ -155,6 +178,28 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="mt-3" id="compare">
+        <h2>The same plan at other rates of return</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Annual return (net of costs)</th>
+                <th class="num" id="calc-compare-h3">Projected value</th>
+                <th class="num" id="calc-compare-h4">In today's money</th>
+              </tr>
+            </thead>
+            <tbody id="calc-compare-body"></tbody>
+          </table>
+        </div>
+        <p class="small mt-2">
+          Nothing changes between these rows except the assumed return. The distance between the
+          top and the bottom is larger than almost any decision you can make about contributions
+          &mdash; which is the honest reason this tool cannot tell you what you will have. Use it
+          to size your savings rate, the input you control, not to predict a balance.
+        </p>
       </div>
 
       <div class="mt-3">
@@ -219,7 +264,9 @@
         <a href="survival.html">Crashes</a> ·
         <a href="drawdown.html">Drawdown</a> ·
         <a href="tools.html">Calculator</a> ·
-        <a href="resources.html">Resources</a>
+        <a href="resources.html">Resources</a> ·
+        <a href="about.html">About</a> ·
+        <a href="privacy.html">Privacy</a>
       </div>
     </div>
     <p class="disclaimer">
