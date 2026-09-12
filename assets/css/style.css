@@ -246,7 +246,7 @@ li { margin-bottom: 0.4em; }
 .theme-toggle:hover, .nav-burger:hover { color: var(--ink); border-color: var(--muted); }
 .nav-burger { display: none; }
 
-@media (max-width: 1260px) {
+@media (max-width: 1400px) {
   .nav-burger { display: inline-flex; }
   .nav-links {
     display: none;
@@ -263,6 +263,20 @@ li { margin-bottom: 0.4em; }
     box-shadow: var(--shadow);
   }
   .nav-links.open { display: flex; }
+}
+
+/* On a laptop-width screen the burger menu would otherwise be one sparse
+   column running down an otherwise empty header, so lay it out in columns
+   and align it with the content below. */
+@media (min-width: 720px) and (max-width: 1400px) {
+  .nav-links.open {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 14px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 20px 18px;
+  }
 }
 
 /* ---------- language switcher ---------- */
