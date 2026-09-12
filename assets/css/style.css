@@ -206,7 +206,7 @@ li { margin-bottom: 0.4em; }
 
 .nav-links a {
   display: block;
-  padding: 6px 5px;
+  padding: 6px 4px;
   border-radius: var(--radius-sm);
   color: var(--ink-2);
   font-size: 0.85rem;
@@ -215,6 +215,18 @@ li { margin-bottom: 0.4em; }
 }
 .nav-links a:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
 .nav-links a[aria-current="page"] { color: var(--accent); font-weight: 650; background: var(--accent-wash); }
+
+/* "main category" marker: star + weight + accent text. Deliberately does NOT
+   use a background, because the background is what marks the current page —
+   so an item that is both featured and current still reads as both. */
+.nav-links a.nav-main { color: var(--accent); font-weight: 750; }
+.nav-links a.nav-main:hover { color: var(--accent-strong); }
+.nav-star {
+  font-size: 0.78em;
+  line-height: 1;
+  margin-right: 3px;
+  vertical-align: 0.05em;
+}
 
 .theme-toggle,
 .nav-burger {
