@@ -36,6 +36,76 @@ yet the site is reachable at neither address until it is.
 
 Moving back is the same command with the `github.io` URL; it removes `CNAME`.
 
+## 1b. Pointing an old domain at the current one
+
+GitHub Pages serves **one** custom domain per repository — there is one
+`CNAME` file — so a second domain you own cannot be served by the same site.
+It has to redirect from somewhere else.
+
+Two things matter more than which tool you use:
+
+- **301, not 302.** A permanent redirect tells search engines the address
+  moved and transfers the link equity. A temporary one leaves the old URL
+  indexed and splits the site between two addresses.
+- **Preserve the path.** `old.example/ja/nisa.html` should land on
+  `new.example/ja/nisa.html`, not on the homepage. A redirect that dumps
+  everyone on `/` loses the reader who followed a deep link.
+
+### Option A — Cloudflare (free, and what to use if the registrar cannot do it well)
+
+1. Add the old domain as a site on Cloudflare's free plan, and change its
+   nameservers at the registrar to the two Cloudflare gives you. This is the
+   only real friction; propagation is usually minutes to a few hours.
+2. Redirect Rules only run on **proxied** traffic, so the hostname needs a DNS
+   record to attach to even though nothing will ever be served from it. Add,
+   both with the proxy (orange cloud) **on**:
+   - `A` · `@` · `192.0.2.1`
+   - `A` · `www` · `192.0.2.1`
+
+   `192.0.2.1` is the RFC 5737 documentation address — it exists precisely so
+   it can be used as a placeholder that routes nowhere.
+3. **Rules → Redirect Rules → Create rule**, with a dynamic expression so the
+   path survives:
+   - If: `http.host` contains the old domain
+   - Then: **Dynamic** redirect, expression
+     `concat("https://longhz.com", http.request.uri.path)`
+   - Status **301**, **Preserve query string** on.
+4. Wait for Cloudflare's Universal SSL certificate on the old domain
+   (usually ~15 minutes, occasionally longer). Until it issues, `https://`
+   on the old domain will warn.
+
+### Option B — the registrar's own URL forwarding
+
+Faster, no nameserver change, and enough if the registrar does it properly.
+Before relying on it, check all three:
+
+- Is it a **301**, or only a 302?
+- Does it **keep the path**, or send everything to the root?
+- Is it a real redirect, or **frame/cloaking** forwarding that keeps the old
+  address in the URL bar? Framed forwarding is the one to avoid — it hides
+  the canonical URL and search engines treat it poorly.
+
+If any answer is wrong, use Option A.
+
+### Verify
+
+```sh
+curl -sI https://long-horizon.com/ja/nisa.html | head -3
+# expect: HTTP/…  301
+#         location: https://longhz.com/ja/nisa.html
+```
+
+### Is it worth doing at all?
+
+Right now the honest answer is *barely*. The site ran on the old domain for
+part of a single day, with no traffic, no backlinks and no search-console
+registration, so there is almost no equity to preserve. The reasons to keep
+and redirect it anyway are that "Long Horizon" is still the site's name, so
+the matching domain is worth holding defensively, and that anywhere the old
+address was written down keeps working. Letting it lapse is a legitimate
+choice; letting it lapse *and* having someone else register it is the
+outcome to avoid.
+
 ## 2. Analytics
 
 Configured in `assets/js/analytics.js` — one `CONFIG` object at the top. With
