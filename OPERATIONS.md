@@ -6,24 +6,22 @@ code side of each is already in place and inert until configured.
 
 ## 1. Custom domain
 
-**Current state: the site answers on `chipcho9-max.github.io/Tokyo-Kuroishi/`,
-with no `CNAME` file.** This is a deliberate rollback, not the intended
-address.
+**Current state: the site answers on `www.long-horizon.com`**, set by the
+`CNAME` file in the repository root. DNS is managed in Cloudflare, with `www`
+as a `CNAME` to `chipcho9-max.github.io` and its **proxy off (grey cloud)** —
+a proxied record stops GitHub issuing its certificate.
 
-`longhz.com` is the intended address and is registered, but its DNS was not
-pointing at GitHub Pages when the `CNAME` was pushed. Because Pages redirects
-the `github.io` address to whatever custom domain it is given, that took the
-site off the air at every address at once, so the `CNAME` was removed to
-restore service. To finish the move: point `longhz.com` at the four Pages `A`
-records, confirm with `dig +short longhz.com`, then run `set-base-url.js`
-against `https://longhz.com/` again.
+`longhz.com` was tried and reverted. It is registered, but its DNS was never
+pointing at GitHub Pages when the `CNAME` was pushed, and because Pages
+redirects the `github.io` address to whatever custom domain it is given, that
+took the site off the air at every address at once. If it is picked up again,
+the order is: A records first, `dig +short longhz.com` to confirm, and only
+then `set-base-url.js`.
 
-If `longhz.com` is managed in Cloudflare, its proxy must be **off** (grey
-cloud) — the opposite of the redirect-only records in section 1b. A proxied
-record stops GitHub issuing its certificate.
-
-Earlier addresses were `www.long-horizon.com` and, before that,
-`chipcho9-max.github.io/Tokyo-Kuroishi/`.
+The lesson that cost an afternoon: **a proxied Cloudflare record and a
+Cloudflare redirect rule both sit in front of GitHub Pages.** Whichever
+hostname actually serves the site needs the proxy off and no redirect rule
+matching it.
 
 Note that `set-base-url.js` rewrites the base URL where it appears as a full
 `https://…/` prefix. Prose like this line that names a host without the scheme
@@ -51,7 +49,7 @@ yet the site is reachable at neither address until it is.
 
 Moving back is the same command with the `github.io` URL; it removes `CNAME`.
 
-## 1b. Pointing an old domain at the current one
+## 1b. Pointing another domain at the site
 
 GitHub Pages serves **one** custom domain per repository — there is one
 `CNAME` file — so a second domain you own cannot be served by the same site.
@@ -76,27 +74,31 @@ Two things matter more than which tool you use:
    imported list before switching nameservers — anything it missed stops
    working the moment DNS moves. `MX` records matter most: if any mail
    address uses the old domain, losing them silently loses mail.
-2. Redirect Rules only run on **proxied** traffic, so the hostname needs a DNS
-   record to attach to even though nothing will ever be served from it. Add,
-   both with the proxy (orange cloud) **on**:
-   - `A` · `@` · `192.0.2.1`
-   - `A` · `www` · `192.0.2.1`
+2. Redirect Rules only run on **proxied** traffic, so the redirecting
+   hostname needs a DNS record to attach to even though nothing is ever served
+   from it:
+   - `A` · `@` · `192.0.2.1` · proxy (orange cloud) **on**
 
    `192.0.2.1` is the RFC 5737 documentation address — it exists precisely so
    it can be used as a placeholder that routes nowhere.
+
+   The hostname that actually serves the site is the opposite in both
+   respects: `www` is a real `CNAME` to `chipcho9-max.github.io` with the
+   **proxy off**, and no redirect rule may match it.
 3. **Rules → Redirect Rules → Create rule** (this is the "Single Redirects"
    product; the free plan allows ten per zone, and one is enough). The
    wildcard form is available on every plan and is easier to get right than
    an expression:
-   - Request URL: `https://*long-horizon.com/*`
-   - Target URL: `https://longhz.com/${2}`
+   - Request URL: `https://long-horizon.com/*`
+   - Target URL: `https://www.long-horizon.com/${1}`
    - Status **301**, **Preserve query string** on.
 
-   The leading `*` covers `www` as well as the apex. If you prefer an
-   expression, the dynamic equivalent is
-   `concat("https://longhz.com", http.request.uri.path)` with the rule
-   matching `http.host contains "long-horizon.com"` — regular expressions,
-   unlike wildcards, need a Business plan.
+   Note the pattern has **no** leading `*`. It must match the bare apex only:
+   a rule that also matches `www` would intercept the hostname that serves the
+   site and redirect it to itself. If you prefer an expression, the dynamic
+   equivalent is `concat("https://www.long-horizon.com",
+   http.request.uri.path)` matching `http.host eq "long-horizon.com"` —
+   regular expressions, unlike wildcards, need a Business plan.
 4. Wait for Cloudflare's Universal SSL certificate on the old domain
    (usually ~15 minutes, occasionally longer). Until it issues, `https://`
    on the old domain will warn.
@@ -119,25 +121,21 @@ If any answer is wrong, use Option A.
 ```sh
 curl -sI https://long-horizon.com/ja/nisa.html | head -3
 # expect: HTTP/…  301
-#         location: https://longhz.com/ja/nisa.html
+#         location: https://www.long-horizon.com/ja/nisa.html
+
+curl -sI https://www.long-horizon.com/ja/nisa.html | head -3
+# expect: HTTP/…  200   — this one must NOT redirect
 ```
 
-The rule currently in place points at `longhz.com`, which is not serving yet
-(see section 1). Until it is, `long-horizon.com` redirects to a dead address.
-Either leave it — nobody is using either domain — or repoint the rule at
-`https://chipcho9-max.github.io/Tokyo-Kuroishi/${2}` for as long as the
-rollback lasts.
+Check both. A rule that accidentally matches `www` produces a redirect loop
+rather than a working site, and only the second command catches it.
 
-### Is it worth doing at all?
+### What this section assumes
 
-Right now the honest answer is *barely*. The site ran on the old domain for
-part of a single day, with no traffic, no backlinks and no search-console
-registration, so there is almost no equity to preserve. The reasons to keep
-and redirect it anyway are that "Long Horizon" is still the site's name, so
-the matching domain is worth holding defensively, and that anywhere the old
-address was written down keeps working. Letting it lapse is a legitimate
-choice; letting it lapse *and* having someone else register it is the
-outcome to avoid.
+It is written for the arrangement actually in place: the bare apex
+`long-horizon.com` redirecting to `www.long-horizon.com`, which serves the
+site. The same shape applies to any other domain pointed here later — one
+hostname serves, every other one redirects to it.
 
 ## 2. Analytics
 
@@ -145,7 +143,7 @@ outcome to avoid.
 `provider` is set to `cloudflare`; `cloudflareToken` is still empty, and both
 are required, so the site currently loads nothing and sends nothing. To
 finish, take the 32-character value from Cloudflare dashboard → Analytics &
-Logs → Web Analytics → add `longhz.com` → the snippet's
+Logs → Web Analytics → add `www.long-horizon.com` → the snippet's
 `data-cf-beacon='{"token": "…"}'`, and put it in `cloudflareToken`.
 
 Configured in `assets/js/analytics.js` — one `CONFIG` object at the top. With

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chipcho9-max.github.io/Tokyo-Kuroishi/sitemap.xml
+Sitemap: https://www.long-horizon.com/sitemap.xml
