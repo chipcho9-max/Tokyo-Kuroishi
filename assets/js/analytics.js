@@ -20,9 +20,16 @@
 (function () {
   "use strict";
 
+  /* Cloudflare Web Analytics is the chosen provider. It stays OFF until
+     cloudflareToken is filled in — both fields are required, so this file
+     currently loads nothing and sends nothing.
+
+     To finish: Cloudflare dashboard -> Analytics & Logs -> Web Analytics ->
+     add longhz.com, and copy the 32-character value out of the snippet's
+     data-cf-beacon='{"token": "..."}' into cloudflareToken below. */
   var CONFIG = {
-    provider: "",            // "cloudflare" | "plausible" | "ga4" | "" (off)
-    cloudflareToken: "",     // Cloudflare Web Analytics beacon token
+    provider: "cloudflare",  // "cloudflare" | "plausible" | "ga4" | "" (off)
+    cloudflareToken: "",     // ← PENDING. Nothing is measured until this is set.
     plausibleDomain: "",     // the bare domain you registered, e.g. "example.com"
     ga4MeasurementId: ""     // "G-XXXXXXXXXX"
   };
