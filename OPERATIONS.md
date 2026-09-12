@@ -17,6 +17,11 @@ Rename either one and the address moves, so after any rename run
 addresses were `chipcho9-max.github.io/` over repositories `manintokyo`,
 `Tokyo-Kuroishi` and `kuroishi`.
 
+The site publishes from the `claude/longterm-investor-website-r9eqye` branch
+rather than `main`, and does so because the publishing source is a GitHub
+Actions workflow. The other source, "Deploy from a branch", is the one that
+would tie a user site to `main`.
+
 **The address is set in Settings → Pages → Custom domain, and nowhere else.**
 This repository publishes through a GitHub Actions workflow, and GitHub's
 documentation is explicit that on that publishing source "any CNAME file is

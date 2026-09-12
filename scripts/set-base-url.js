@@ -2,7 +2,7 @@
 /* Point the whole site at a different base URL.
 
      node scripts/set-base-url.js https://longhorizon.example/
-     node scripts/set-base-url.js https://chipcho9-max.github.io/Tokyo-Kuroishi/
+     node scripts/set-base-url.js https://tokyokuroishi.github.io/
 
    Every absolute URL on the site — canonical, hreflang alternates, og:url,
    og:image, the sitemap, robots.txt and the README — is derived from one base,

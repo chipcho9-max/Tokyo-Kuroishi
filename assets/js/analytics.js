@@ -25,7 +25,7 @@
      currently loads nothing and sends nothing.
 
      To finish: Cloudflare dashboard -> Analytics & Logs -> Web Analytics ->
-     add longhz.com, and copy the 32-character value out of the snippet's
+     add tokyokuroishi.github.io, and copy the 32-character value out of the
      data-cf-beacon='{"token": "..."}' into cloudflareToken below. */
   var CONFIG = {
     provider: "cloudflare",  // "cloudflare" | "plausible" | "ga4" | "" (off)
